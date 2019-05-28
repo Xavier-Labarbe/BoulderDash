@@ -1,16 +1,24 @@
 package model.element.mobile;
 
+import contract.Permeability;
+import contract.iSprite;
 import model.PlayableMap;
 import model.element.Element;
 
 public abstract class Mobile extends Element {
     private int x;
+
     private int y;
     private StrategyMove strategyMove = null;
-    private final PlayableMap map;
+    private PlayableMap map;
 
-    public Mobile() {
+    public Mobile(final iSprite sprite, final Permeability permeability, final Boolean explosable, final int x,
+            final int y, final StrategyMove strategyMove) {
+        super(sprite, permeability, explosable);
         this.map = new PlayableMap();
+        this.setStrategyMove(strategyMove);
+        this.setX(x);
+        this.setY(y);
     }
 
     public PlayableMap getMap() {
@@ -35,6 +43,10 @@ public abstract class Mobile extends Element {
 
     public void move() {
         this.strategyMove.move();
+    }
+
+    public void setMap(final PlayableMap map) {
+        this.map = map;
     }
 
     public void setStrategyMove(final StrategyMove strategyMove) {

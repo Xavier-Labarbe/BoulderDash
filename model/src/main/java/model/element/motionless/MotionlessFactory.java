@@ -3,21 +3,22 @@ package model.element.motionless;
 public class MotionlessFactory {
     private static Exit exit = new Exit();
     private static Border border = new Border();
-    private static BreakableWall breakableWall = new BreakableWall();
+    private static ExplosableWall explosableWall = new ExplosableWall();
     private static Dirt dirt = new Dirt();
     private static Tunnel tunnel = new Tunnel();
-    private static Motionless[] motionlessElements = { exit, border, breakableWall, dirt, tunnel, };
+    private static Motionless[] motionless = { exit, border, explosableWall, dirt, tunnel, };
 
-    public static Motionless getFromFileSymbol() {
-        return null;
+    public static Motionless getFromFileSymbol(final char fileSymbol) {
+        for (final Motionless motionless : motionless) {
+            if (motionless.getSprite().getConsoleImage() == fileSymbol) {
+                return motionless;
+            }
+        }
+        return tunnel;
     }
 
     public Motionless createBorder() {
         return border;
-    }
-
-    public Motionless createBreakableWall() {
-        return breakableWall;
     }
 
     public Motionless createDirt() {
@@ -26,6 +27,10 @@ public class MotionlessFactory {
 
     public Motionless createExit() {
         return exit;
+    }
+
+    public Motionless createExplosableWall() {
+        return explosableWall;
     }
 
     public Motionless createTunnel() {

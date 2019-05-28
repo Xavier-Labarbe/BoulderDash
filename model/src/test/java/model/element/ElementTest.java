@@ -45,7 +45,7 @@ public class ElementTest {
 
     @Before
     public void setUp() throws Exception {
-        this.rock = new Rock();
+        this.rock = new Rock(0, 0, null);
     }
 
     @After

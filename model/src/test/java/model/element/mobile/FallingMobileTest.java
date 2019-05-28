@@ -33,7 +33,7 @@ public class FallingMobileTest {
 
     @Test
     public void killtest() {
-        final Monster monster = new Monster();
+        final Monster monster = new Monster(0, 0, null);
         final Boolean expected = false;
         this.rock.kill(monster);
         assertEquals(expected, monster.getAlive());
@@ -48,7 +48,7 @@ public class FallingMobileTest {
 
     @Before
     public void setUp() throws Exception {
-        this.rock = new Rock();
+        this.rock = new Rock(0, 0, null);
     }
 
     @Test

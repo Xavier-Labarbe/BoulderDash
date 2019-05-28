@@ -33,7 +33,7 @@ public class PlayerTest {
 
     @Test
     public void pickupDiamondtest() {
-        final Diamond diamond = new Diamond();
+        final Diamond diamond = new Diamond(0, 0, null);
         final Boolean expected = false;
         diamond.setX(5);
         diamond.setY(6);
@@ -43,7 +43,7 @@ public class PlayerTest {
 
     @Test
     public void pushRocktest() {
-        final Rock rock = new Rock();
+        final Rock rock = new Rock(0, 0, null);
         rock.setX(5);
         rock.setY(6);
         this.player.pushRock(rock);
@@ -53,7 +53,7 @@ public class PlayerTest {
 
     @Before
     public void setUp() throws Exception {
-        this.player = new Player();
+        this.player = new Player(0, 0, null);
         this.player.setX(5);
         this.player.setY(5);
     }

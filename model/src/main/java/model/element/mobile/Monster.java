@@ -1,9 +1,20 @@
 package model.element.mobile;
 
-public class Monster extends AliveMobile {
-    public Monster() {
+import contract.Permeability;
+import contract.iSprite;
+import model.PlayableMap;
+import model.element.Sprite;
 
-        // TODO Auto-generated constructor stub
+public class Monster extends AliveMobile {
+    private static iSprite SPRITE = new Sprite('M', "Monster.jpg");
+    private static Permeability PERMEABILITY = Permeability.PENETRABLE;
+    private static Boolean EXPLOSABLE = true;
+    private static StrategyMove STRATEGY_MOVE = new MoveAuto();
+
+    public Monster(final int x, final int y, final PlayableMap map) {
+        super(SPRITE, PERMEABILITY, EXPLOSABLE, x, y, STRATEGY_MOVE);
+        this.setMap(map);
+        this.getMap().addMobiles(this);
     }
 
     public void createDiamonds() {

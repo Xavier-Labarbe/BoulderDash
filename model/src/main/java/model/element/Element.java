@@ -9,6 +9,12 @@ public abstract class Element implements iElement {
     private Permeability permeability;
     private Boolean explosable;
 
+    public Element(final iSprite sprite, final Permeability permeability, final Boolean explosable) {
+        this.setSprite(sprite);
+        this.setPermeability(permeability);
+        this.setExplosable(explosable);
+    }
+
     @Override
     public Permeability getPermeability() {
         return this.permeability;

@@ -4,13 +4,13 @@ import contract.Permeability;
 import contract.iSprite;
 import model.element.Sprite;
 
-public class Dirt extends Motionless {
-    private static iSprite SPRITE = new Sprite(' ', "Dirt.jpg");
-    private static Boolean BREAKABLE = true;
+public class ExplosableWall extends Motionless {
+    private static iSprite SPRITE = new Sprite('W', "ExplosableWall.jpg");
+    private static Boolean BREAKABLE = false;
     private static Permeability PERMEABILITY = Permeability.BLOCKING;
     private static Boolean EXPLOSABLE = true;
 
-    public Dirt() {
+    public ExplosableWall() {
         super(SPRITE, PERMEABILITY, EXPLOSABLE);
         this.setBreakable(BREAKABLE);
     }

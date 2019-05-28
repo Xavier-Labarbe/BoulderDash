@@ -22,7 +22,7 @@ public class MonsterTest {
 
     @Test
     public void createDiamondstest() {
-        final Diamond diamond = new Diamond();
+        final Diamond diamond = new Diamond(0, 0, null);
         this.monster.setX(5);
         this.monster.setY(5);
         this.monster.createDiamonds();
@@ -40,7 +40,7 @@ public class MonsterTest {
 
     @Test
     public void killtest() {
-        final Player player = new Player();
+        final Player player = new Player(0, 0, null);
         final Boolean expected = false;
         this.monster.kill(player);
         assertEquals(expected, player.getAlive());
@@ -48,7 +48,7 @@ public class MonsterTest {
 
     @Before
     public void setUp() throws Exception {
-        this.monster = new Monster();
+        this.monster = new Monster(0, 0, null);
     }
 
     @After
