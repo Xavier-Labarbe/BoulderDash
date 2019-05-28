@@ -36,7 +36,7 @@ public class FallingMobileTest {
         final Monster monster = new Monster(0, 0, null);
         final Boolean expected = false;
         this.rock.kill(monster);
-        assertEquals(expected, monster.getAlive());
+        assertEquals(expected, monster.isAlive());
     }
 
     @Test

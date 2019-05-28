@@ -43,7 +43,7 @@ public class MonsterTest {
         final Player player = new Player(0, 0, null);
         final Boolean expected = false;
         this.monster.kill(player);
-        assertEquals(expected, player.getAlive());
+        assertEquals(expected, player.isAlive());
     }
 
     @Before

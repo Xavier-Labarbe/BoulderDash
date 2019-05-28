@@ -7,8 +7,8 @@ import model.element.Element;
 
 public abstract class Mobile extends Element {
     private int x;
-
     private int y;
+    private int movingVector = 1;
     private StrategyMove strategyMove = null;
     private PlayableMap map;
 
@@ -23,6 +23,10 @@ public abstract class Mobile extends Element {
 
     public PlayableMap getMap() {
         return this.map;
+    }
+
+    public int getMovingVector() {
+        return this.movingVector;
     }
 
     public StrategyMove getStrategyMove() {
@@ -42,11 +46,15 @@ public abstract class Mobile extends Element {
     }
 
     public void move() {
-        this.strategyMove.move();
+        this.strategyMove.move(this);
     }
 
     public void setMap(final PlayableMap map) {
         this.map = map;
+    }
+
+    public void setMovingVector(final int movingVector) {
+        this.movingVector = movingVector;
     }
 
     public void setStrategyMove(final StrategyMove strategyMove) {

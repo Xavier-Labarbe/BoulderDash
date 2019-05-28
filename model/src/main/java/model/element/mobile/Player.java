@@ -15,7 +15,11 @@ public class Player extends AliveMobile {
     public Player(final int x, final int y, final PlayableMap map) {
         super(SPRITE, PERMEABILITY, EXPLOSABLE, x, y, STRATEGY_MOVE);
         this.setMap(map);
+        this.getMap().setXYElement(x, y, this);
+        this.getMap().setPlayer(this);
+
         this.getMap().addMobiles(this);
+        this.setAlive(true);
     }
 
     public void digTunnel(final int x, final int y) {
@@ -24,7 +28,9 @@ public class Player extends AliveMobile {
 
     public void pickupDiamond(final Diamond diamond) {
         diamond.setVisible(false);
+        this.getMap().setXYElement(diamond.getX(), diamond.getY(), new Tunnel());
         diamond.getMap().removeMobiles(diamond);
+
     }
 
     public void pushRock(final Rock rock) {
@@ -34,16 +40,33 @@ public class Player extends AliveMobile {
         final int y_r = rock.getY();
         if ((x_r == (x_p + 1)) && (y_r == y_p)) {
             System.out.println("droite");
-            rock.setX(x_r + 1);
+            if (this.getMap().getXYElement(x_r + 1, y_r).getPermeability() == Permeability.PENETRABLE) {
+                rock.setX(x_r + 1);
+                this.getMap().setXYElement(x_r + 1, y_r, rock);
+                this.getMap().setXYElement(x_r, y_r, new Tunnel());
+            }
         } else if ((x_r == (x_p - 1)) && (y_r == y_p)) {
             System.out.println("gauche");
-            rock.setX(x_r - 1);
+            if (this.getMap().getXYElement(x_r - 1, y_r).getPermeability() == Permeability.PENETRABLE) {
+                rock.setX(x_r - 1);
+                this.getMap().setXYElement(x_r - 1, y_r, rock);
+                this.getMap().setXYElement(x_r, y_r, new Tunnel());
+            }
+
         } else if ((y_r == (y_p - 1)) && (x_r == x_p)) {
             System.out.println("haut");
-            rock.setY(y_r - 1);
+            if (this.getMap().getXYElement(x_r, y_r - 1).getPermeability() == Permeability.PENETRABLE) {
+                rock.setY(y_r - 1);
+                this.getMap().setXYElement(x_r, y_r - 1, rock);
+                this.getMap().setXYElement(x_r, y_r, new Tunnel());
+            }
         } else if ((y_r == (y_p + 1)) && (x_r == x_p)) {
             System.out.println("bas");
-            rock.setY(y_r + 1);
+            if (this.getMap().getXYElement(x_r, y_r + 1).getPermeability() == Permeability.PENETRABLE) {
+                rock.setY(y_r + 1);
+                this.getMap().setXYElement(x_r, y_r + 1, rock);
+                this.getMap().setXYElement(x_r, y_r, new Tunnel());
+            }
         }
     }
 

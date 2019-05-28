@@ -7,7 +7,7 @@ import model.element.Sprite;
 public class Tunnel extends Motionless {
     private static iSprite SPRITE = new Sprite('T', "Tunnel.jpg");
     private static Boolean BREAKABLE = false;
-    private static Permeability PERMEABILITY = Permeability.BLOCKING;
+    private static Permeability PERMEABILITY = Permeability.PENETRABLE;
     private static Boolean EXPLOSABLE = true;
 
     public Tunnel() {

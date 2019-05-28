@@ -14,6 +14,7 @@ public class Diamond extends FallingMobile {
     public Diamond(final int x, final int y, final PlayableMap map) {
         super(SPRITE, PERMEABILITY, EXPLOSABLE, x, y, STRATEGY_MOVE);
         this.setMap(map);
+        this.getMap().setXYElement(x, y, this);
         this.getMap().addMobiles(this);
     }
 

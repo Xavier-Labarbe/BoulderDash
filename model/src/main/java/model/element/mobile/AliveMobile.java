@@ -11,7 +11,7 @@ public abstract class AliveMobile extends Mobile implements iLife {
         super(sprite, permeability, explosable, x, y, strategyMove);
     }
 
-    public Boolean getAlive() {
+    public Boolean isAlive() {
         return this.alive;
     }
 
