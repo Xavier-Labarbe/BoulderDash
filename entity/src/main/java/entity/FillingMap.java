@@ -1,40 +1,40 @@
 package entity;
 
-public class FillingMap {
+public class FillingMap extends Entity{
 
-    private int x;
-    private int y;
+	private int x;
+	private int y;
 
-    private ElementType elementType;
+	private ElementType elementType;
 
-    public FillingMap(final ElementType elementType, final int x, final int y) {
-        this.setElementType(elementType);
-        this.setX(x);
-        this.setY(y);
-    }
+	public FillingMap(final ElementType elementType, final int x, final int y) {
+		setElementType(elementType);
+		setX(x);
+		setY(y);
+	}
 
-    public String getElementLabel() {
-        return this.elementType.getLabel();
-    }
+	public String getElementLabel() {
+		return elementType.getLabel();
+	}
 
-    public int getX() {
-        return this.x;
-    }
+	public int getX() {
+		return x;
+	}
 
-    public int getY() {
-        return this.y;
-    }
+	public int getY() {
+		return y;
+	}
 
-    public void setElementType(final ElementType elementType) {
-        this.elementType = elementType;
-    }
+	public void setElementType(final ElementType elementType) {
+		this.elementType = elementType;
+	}
 
-    public void setX(final int x) {
-        this.x = x;
-    }
+	public void setX(final int x) {
+		this.x = x;
+	}
 
-    public void setY(final int y) {
-        this.y = y;
-    }
+	public void setY(final int y) {
+		this.y = y;
+	}
 
 }
