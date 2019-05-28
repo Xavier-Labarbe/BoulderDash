@@ -6,6 +6,7 @@ package main;
 
 import contract.ControllerOrder;
 import controller.Controller;
+import controller.LoopGame;
 import model.Model;
 import view.View;
 
@@ -25,7 +26,8 @@ public abstract class Main {
 	public static void main(final String[] args) {
 		final Model model = new Model();
 		final View view = new View(model);
-		final Controller controller = new Controller(view, model);
+		final LoopGame loopGame = new LoopGame();
+		final Controller controller = new Controller(view, model, loopGame);
 		view.setController(controller);
 
 		controller.control();

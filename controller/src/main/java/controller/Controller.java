@@ -15,6 +15,9 @@ public final class Controller implements IController {
 
 	/** The view. */
 	private IView		view;
+	
+	/** The gameloop. */
+	private LoopGame loopGame;
 
 	/**
 	 * Instantiates a new controller.
@@ -24,9 +27,10 @@ public final class Controller implements IController {
 	 * @param model
 	 *          the model
 	 */
-	public Controller(final IView view, final IModel model) {
+	public Controller(final IView view, final IModel model, final LoopGame loopGame) {
 		setView(view);
 		setModel(model);
+		setLoopGame(loopGame);
 	}
 
 	/**
@@ -91,6 +95,10 @@ public final class Controller implements IController {
 
 	private void setView(final IView pview) {
 		view = pview;
+	}
+	
+	private void setLoopGame(final LoopGame loopGame) {
+		this.loopGame = loopGame;
 	}
 
 }

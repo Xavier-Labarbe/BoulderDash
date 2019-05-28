@@ -2,7 +2,7 @@ package controller;
 
 public class LoopGame {
 	static Boolean isRunning = true;
-	public static void gameLoop() throws InterruptedException
+	public static void LoopGame() throws InterruptedException
 	{
 		while (isRunning) {
 			doGameUpdates();
@@ -19,4 +19,5 @@ public class LoopGame {
 	private static void render() {
 		
 	}
+	
 }
