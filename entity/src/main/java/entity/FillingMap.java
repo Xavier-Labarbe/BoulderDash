@@ -1,18 +1,20 @@
 package entity;
 
-import java.util.Map;
-
 public class FillingMap {
 
-    private final int x;
-    private final int y;
+    private int x;
+    private int y;
 
-    private Map map;
     private ElementType elementType;
 
-    public FillingMap(final int x, final int y) {
-        this.x = x;
-        this.y = y;
+    public FillingMap(final ElementType elementType, final int x, final int y) {
+        this.setElementType(elementType);
+        this.setX(x);
+        this.setY(y);
+    }
+
+    public String getElementLabel() {
+        return this.elementType.getLabel();
     }
 
     public int getX() {
@@ -21,6 +23,18 @@ public class FillingMap {
 
     public int getY() {
         return this.y;
+    }
+
+    public void setElementType(final ElementType elementType) {
+        this.elementType = elementType;
+    }
+
+    public void setX(final int x) {
+        this.x = x;
+    }
+
+    public void setY(final int y) {
+        this.y = y;
     }
 
 }
