@@ -2,7 +2,9 @@ package model;
 
 import java.util.Observable;
 
-public final class Model extends Observable {
+import contract.IModel;
+
+public final class Model extends Observable implements IModel {
 
     private PlayableMap playableMap;
 
