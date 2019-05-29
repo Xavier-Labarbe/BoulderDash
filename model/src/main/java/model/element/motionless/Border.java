@@ -14,4 +14,5 @@ public class Border extends Motionless {
         super(SPRITE, PERMEABILITY, EXPLOSABLE);
         this.setBreakable(BREAKABLE);
     }
+
 }

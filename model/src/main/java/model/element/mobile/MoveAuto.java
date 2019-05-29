@@ -10,7 +10,7 @@ public class MoveAuto extends StrategyMove {
         final int x = mobile.getX();
         final int y = mobile.getY();
         int movingVector = mobile.getMovingVector();
-        final int i = 0;
+        int i = 0;
         Boolean moved = false;
         while ((i < 4) && (moved == false)) {
             switch (movingVector) {
@@ -24,6 +24,7 @@ public class MoveAuto extends StrategyMove {
                     moved = true;
                 } else {
                     movingVector = 2;
+                    i++;
                 }
                 break;
             case 2:
@@ -36,6 +37,7 @@ public class MoveAuto extends StrategyMove {
                     moved = true;
                 } else {
                     movingVector = 3;
+                    i++;
                 }
                 break;
             case 3:
@@ -48,6 +50,7 @@ public class MoveAuto extends StrategyMove {
                     moved = true;
                 } else {
                     movingVector = 4;
+                    i++;
                 }
                 break;
             case 4:
@@ -60,6 +63,7 @@ public class MoveAuto extends StrategyMove {
                     moved = true;
                 } else {
                     movingVector = 1;
+                    i++;
                 }
                 break;
             }

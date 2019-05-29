@@ -1,23 +1,26 @@
 package model.element.mobile;
 
+import contract.ControllerOrder;
 import contract.Permeability;
 import contract.iSprite;
 import model.PlayableMap;
 import model.element.Sprite;
 import model.element.motionless.Tunnel;
 
-public class Player extends AliveMobile {
+public class Player extends AliveMobile implements IAliveMobile {
     private static iSprite SPRITE = new Sprite('P', "Player.jpg");
     private static Permeability PERMEABILITY = Permeability.PENETRABLE;
     private static Boolean EXPLOSABLE = true;
     private static StrategyMove STRATEGY_MOVE = new MoveInput();
+    private Boolean alive;
+
+    private ControllerOrder movingOrder = ControllerOrder.NOTHING;
 
     public Player(final int x, final int y, final PlayableMap map) {
         super(SPRITE, PERMEABILITY, EXPLOSABLE, x, y, STRATEGY_MOVE);
         this.setMap(map);
         this.getMap().setXYElement(x, y, this);
         this.getMap().setPlayer(this);
-
         this.getMap().addMobiles(this);
         this.setAlive(true);
     }
@@ -26,10 +29,21 @@ public class Player extends AliveMobile {
         this.getMap().setXYElement(x, y, new Tunnel());
     }
 
+    public ControllerOrder getMovingOrder() {
+        return this.movingOrder;
+    }
+
+    @Override
+    public Boolean isAlive() {
+        // TODO Auto-generated method stub
+        return this.alive;
+    }
+
     public void pickupDiamond(final Diamond diamond) {
-        diamond.setVisible(false);
-        this.getMap().setXYElement(diamond.getX(), diamond.getY(), new Tunnel());
-        diamond.getMap().removeMobiles(diamond);
+        // this.getMap().setXYElement(diamond.getX(), diamond.getY(), new Tunnel());
+        diamond.setX(0);
+        diamond.setY(0);
+        this.getMap().addwaitingMobilesForRemoving(diamond);
 
     }
 
@@ -39,7 +53,6 @@ public class Player extends AliveMobile {
         final int x_r = rock.getX();
         final int y_r = rock.getY();
         if ((x_r == (x_p + 1)) && (y_r == y_p)) {
-            System.out.println("droite");
             if (this.getMap().getXYElement(x_r + 1, y_r).getPermeability() == Permeability.PENETRABLE) {
                 rock.setX(x_r + 1);
                 this.getMap().setXYElement(x_r + 1, y_r, rock);
@@ -73,6 +86,11 @@ public class Player extends AliveMobile {
     @Override
     public void setAlive(final Boolean alive) {
         this.alive = alive;
+
+    }
+
+    public void setMovingOrder(final ControllerOrder movingOrder) {
+        this.movingOrder = movingOrder;
     }
 
 }

@@ -4,8 +4,11 @@
  */
 package main;
 
+import java.util.Iterator;
+
 import model.PlayableMap;
 import model.element.mobile.Mobile;
+import model.element.mobile.Monster;
 import model.element.mobile.Player;
 import model.element.mobile.Rock;
 import model.element.motionless.Border;
@@ -36,24 +39,19 @@ public abstract class Main {
                 }
             }
         }
-        final Player player = new Player(4, 6, playableMap);
-        final Rock rock = new Rock(4, 1, playableMap);
-        // final Monster monster3 = new Monster(6, 3, playableMap);
-        final Boolean displayed;
-        playableMap.setXYElement(8, 5, new Tunnel());
-        playableMap.setXYElement(8, 6, new Tunnel());
-        playableMap.setXYElement(7, 3, new Tunnel());
-        playableMap.setXYElement(8, 3, new Tunnel());
-        playableMap.setXYElement(8, 5, new Tunnel());
-        playableMap.setXYElement(5, 3, new Tunnel());
+
+        playableMap.setXYElement(3, 1, new Rock(3, 1, playableMap));
+        playableMap.setXYElement(3, 2, new Dirt());
         playableMap.setXYElement(3, 3, new Tunnel());
-        playableMap.setXYElement(4, 3, new Tunnel());
-        playableMap.setXYElement(4, 2, new Tunnel());
-        playableMap.setXYElement(4, 4, new Tunnel());
-        playableMap.setXYElement(4, 5, new Tunnel());
-        playableMap.setXYElement(5, 3, new Tunnel());
-        playableMap.setXYElement(5, 2, new Tunnel());
-        playableMap.setXYElement(5, 4, new Tunnel());
+        playableMap.setXYElement(3, 4, new Tunnel());
+        playableMap.setXYElement(3, 5, new Tunnel());
+        playableMap.setXYElement(3, 6, new Tunnel());
+        playableMap.setXYElement(3, 7, new Tunnel());
+        playableMap.setXYElement(3, 8, new Tunnel());
+        // playableMap.setXYElement(3, 1, new Dirt());
+        // playableMap.setXYElement(3, 1, new Diamond(3, 1, playableMap));
+        final Monster monster = new Monster(3, 8, playableMap);
+        final Player player = new Player(2, 2, playableMap);
         while (player.isAlive() == true) {
             try {
                 Thread.sleep(1000);
@@ -61,8 +59,19 @@ public abstract class Main {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-            for (final Mobile mobile : playableMap.getMobiles()) {
-                mobile.move();
+            for (final Iterator<Mobile> i = playableMap.getWaitingMobilesForRemoving().iterator(); i.hasNext();) {
+                final Mobile i_n = i.next();
+                playableMap.removeMobiles(i_n);
+                // i_n.getMap().setXYElement(i_n.getX(), i_n.getY(), new Tunnel());
+                i.remove();
+                System.out.println("supp");
+            }
+            for (final Iterator<Mobile> i = playableMap.getWaitingMobilesForCreation().iterator(); i.hasNext();) {
+                final Mobile i_n = i.next();
+                playableMap.addMobiles(i_n);
+                i_n.getMap().setXYElement(i_n.getX(), i_n.getY(), i_n);
+                i.remove();
+                System.out.println("add");
             }
             for (int y = 0; y < 10; y++) {
 
@@ -74,6 +83,10 @@ public abstract class Main {
             }
             System.out.println();
             System.out.println();
+
+            for (final Iterator<Mobile> i = playableMap.getMobiles().iterator(); i.hasNext();) {
+                i.next().move();
+            }
 
         }
         System.out.println("perdu");

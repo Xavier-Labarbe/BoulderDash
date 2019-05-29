@@ -18,4 +18,15 @@ public class Diamond extends FallingMobile {
         this.getMap().addMobiles(this);
     }
 
+    public Diamond(final int x, final int y, final PlayableMap map, final int NotUse) {
+        super(SPRITE, PERMEABILITY, EXPLOSABLE, x, y, STRATEGY_MOVE);
+        this.setMap(map);
+    }
+
+    @Override
+    public void kill(final AliveMobile aliveMobile) {
+        aliveMobile.setAlive(false);
+        final int x = aliveMobile.getX();
+    }
+
 }
