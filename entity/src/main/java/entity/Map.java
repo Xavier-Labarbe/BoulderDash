@@ -4,41 +4,41 @@ import java.util.ArrayList;
 
 public class Map extends Entity {
 
-	private final int id;
-	private final String label;
-	private final int width;
-	private final int height;
-	private ArrayList<FillingMap> fillingMaps;
+    private final int id;
+    private final String label;
+    private final int width;
+    private final int height;
+    private ArrayList<FillingMap> fillingMaps;
 
-	public Map(final int id, final String label, final int width, final int height) {
-		this.id = id;
-		this.label = label;
-		this.width = width;
-		this.height = height;
-	}
+    public Map(final int id, final String label, final int width, final int height) {
+        this.id = id;
+        this.label = label;
+        this.width = width;
+        this.height = height;
+    }
 
-	public ArrayList<FillingMap> getFillingMaps() {
-		return fillingMaps;
-	}
+    public void add(final FillingMap fillingMap) {
+        this.getFillingMaps().add(fillingMap);
+    }
 
-	public int getHeight() {
-		return height;
-	}
+    public String getelementLabel() {
+        return this.label;
+    }
 
-	public int getId() {
-		return id;
-	}
+    public ArrayList<FillingMap> getFillingMaps() {
+        return this.fillingMaps;
+    }
 
-	public String getLabel() {
-		return label;
-	}
+    public int getHeight() {
+        return this.height;
+    }
 
-	public int getWidth() {
-		return width;
-	}
+    public int getId() {
+        return this.id;
+    }
 
-	public void add(FillingMap fillingMap){
-		getFillingMaps().add(fillingMap);
-	}
+    public int getWidth() {
+        return this.width;
+    }
 
 }

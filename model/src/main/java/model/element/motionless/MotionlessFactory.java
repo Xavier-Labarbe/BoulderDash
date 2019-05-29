@@ -8,7 +8,7 @@ public class MotionlessFactory {
     private static Tunnel tunnel = new Tunnel();
     private static Motionless[] motionless = { exit, border, explosableWall, dirt, tunnel, };
 
-    public static Motionless getFromFileSymbol(final char fileSymbol) {
+    public static Motionless getFromFileSymbol(final String fileSymbol) {
         for (final Motionless motionless : motionless) {
             if (motionless.getSprite().getConsoleImage() == fileSymbol) {
                 return motionless;

@@ -5,7 +5,7 @@ import java.io.IOException;
 
 public interface iSprite {
 
-    char getConsoleImage();
+    String getConsoleImage();
 
     Image getImage();
 

@@ -1,19 +1,19 @@
 package entity;
 
-public class ElementType extends Entity{
+public class ElementType extends Entity {
 
-	private String label;
+    private String elementChar;
 
-	public ElementType(final String label) {
-		setLabel(label);
+    public ElementType(final String elementChar) {
+        this.setElementChar(elementChar);
 
-	}
+    }
 
-	public String getLabel() {
-		return label;
-	}
+    public String getElementChar() {
+        return this.elementChar;
+    }
 
-	public void setLabel(final String label) {
-		this.label = label;
-	}
+    public void setElementChar(final String elementChar) {
+        this.elementChar = elementChar;
+    }
 }
