@@ -24,45 +24,46 @@ public class DAOMap extends DAOEntity<Map> {
     public PlayableMap create(final Map entity) {
 
         entity.getFillingMaps().forEach(name -> {
+
             switch (name.getElementChar()) {
-            case '|':
+            case "|":
                 this.playableMap.setXYElement(name.getX(), name.getY(),
                         MotionlessFactory.getFromFileSymbol(name.getElementChar()));
                 break;
-            case ' ':
+            case " ":
                 this.playableMap.setXYElement(name.getX(), name.getY(),
                         MotionlessFactory.getFromFileSymbol(name.getElementChar()));
                 break;
-            case 'W':
+            case "W":
                 this.playableMap.setXYElement(name.getX(), name.getY(),
                         MotionlessFactory.getFromFileSymbol(name.getElementChar()));
                 break;
-            case 'T':
+            case "T":
                 this.playableMap.setXYElement(name.getX(), name.getY(),
                         MotionlessFactory.getFromFileSymbol(name.getElementChar()));
                 break;
-            case 'E':
+            case "E":
                 this.playableMap.setXYElement(name.getX(), name.getY(),
                         MotionlessFactory.getFromFileSymbol(name.getElementChar()));
                 break;
-            case 'R':
+            case "R":
                 this.playableMap.setXYElement(name.getX(), name.getY(), MobileFactory
                         .getFromFileSymbol(name.getElementChar(), name.getX(), name.getY(), this.playableMap));
                 this.playableMap.addMobiles(MobileFactory.getFromFileSymbol(name.getElementChar(), name.getX(),
                         name.getY(), this.playableMap));
-            case 'M':
-                this.playableMap.setXYElement(name.getX(), name.getY(), MobileFactory
-                        .getFromFileSymbol(name.getElementChar(), name.getX(), name.getY(), this.playableMap));
-                this.playableMap.addMobiles(MobileFactory.getFromFileSymbol(name.getElementChar(), name.getX(),
-                        name.getY(), this.playableMap));
-                break;
-            case 'D':
+            case "M":
                 this.playableMap.setXYElement(name.getX(), name.getY(), MobileFactory
                         .getFromFileSymbol(name.getElementChar(), name.getX(), name.getY(), this.playableMap));
                 this.playableMap.addMobiles(MobileFactory.getFromFileSymbol(name.getElementChar(), name.getX(),
                         name.getY(), this.playableMap));
                 break;
-            case 'P':
+            case "D":
+                this.playableMap.setXYElement(name.getX(), name.getY(), MobileFactory
+                        .getFromFileSymbol(name.getElementChar(), name.getX(), name.getY(), this.playableMap));
+                this.playableMap.addMobiles(MobileFactory.getFromFileSymbol(name.getElementChar(), name.getX(),
+                        name.getY(), this.playableMap));
+                break;
+            case "P":
                 this.playableMap.setXYElement(name.getX(), name.getY(), MobileFactory
                         .getFromFileSymbol(name.getElementChar(), name.getX(), name.getY(), this.playableMap));
                 this.playableMap.addMobiles(MobileFactory.getFromFileSymbol(name.getElementChar(), name.getX(),
@@ -73,6 +74,7 @@ public class DAOMap extends DAOEntity<Map> {
             }
 
         });
+        this.display(this.playableMap);
         return this.playableMap;
     }
 
@@ -81,11 +83,28 @@ public class DAOMap extends DAOEntity<Map> {
         return false;
     }
 
+    public void display(final PlayableMap playableMap) {
+        ;
+        for (int y = 0; y < 20; y++) {
+            for (int x = 0; x < 20; x++) {
+                System.out.print(playableMap.getXYElement(x, y));
+            }
+        }
+    }
+
     @Override
     public Map find(final int id) {
         // TODO Auto-generated method stub
         return null;
     }
+
+    /*
+     * final String sql = "{call helloworldByCode(?)}"; final CallableStatement
+     * call = this.getConnection().prepareCall(sql); call.setString(1, code);
+     * call.execute(); final ResultSet resultSet = call.getResultSet(); if
+     * (resultSet.first()) { helloWorld = new HelloWorld(resultSet.getInt("id"),
+     * code, resultSet.getString("message"));
+     */
 
     public Map find(final int id, final String label, final int width, final int height) {
         Map map = new Map(id, label, height, width);

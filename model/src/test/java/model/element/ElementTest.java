@@ -31,7 +31,7 @@ public class ElementTest {
 
     @Test
     public void getSpritetest() {
-        final Sprite expected = new Sprite('R', "Rock.jpg");
+        final Sprite expected = new Sprite("R", "Rock.jpg");
         assertEquals(expected, this.rock.getSprite());
 
     }

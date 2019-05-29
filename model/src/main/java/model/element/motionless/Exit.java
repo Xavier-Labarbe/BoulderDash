@@ -5,7 +5,7 @@ import contract.iSprite;
 import model.element.Sprite;
 
 public class Exit extends Motionless {
-    private static iSprite SPRITE = new Sprite('E', "Exit.jpg");
+    private static iSprite SPRITE = new Sprite("E", "Exit.jpg");
     private static Boolean BREAKABLE = false;
     private static Permeability PERMEABILITY = Permeability.OPENABLE;
     private static Boolean EXPLOSABLE = false;

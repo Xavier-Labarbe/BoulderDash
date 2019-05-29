@@ -6,7 +6,7 @@ import model.PlayableMap;
 import model.element.Sprite;
 
 public class Monster extends AliveMobile {
-    private static iSprite SPRITE = new Sprite('M', "Monster.jpg");
+    private static iSprite SPRITE = new Sprite("M", "Monster.jpg");
     private static Permeability PERMEABILITY = Permeability.PENETRABLE;
     private static Boolean EXPLOSABLE = true;
     private static StrategyMove STRATEGY_MOVE = new MoveAuto();

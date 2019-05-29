@@ -5,7 +5,7 @@ import contract.iSprite;
 import model.element.Sprite;
 
 public class Dirt extends Motionless {
-    private static iSprite SPRITE = new Sprite(' ', "Dirt.jpg");
+    private static iSprite SPRITE = new Sprite(" ", "Dirt.jpg");
     private static Boolean BREAKABLE = true;
     private static Permeability PERMEABILITY = Permeability.BLOCKING;
     private static Boolean EXPLOSABLE = true;

@@ -6,7 +6,7 @@ import model.PlayableMap;
 import model.element.Sprite;
 
 public class Rock extends FallingMobile {
-    private static iSprite SPRITE = new Sprite('R', "Rock.jpg");
+    private static iSprite SPRITE = new Sprite("R", "Rock.jpg");
     private static Permeability PERMEABILITY = Permeability.BLOCKING;
     private static Boolean EXPLOSABLE = true;
     private static StrategyMove STRATEGY_MOVE = new MoveGravity();

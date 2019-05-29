@@ -7,7 +7,7 @@ import model.element.Sprite;
 import model.element.motionless.Tunnel;
 
 public class Player extends AliveMobile {
-    private static iSprite SPRITE = new Sprite('P', "Player.jpg");
+    private static iSprite SPRITE = new Sprite("P", "Player.jpg");
     private static Permeability PERMEABILITY = Permeability.PENETRABLE;
     private static Boolean EXPLOSABLE = true;
     private static StrategyMove STRATEGY_MOVE = new MoveInput();

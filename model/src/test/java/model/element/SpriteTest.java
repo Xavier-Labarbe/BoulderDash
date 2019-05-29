@@ -68,7 +68,7 @@ public class SpriteTest {
 
     @Before
     public void setUp() throws Exception {
-        this.sprite = new Sprite('R', "Rock.png");
+        this.sprite = new Sprite("R", "Rock.png");
     }
 
     @After
