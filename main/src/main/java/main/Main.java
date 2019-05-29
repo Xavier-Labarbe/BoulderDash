@@ -6,6 +6,7 @@ package main;
 
 import contract.ControllerOrder;
 import controller.Controller;
+import controller.LoopGame;
 import model.Model;
 import view.View;
 
@@ -21,14 +22,16 @@ public abstract class Main {
 	 *
 	 * @param args
 	 *            the arguments
+	 * @throws InterruptedException 
 	 */
-	public static void main(final String[] args) {
-		final Model model = new Model();
+	public static void main(final String[] args) throws InterruptedException {
+		LoopGame.loopGame();
+		/*final Model model = new Model();
 		final View view = new View(model);
 		final Controller controller = new Controller(view, model);
 		view.setController(controller);
 
 		controller.control();
-		controller.orderPerform(ControllerOrder.NOTHING);
+		controller.orderPerform(ControllerOrder.NOTHING);*/
 	}
 }

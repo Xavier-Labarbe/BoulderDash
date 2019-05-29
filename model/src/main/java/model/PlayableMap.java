@@ -4,10 +4,20 @@ import java.util.ArrayList;
 
 import model.element.Element;
 import model.element.mobile.Mobile;
+import model.element.mobile.Player;
 
 public class PlayableMap {
     private Element[][] elements;
-    private final ArrayList<Mobile> mobiles;
+    private Player player;
+    public Player getPlayer() {
+		return player;
+	}
+
+	public void setPlayer(Player player) {
+		this.player = player;
+	}
+
+	private final ArrayList<Mobile> mobiles;
 
     private String label;
 
