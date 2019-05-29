@@ -4,10 +4,10 @@
  */
 package main;
 
-import contract.ControllerOrder;
-import controller.Controller;
-import model.Model;
-import view.View;
+import java.sql.SQLException;
+
+import model.DAOMap;
+import model.DBConnection;
 
 /**
  * The Class Main.
@@ -16,19 +16,16 @@ import view.View;
  */
 public abstract class Main {
 
-	/**
-	 * The main method.
-	 *
-	 * @param args
-	 *            the arguments
-	 */
-	public static void main(final String[] args) {
-		final Model model = new Model();
-		final View view = new View(model);
-		final Controller controller = new Controller(view, model);
-		view.setController(controller);
+    /**
+     * The main method.
+     *
+     * @param args
+     *            the arguments
+     * @throws SQLException
+     */
+    public static void main(final String[] args) throws SQLException {
 
-		controller.control();
-		controller.orderPerform(ControllerOrder.NOTHING);
-	}
+        final DAOMap daoMap = new DAOMap(DBConnection.getInstance().getConnection());
+        daoMap.create(daoMap.find(1));
+    }
 }

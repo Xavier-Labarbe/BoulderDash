@@ -23,7 +23,10 @@ public class DAOMap extends DAOEntity<Map> {
     @Override
     public PlayableMap create(final Map entity) {
 
-        entity.getFillingMaps().forEach(name -> {
+        // for (int i = 0; i < entity.getFillingMaps().size(); i++)
+        for (final FillingMap name : entity.getFillingMaps()) {
+
+            // entity.getFillingMaps().forEach(name -> {
 
             switch (name.getElementChar()) {
             case "|":
@@ -72,9 +75,9 @@ public class DAOMap extends DAOEntity<Map> {
             default:
                 break;
             }
-
-        });
-        this.display(this.playableMap);
+        }
+        // });
+        // this.display(this.playableMap);
         return this.playableMap;
     }
 
