@@ -6,15 +6,17 @@ package main;
 
 import java.util.Iterator;
 
+import model.IPlayableMap;
 import model.PlayableMap;
 import model.element.mobile.Diamond;
-import model.element.mobile.Mobile;
+import model.element.mobile.IMobile;
 import model.element.mobile.Monster;
 import model.element.mobile.Player;
 import model.element.mobile.Rock;
 import model.element.motionless.Border;
 import model.element.motionless.Dirt;
 import model.element.motionless.Exit;
+import model.element.motionless.ExplosableWall;
 import model.element.motionless.Tunnel;
 
 /**
@@ -30,7 +32,7 @@ public abstract class Main {
      * @param args the arguments
      */
     public static void main(final String[] args) {
-        final PlayableMap playableMap = new PlayableMap(2);
+        final IPlayableMap playableMap = new PlayableMap(2);
 
         for (int y = 0; y < 10; y++) {
             for (int x = 0; x < 10; x++) {
@@ -50,8 +52,13 @@ public abstract class Main {
         playableMap.setXYElement(3, 6, new Tunnel());
         playableMap.setXYElement(3, 7, new Tunnel());
         playableMap.setXYElement(3, 8, new Tunnel());
-        // playableMap.setXYElement(5, 2, new Diamond(5, 2, playableMap));
-        playableMap.setXYElement(6, 2, new Diamond(6, 2, playableMap));
+        playableMap.setXYElement(4, 5, new ExplosableWall());
+        playableMap.setXYElement(5, 2, new Diamond(5, 2, playableMap));
+        playableMap.setXYElement(6, 2, new Tunnel());
+        playableMap.setXYElement(7, 2, new Tunnel());
+        // playableMap.setXYElement(6, 2, new Diamond(6, 2, playableMap));
+        playableMap.setXYElement(4, 7, new Tunnel());
+        playableMap.setXYElement(5, 7, new Tunnel());
         // playableMap.setXYElement(3, 1, new Dirt());
         // playableMap.setXYElement(3, 1, new Diamond(3, 1, playableMap));
         final Monster monster = new Monster(3, 8, playableMap);
@@ -63,15 +70,15 @@ public abstract class Main {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-            for (final Iterator<Mobile> i = playableMap.getWaitingMobilesForRemoving().iterator(); i.hasNext();) {
-                final Mobile i_n = i.next();
+            for (final Iterator<IMobile> i = playableMap.getWaitingMobilesForRemoving().iterator(); i.hasNext();) {
+                final IMobile i_n = i.next();
                 playableMap.removeMobiles(i_n);
                 // i_n.getMap().setXYElement(i_n.getX(), i_n.getY(), new Tunnel());
                 i.remove();
                 System.out.println("supp");
             }
-            for (final Iterator<Mobile> i = playableMap.getWaitingMobilesForCreation().iterator(); i.hasNext();) {
-                final Mobile i_n = i.next();
+            for (final Iterator<IMobile> i = playableMap.getWaitingMobilesForCreation().iterator(); i.hasNext();) {
+                final IMobile i_n = i.next();
                 playableMap.addMobiles(i_n);
                 i_n.getMap().setXYElement(i_n.getX(), i_n.getY(), i_n);
                 i.remove();
@@ -88,7 +95,7 @@ public abstract class Main {
             System.out.println();
             System.out.println();
 
-            for (final Iterator<Mobile> i = playableMap.getMobiles().iterator(); i.hasNext();) {
+            for (final Iterator<IMobile> i = playableMap.getMobiles().iterator(); i.hasNext();) {
                 i.next().move();
             }
 

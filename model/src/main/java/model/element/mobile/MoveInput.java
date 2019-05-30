@@ -9,7 +9,7 @@ import model.element.motionless.Tunnel;
 
 public class MoveInput extends StrategyMove {
 
-    private Boolean isADiamond(final Mobile mobile, final int x, final int y) {
+    private Boolean isADiamond(final IMobile mobile, final int x, final int y) {
         if (mobile.getMap().getXYElement(x, y) instanceof Diamond) {
             return true;
         } else {
@@ -17,7 +17,7 @@ public class MoveInput extends StrategyMove {
         }
     }
 
-    private Boolean isADirt(final Mobile mobile, final int x, final int y) {
+    private Boolean isADirt(final IMobile mobile, final int x, final int y) {
         if (mobile.getMap().getXYElement(x, y) instanceof Dirt) {
             return true;
         } else {
@@ -25,7 +25,7 @@ public class MoveInput extends StrategyMove {
         }
     }
 
-    private Boolean isARock(final Mobile mobile, final int x, final int y) {
+    private Boolean isARock(final IMobile mobile, final int x, final int y) {
         if (mobile.getMap().getXYElement(x, y) instanceof Rock) {
             return true;
         } else {
@@ -33,7 +33,7 @@ public class MoveInput extends StrategyMove {
         }
     }
 
-    private Boolean isOpenableAndOpen(final Mobile mobile, final int x, final int y) {
+    private Boolean isOpenableAndOpen(final IMobile mobile, final int x, final int y) {
         if (mobile.getMap().getXYElement(x, y).getPermeability() == Permeability.OPENABLE) {
             if (((Exit) mobile.getMap().getXYElement(x, y)).getDoorState() == DoorState.OPEN) {
                 return true;
@@ -44,7 +44,7 @@ public class MoveInput extends StrategyMove {
         return false;
     }
 
-    private Boolean isPenetrable(final Mobile mobile, final int x, final int y) {
+    private Boolean isPenetrable(final IMobile mobile, final int x, final int y) {
         if (mobile.getMap().getXYElement(x, y).getPermeability() == Permeability.PENETRABLE) {
             return true;
         } else {
@@ -53,7 +53,7 @@ public class MoveInput extends StrategyMove {
     }
 
     @Override
-    public void move(final Mobile mobile) {
+    public void move(final IMobile mobile) {
         ControllerOrder movingOrder = mobile.getMap().getPlayer().getMovingOrder();
         final int x = mobile.getX();
         final int y = mobile.getY();
@@ -61,94 +61,43 @@ public class MoveInput extends StrategyMove {
         movingOrder = ControllerOrder.RIGHT;
         switch (movingOrder) {
         case UP:
-            if (this.isPenetrable(mobile, x, y - 1)) {
-                this.moveAtXY(mobile, x, y - 1);
-                mobile.getMap().setXYElement(x, y, new Tunnel());
-            } else if (this.isARock(mobile, x, y - 1)) {
-                ((Player) mobile).pushRock((Rock) mobile.getMap().getXYElement(x, y - 1));
-            } else if (this.isADiamond(mobile, x, y - 1)) {
-                ((Player) mobile).pickupDiamond((Diamond) mobile.getMap().getXYElement(x, y - 1));
-                this.moveAtXY(mobile, x, y - 1);
-                mobile.getMap().setXYElement(x, y, new Tunnel());
-            } else if (this.isADirt(mobile, x, y - 1)) {
-                ((Player) mobile).digTunnel(x, y - 1);
-                this.moveAtXY(mobile, x, y - 1);
-                mobile.getMap().setXYElement(x, y, new Tunnel());
-            } else if (this.isOpenableAndOpen(mobile, x, y - 1)) {
-                this.moveAtXY(mobile, x, y - 1);
-                mobile.getMap().setXYElement(x, y, new Tunnel());
-                mobile.getMap().setWin(true);
-            }
+            this.verifyAndMove(x, y - 1, mobile);
             break;
         case DOWN:
-            if (this.isPenetrable(mobile, x, y + 1)) {
-                this.moveAtXY(mobile, x, y + 1);
-                mobile.getMap().setXYElement(x, y, new Tunnel());
-            } else if (this.isARock(mobile, x, y + 1)) {
-                ((Player) mobile).pushRock((Rock) mobile.getMap().getXYElement(x, y + 1));
-            } else if (this.isADiamond(mobile, x, y + 1)) {
-                ((Player) mobile).pickupDiamond((Diamond) mobile.getMap().getXYElement(x, y + 1));
-                this.moveAtXY(mobile, x, y + 1);
-                mobile.getMap().setXYElement(x, y, new Tunnel());
-            } else if (this.isADirt(mobile, x, y + 1)) {
-                ((Player) mobile).digTunnel(x, y + 1);
-                this.moveAtXY(mobile, x, y + 1);
-                mobile.getMap().setXYElement(x, y, new Tunnel());
-            } else if (this.isOpenableAndOpen(mobile, x, y + 1)) {
-                this.moveAtXY(mobile, x, y + 1);
-                mobile.getMap().setXYElement(x, y, new Tunnel());
-                mobile.getMap().setWin(true);
-            }
+            this.verifyAndMove(x, y + 1, mobile);
             break;
         case RIGHT:
-            if (this.isPenetrable(mobile, x + 1, y)) {
-                this.moveAtXY(mobile, x + 1, y);
-                mobile.getMap().setXYElement(x, y, new Tunnel());
-            } else if (this.isARock(mobile, x + 1, y)) {
-                ((Player) mobile).pushRock((Rock) mobile.getMap().getXYElement(x + 1, y));
-            } else if (this.isADiamond(mobile, x + 1, y)) {
-                ((Player) mobile).pickupDiamond((Diamond) mobile.getMap().getXYElement(x + 1, y));
-                this.moveAtXY(mobile, x + 1, y);
-                mobile.getMap().setXYElement(x, y, new Tunnel());
-            } else if (this.isADirt(mobile, x + 1, y)) {
-                ((Player) mobile).digTunnel(x + 1, y);
-                this.moveAtXY(mobile, x + 1, y);
-                mobile.getMap().setXYElement(x, y, new Tunnel());
-            } else if (this.isOpenableAndOpen(mobile, x + 1, y)) {
-                this.moveAtXY(mobile, x + 1, y);
-                mobile.getMap().setXYElement(x, y, new Tunnel());
-                mobile.getMap().setWin(true);
-            }
+            this.verifyAndMove(x + 1, y, mobile);
             break;
         case LEFT:
-            if (this.isPenetrable(mobile, x - 1, y)) {
-                this.moveAtXY(mobile, x - 1, y);
-                mobile.getMap().setXYElement(x, y, new Tunnel());
-            } else if (this.isARock(mobile, x - 1, y)) {
-                ((Player) mobile).pushRock((Rock) mobile.getMap().getXYElement(x - 1, y));
-            } else if (this.isADiamond(mobile, x - 1, y)) {
-                ((Player) mobile).pickupDiamond((Diamond) mobile.getMap().getXYElement(x - 1, y));
-                this.moveAtXY(mobile, x - 1, y);
-                mobile.getMap().setXYElement(x, y, new Tunnel());
-            } else if (this.isADirt(mobile, x - 1, y)) {
-                ((Player) mobile).digTunnel(x - 1, y);
-                this.moveAtXY(mobile, x - 1, y);
-                mobile.getMap().setXYElement(x, y, new Tunnel());
-            } else if (this.isOpenableAndOpen(mobile, x - 1, y)) {
-                this.moveAtXY(mobile, x - 1, y);
-                mobile.getMap().setXYElement(x, y, new Tunnel());
-                mobile.getMap().setWin(true);
-            }
+            this.verifyAndMove(x - 1, y, mobile);
             break;
         case NOTHING:
             break;
         }
-
     }
 
-    private void moveAtXY(final Mobile mobile, final int x, final int y) {
+    private void moveAtXY(final IMobile mobile, final int x, final int y) {
+        mobile.getMap().setXYElement(mobile.getX(), mobile.getY(), new Tunnel());
         mobile.getMap().setXYElement(x, y, mobile);
         mobile.setX(x);
         mobile.setY(y);
+    }
+
+    private void verifyAndMove(final int x, final int y, final IMobile mobile) {
+        if (this.isPenetrable(mobile, x, y)) {
+            this.moveAtXY(mobile, x, y);
+        } else if (this.isARock(mobile, x, y)) {
+            ((IPlayer) mobile).pushRock((Rock) mobile.getMap().getXYElement(x, y));
+        } else if (this.isADiamond(mobile, x, y)) {
+            ((IPlayer) mobile).pickupDiamond((Diamond) mobile.getMap().getXYElement(x, y));
+            this.moveAtXY(mobile, x, y);
+        } else if (this.isADirt(mobile, x, y)) {
+            ((IPlayer) mobile).digTunnel(x, y);
+            this.moveAtXY(mobile, x, y);
+        } else if (this.isOpenableAndOpen(mobile, x, y)) {
+            this.moveAtXY(mobile, x, y);
+            mobile.getMap().setWin(true);
+        }
     }
 }

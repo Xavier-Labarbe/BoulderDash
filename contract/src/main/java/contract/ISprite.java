@@ -3,7 +3,7 @@ package contract;
 import java.awt.Image;
 import java.io.IOException;
 
-public interface iSprite {
+public interface ISprite {
 
     char getConsoleImage();
 

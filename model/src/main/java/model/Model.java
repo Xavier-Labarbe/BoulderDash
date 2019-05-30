@@ -4,13 +4,13 @@ import java.util.Observable;
 
 public final class Model extends Observable {
 
-    private PlayableMap playableMap;
+    private IPlayableMap playableMap;
 
     public Observable getObservable() {
         return this;
     }
 
-    public PlayableMap getPlayableMap() {
+    public IPlayableMap getPlayableMap() {
         return this.playableMap;
     }
 
@@ -18,7 +18,7 @@ public final class Model extends Observable {
 
     }
 
-    public void setPlayableMap(final PlayableMap playableMap) {
+    public void setPlayableMap(final IPlayableMap playableMap) {
         this.playableMap = playableMap;
     }
 

@@ -1,41 +1,48 @@
 package model.element.motionless;
 
-import model.PlayableMap;
+import model.IPlayableMap;
 
 public class MotionlessFactory {
-    private static Exit exit = new Exit(new PlayableMap(2));
     private static Border border = new Border();
     private static ExplosableWall explosableWall = new ExplosableWall();
     private static Dirt dirt = new Dirt();
     private static Tunnel tunnel = new Tunnel();
-    private static Motionless[] motionless = { exit, border, explosableWall, dirt, tunnel, };
 
-    public static Motionless getFromFileSymbol(final char fileSymbol) {
-        for (final Motionless motionless : motionless) {
+    public static IMotionless createBorder() {
+        return border;
+    }
+
+    public static IMotionless createDirt() {
+        return dirt;
+    }
+
+    public static IMotionless createExplosableWall() {
+        return explosableWall;
+    }
+
+    public static IMotionless createTunnel() {
+        return tunnel;
+    }
+
+    private final IMotionless[] motionless = { border, explosableWall, dirt, tunnel };
+
+    private final Exit exit;
+
+    public MotionlessFactory(final IPlayableMap map) {
+        this.exit = new Exit(map);
+        this.motionless[4] = this.exit;
+    }
+
+    public IMotionless createExit() {
+        return this.exit;
+    }
+
+    public IMotionless getFromFileSymbol(final char fileSymbol) {
+        for (final IMotionless motionless : this.motionless) {
             if (motionless.getSprite().getConsoleImage() == fileSymbol) {
                 return motionless;
             }
         }
-        return tunnel;
-    }
-
-    public Motionless createBorder() {
-        return border;
-    }
-
-    public Motionless createDirt() {
-        return dirt;
-    }
-
-    public Motionless createExit() {
-        return exit;
-    }
-
-    public Motionless createExplosableWall() {
-        return explosableWall;
-    }
-
-    public Motionless createTunnel() {
         return tunnel;
     }
 

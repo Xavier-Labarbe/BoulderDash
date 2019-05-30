@@ -2,18 +2,18 @@ package model;
 
 import java.util.ArrayList;
 
+import contract.IElement;
 import model.element.Element;
 import model.element.mobile.IMobile;
-import model.element.mobile.Mobile;
-import model.element.mobile.Player;
+import model.element.mobile.IPlayer;
 import model.element.motionless.Exit;
 
-public class PlayableMap {
-    private Element[][] elements;
-    private final ArrayList<Mobile> mobiles;
-    private final ArrayList<Mobile> waitingMobilesForCreation;
-    private final ArrayList<Mobile> waitingMobilesForRemoving;
-    private Player player;
+public class PlayableMap implements IPlayableMap {
+    private IElement[][] elements;
+    private final ArrayList<IMobile> mobiles;
+    private final ArrayList<IMobile> waitingMobilesForCreation;
+    private final ArrayList<IMobile> waitingMobilesForRemoving;
+    private IPlayer player;
     private Exit exit;
     private Boolean win = false;
 
@@ -27,102 +27,125 @@ public class PlayableMap {
 
     public PlayableMap(final int numberOfDiamondForWin) {
         this.elements = new Element[10][10];
-        this.mobiles = new ArrayList<Mobile>();
-        this.waitingMobilesForCreation = new ArrayList<Mobile>();
-        this.waitingMobilesForRemoving = new ArrayList<Mobile>();
+        this.mobiles = new ArrayList<IMobile>();
+        this.waitingMobilesForCreation = new ArrayList<IMobile>();
+        this.waitingMobilesForRemoving = new ArrayList<IMobile>();
         this.setNumberOfDiamondForWin(numberOfDiamondForWin);
     }
 
-    public void addMobiles(final Mobile mobile) {
+    @Override
+    public void addMobiles(final IMobile mobile) {
         this.mobiles.add(mobile);
     }
 
-    public void addwaitingMobilesForCreation(final Mobile mobile) {
+    @Override
+    public void addwaitingMobilesForCreation(final IMobile mobile) {
         this.waitingMobilesForCreation.add(mobile);
     }
 
-    public void addwaitingMobilesForRemoving(final Mobile mobile) {
+    @Override
+    public void addwaitingMobilesForRemoving(final IMobile mobile) {
         this.waitingMobilesForRemoving.add(mobile);
     }
 
-    public Element[][] getElements() {
+    @Override
+    public IElement[][] getElements() {
         return this.elements;
 
     }
 
+    @Override
     public Exit getExit() {
         return this.exit;
     }
 
+    @Override
     public int getHeight() {
         return this.height;
     }
 
-    public ArrayList<Mobile> getMobiles() {
+    @Override
+    public ArrayList<IMobile> getMobiles() {
         return this.mobiles;
     }
 
+    @Override
     public int getNumberOfDiamondForWin() {
         return this.numberOfDiamondForWin;
     }
 
-    public Player getPlayer() {
+    @Override
+    public IPlayer getPlayer() {
         return this.player;
     }
 
-    public ArrayList<Mobile> getWaitingMobilesForCreation() {
+    @Override
+    public ArrayList<IMobile> getWaitingMobilesForCreation() {
         return this.waitingMobilesForCreation;
     }
 
-    public ArrayList<Mobile> getWaitingMobilesForRemoving() {
+    @Override
+    public ArrayList<IMobile> getWaitingMobilesForRemoving() {
         return this.waitingMobilesForRemoving;
     }
 
+    @Override
     public int getWidth() {
         return this.width;
     }
 
+    @Override
     public Boolean getWin() {
         return this.win;
     }
 
-    public Element getXYElement(final int x, final int y) {
+    @Override
+    public IElement getXYElement(final int x, final int y) {
         return this.elements[x][y];
     }
 
+    @Override
     public void removeMobiles(final IMobile mobile) {
         this.mobiles.remove(mobile);
     }
 
-    public void setElements(final Element[][] elements) {
+    @Override
+    public void setElements(final IElement[][] elements) {
         this.elements = elements;
     }
 
+    @Override
     public void setExit(final Exit exit) {
         this.exit = exit;
     }
 
+    @Override
     public void setHeight(final int height) {
         this.height = height;
     }
 
+    @Override
     public void setNumberOfDiamondForWin(final int numberOfDiamondForWin) {
         this.numberOfDiamondForWin = numberOfDiamondForWin;
     }
 
-    public void setPlayer(final Player player) {
+    @Override
+    public void setPlayer(final IPlayer player) {
         this.player = player;
     }
 
+    @Override
     public void setWidth(final int width) {
         this.width = width;
     }
 
+    @Override
     public void setWin(final Boolean win) {
         this.win = win;
     }
 
-    public void setXYElement(final int x, final int y, final Element element) {
+    @Override
+    public void setXYElement(final int x, final int y, final IElement element) {
         this.elements[x][y] = element;
     }
 }

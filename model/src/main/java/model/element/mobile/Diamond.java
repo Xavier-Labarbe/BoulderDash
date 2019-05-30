@@ -1,32 +1,22 @@
 package model.element.mobile;
 
+import contract.ISprite;
 import contract.Permeability;
-import contract.iSprite;
-import model.PlayableMap;
+import model.IPlayableMap;
 import model.element.Sprite;
 
 public class Diamond extends FallingMobile {
-    private static iSprite SPRITE = new Sprite('D', "Diamond.jpg");
-    private static Permeability PERMEABILITY = Permeability.BLOCKING;
-    private static Boolean EXPLOSABLE = true;
-    private static StrategyMove STRATEGY_MOVE = new MoveGravity();
+    private static ISprite sprite = new Sprite('D', "Diamond.jpg");
+    private static Permeability permeability = Permeability.BLOCKING;
+    private static Boolean explosable = true;
 
-    public Diamond(final int x, final int y, final PlayableMap map) {
-        super(SPRITE, PERMEABILITY, EXPLOSABLE, x, y, STRATEGY_MOVE);
-        this.setMap(map);
+    public Diamond(final int x, final int y, final IPlayableMap map) {
+        super(sprite, permeability, explosable, x, y, map);
         this.getMap().setXYElement(x, y, this);
         this.getMap().addMobiles(this);
     }
 
-    public Diamond(final int x, final int y, final PlayableMap map, final int NotUse) {
-        super(SPRITE, PERMEABILITY, EXPLOSABLE, x, y, STRATEGY_MOVE);
-        this.setMap(map);
+    public Diamond(final int x, final int y, final IPlayableMap map, final int nullParamater) {
+        super(sprite, permeability, explosable, x, y, map);
     }
-
-    @Override
-    public void kill(final AliveMobile aliveMobile) {
-        aliveMobile.setAlive(false);
-        final int x = aliveMobile.getX();
-    }
-
 }

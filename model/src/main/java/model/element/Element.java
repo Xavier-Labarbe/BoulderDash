@@ -1,18 +1,18 @@
 package model.element;
 
+import contract.IElement;
+import contract.ISprite;
 import contract.Permeability;
-import contract.iElement;
-import contract.iSprite;
 
-public abstract class Element implements iElement {
-    private iSprite sprite;
-    private Permeability permeability;
-    private Boolean explosable;
+public abstract class Element implements IElement {
+    private final ISprite sprite;
+    private final Permeability permeability;
+    private final Boolean explosable;
 
-    public Element(final iSprite sprite, final Permeability permeability, final Boolean explosable) {
-        this.setSprite(sprite);
-        this.setPermeability(permeability);
-        this.setExplosable(explosable);
+    public Element(final ISprite sprite, final Permeability permeability, final Boolean explosable) {
+        this.sprite = sprite;
+        this.permeability = permeability;
+        this.explosable = explosable;
     }
 
     @Override
@@ -21,7 +21,7 @@ public abstract class Element implements iElement {
     }
 
     @Override
-    public iSprite getSprite() {
+    public ISprite getSprite() {
         return this.sprite;
     }
 
@@ -30,15 +30,4 @@ public abstract class Element implements iElement {
         return this.explosable;
     }
 
-    public void setExplosable(final Boolean explosable) {
-        this.explosable = explosable;
-    }
-
-    public void setPermeability(final Permeability permeability) {
-        this.permeability = permeability;
-    }
-
-    public void setSprite(final iSprite sprite) {
-        this.sprite = sprite;
-    }
 }

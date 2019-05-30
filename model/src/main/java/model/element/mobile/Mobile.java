@@ -1,40 +1,29 @@
 package model.element.mobile;
 
+import contract.ISprite;
 import contract.Permeability;
-import contract.iSprite;
-import model.PlayableMap;
+import model.IPlayableMap;
 import model.element.Element;
 
 public abstract class Mobile extends Element implements IMobile {
     private int x;
     private int y;
-    private int movingVector = 1;
-    private StrategyMove strategyMove = null;
-    private PlayableMap map;
-    private Boolean beRemove = false;
+    private final StrategyMove strategyMove;
+    private IPlayableMap map;
 
-    public Mobile(final iSprite sprite, final Permeability permeability, final Boolean explosable, final int x,
-            final int y, final StrategyMove strategyMove) {
+    public Mobile(final ISprite sprite, final Permeability permeability, final Boolean explosable, final int x,
+            final int y, final StrategyMove strategyMove, final IPlayableMap map) {
         super(sprite, permeability, explosable);
-        this.map = new PlayableMap(2);
-        this.setStrategyMove(strategyMove);
-        this.setX(x);
-        this.setY(y);
+        this.map = map;
+        this.strategyMove = strategyMove;
+        this.x = x;
+        this.y = y;
 
     }
 
     @Override
-    public Boolean getBeRemove() {
-        return this.beRemove;
-    }
-
-    @Override
-    public PlayableMap getMap() {
+    public IPlayableMap getMap() {
         return this.map;
-    }
-
-    public int getMovingVector() {
-        return this.movingVector;
     }
 
     public StrategyMove getStrategyMove() {
@@ -51,31 +40,13 @@ public abstract class Mobile extends Element implements IMobile {
         return this.y;
     }
 
-    public Boolean isLocationUsed(final int x, final int y) {
-        return true;
-    }
-
     @Override
     public void move() {
         this.strategyMove.move(this);
     }
 
-    @Override
-    public void setBeRemove(final Boolean beRemove) {
-        this.beRemove = beRemove;
-    }
-
-    public void setMap(final PlayableMap map) {
+    public void setMap(final IPlayableMap map) {
         this.map = map;
-    }
-
-    public void setMovingVector(final int movingVector) {
-        this.movingVector = movingVector;
-    }
-
-    @Override
-    public void setStrategyMove(final StrategyMove strategyMove) {
-        this.strategyMove = strategyMove;
     }
 
     @Override

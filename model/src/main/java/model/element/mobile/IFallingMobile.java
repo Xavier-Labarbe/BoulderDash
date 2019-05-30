@@ -4,7 +4,7 @@ public interface IFallingMobile {
 
     Boolean isFalling();
 
-    void kill(AliveMobile aliveMobile);
+    void kill(IAliveMobile aliveMobile);
 
     void setFalling(Boolean falling);
 

@@ -1,21 +1,21 @@
 package model.element.motionless;
 
 import contract.Permeability;
-import contract.iSprite;
+import contract.ISprite;
 import model.element.Element;
 
-public abstract class Motionless extends Element {
-    public boolean breakable;
+public abstract class Motionless extends Element implements IMotionless {
+    public Boolean breakable;
 
-    public Motionless(final iSprite sprite, final Permeability permeability, final Boolean explosable) {
+    public Motionless(final ISprite sprite, final Permeability permeability, final Boolean explosable,
+            final Boolean breakable) {
         super(sprite, permeability, explosable);
+        this.breakable = breakable;
     }
 
-    public boolean getBreakable() {
+    @Override
+    public Boolean isBreakable() {
         return this.breakable;
     }
 
-    public void setBreakable(final Boolean breakable) {
-        this.breakable = breakable;
-    }
 }

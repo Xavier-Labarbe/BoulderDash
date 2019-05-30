@@ -1,22 +1,17 @@
 package model.element.mobile;
 
-import model.PlayableMap;
+import contract.IElement;
+import model.IPlayableMap;
 
-public interface IMobile {
+public interface IMobile extends IElement {
 
-    public Boolean getBeRemove();
-
-    PlayableMap getMap();
+    IPlayableMap getMap();
 
     int getX();
 
     int getY();
 
     void move();
-
-    public void setBeRemove(Boolean beRemove);
-
-    void setStrategyMove(StrategyMove strategyMove);
 
     void setX(int x);
 

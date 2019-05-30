@@ -1,17 +1,16 @@
 package model.element.motionless;
 
 import contract.Permeability;
-import contract.iSprite;
+import contract.ISprite;
 import model.element.Sprite;
 
 public class ExplosableWall extends Motionless {
-    private static iSprite SPRITE = new Sprite('W', "ExplosableWall.jpg");
-    private static Boolean BREAKABLE = false;
-    private static Permeability PERMEABILITY = Permeability.BLOCKING;
-    private static Boolean EXPLOSABLE = true;
+    private static ISprite sprite = new Sprite('W', "ExplosableWall.jpg");
+    private static Boolean breakable = false;
+    private static Permeability premeability = Permeability.BLOCKING;
+    private static Boolean explosable = true;
 
     public ExplosableWall() {
-        super(SPRITE, PERMEABILITY, EXPLOSABLE);
-        this.setBreakable(BREAKABLE);
+        super(sprite, premeability, explosable, breakable);
     }
 }
