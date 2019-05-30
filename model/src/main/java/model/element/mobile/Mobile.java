@@ -16,7 +16,7 @@ public abstract class Mobile extends Element implements IMobile {
     public Mobile(final iSprite sprite, final Permeability permeability, final Boolean explosable, final int x,
             final int y, final StrategyMove strategyMove) {
         super(sprite, permeability, explosable);
-        this.map = new PlayableMap();
+        this.map = new PlayableMap(2);
         this.setStrategyMove(strategyMove);
         this.setX(x);
         this.setY(y);

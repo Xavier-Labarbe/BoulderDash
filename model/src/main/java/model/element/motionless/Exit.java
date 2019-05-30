@@ -2,6 +2,7 @@ package model.element.motionless;
 
 import contract.Permeability;
 import contract.iSprite;
+import model.PlayableMap;
 import model.element.Sprite;
 
 public class Exit extends Motionless {
@@ -10,15 +11,22 @@ public class Exit extends Motionless {
     private static Permeability PERMEABILITY = Permeability.OPENABLE;
     private static Boolean EXPLOSABLE = false;
     private DoorState doorState;
+    private PlayableMap map;
 
-    public Exit() {
+    public Exit(final PlayableMap map) {
         super(SPRITE, PERMEABILITY, EXPLOSABLE);
         this.setBreakable(BREAKABLE);
         this.setDoorState(DoorState.CLOSE);
+        this.setMap(map);
+        this.getMap().setExit(this);
     }
 
     public DoorState getDoorState() {
         return this.doorState;
+    }
+
+    public PlayableMap getMap() {
+        return this.map;
     }
 
     public void open() {
@@ -27,5 +35,9 @@ public class Exit extends Motionless {
 
     private void setDoorState(final DoorState doorState) {
         this.doorState = doorState;
+    }
+
+    public void setMap(final PlayableMap map) {
+        this.map = map;
     }
 }

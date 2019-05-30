@@ -3,6 +3,8 @@ package model.element.mobile;
 import contract.ControllerOrder;
 import contract.Permeability;
 import model.element.motionless.Dirt;
+import model.element.motionless.DoorState;
+import model.element.motionless.Exit;
 import model.element.motionless.Tunnel;
 
 public class MoveInput extends StrategyMove {
@@ -29,6 +31,17 @@ public class MoveInput extends StrategyMove {
         } else {
             return false;
         }
+    }
+
+    private Boolean isOpenableAndOpen(final Mobile mobile, final int x, final int y) {
+        if (mobile.getMap().getXYElement(x, y).getPermeability() == Permeability.OPENABLE) {
+            if (((Exit) mobile.getMap().getXYElement(x, y)).getDoorState() == DoorState.OPEN) {
+                return true;
+            }
+        } else {
+            return false;
+        }
+        return false;
     }
 
     private Boolean isPenetrable(final Mobile mobile, final int x, final int y) {
@@ -61,6 +74,10 @@ public class MoveInput extends StrategyMove {
                 ((Player) mobile).digTunnel(x, y - 1);
                 this.moveAtXY(mobile, x, y - 1);
                 mobile.getMap().setXYElement(x, y, new Tunnel());
+            } else if (this.isOpenableAndOpen(mobile, x, y - 1)) {
+                this.moveAtXY(mobile, x, y - 1);
+                mobile.getMap().setXYElement(x, y, new Tunnel());
+                mobile.getMap().setWin(true);
             }
             break;
         case DOWN:
@@ -77,6 +94,10 @@ public class MoveInput extends StrategyMove {
                 ((Player) mobile).digTunnel(x, y + 1);
                 this.moveAtXY(mobile, x, y + 1);
                 mobile.getMap().setXYElement(x, y, new Tunnel());
+            } else if (this.isOpenableAndOpen(mobile, x, y + 1)) {
+                this.moveAtXY(mobile, x, y + 1);
+                mobile.getMap().setXYElement(x, y, new Tunnel());
+                mobile.getMap().setWin(true);
             }
             break;
         case RIGHT:
@@ -93,6 +114,10 @@ public class MoveInput extends StrategyMove {
                 ((Player) mobile).digTunnel(x + 1, y);
                 this.moveAtXY(mobile, x + 1, y);
                 mobile.getMap().setXYElement(x, y, new Tunnel());
+            } else if (this.isOpenableAndOpen(mobile, x + 1, y)) {
+                this.moveAtXY(mobile, x + 1, y);
+                mobile.getMap().setXYElement(x, y, new Tunnel());
+                mobile.getMap().setWin(true);
             }
             break;
         case LEFT:
@@ -109,6 +134,10 @@ public class MoveInput extends StrategyMove {
                 ((Player) mobile).digTunnel(x - 1, y);
                 this.moveAtXY(mobile, x - 1, y);
                 mobile.getMap().setXYElement(x, y, new Tunnel());
+            } else if (this.isOpenableAndOpen(mobile, x - 1, y)) {
+                this.moveAtXY(mobile, x - 1, y);
+                mobile.getMap().setXYElement(x, y, new Tunnel());
+                mobile.getMap().setWin(true);
             }
             break;
         case NOTHING:

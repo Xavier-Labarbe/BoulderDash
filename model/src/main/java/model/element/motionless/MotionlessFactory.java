@@ -1,7 +1,9 @@
 package model.element.motionless;
 
+import model.PlayableMap;
+
 public class MotionlessFactory {
-    private static Exit exit = new Exit();
+    private static Exit exit = new Exit(new PlayableMap(2));
     private static Border border = new Border();
     private static ExplosableWall explosableWall = new ExplosableWall();
     private static Dirt dirt = new Dirt();

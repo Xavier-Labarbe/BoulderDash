@@ -13,6 +13,7 @@ public class Player extends AliveMobile implements IAliveMobile {
     private static Boolean EXPLOSABLE = true;
     private static StrategyMove STRATEGY_MOVE = new MoveInput();
     private Boolean alive;
+    private int numberOfTakenDiamond = 0;
 
     private ControllerOrder movingOrder = ControllerOrder.NOTHING;
 
@@ -33,6 +34,10 @@ public class Player extends AliveMobile implements IAliveMobile {
         return this.movingOrder;
     }
 
+    public int getNumberOfTakenDiamond() {
+        return this.numberOfTakenDiamond;
+    }
+
     @Override
     public Boolean isAlive() {
         // TODO Auto-generated method stub
@@ -44,6 +49,10 @@ public class Player extends AliveMobile implements IAliveMobile {
         diamond.setX(0);
         diamond.setY(0);
         this.getMap().addwaitingMobilesForRemoving(diamond);
+        this.setNumberOfTakenDiamond(this.getNumberOfTakenDiamond() + 1);
+        if (this.getNumberOfTakenDiamond() == this.getMap().getNumberOfDiamondForWin()) {
+            this.getMap().getExit().open();
+        }
 
     }
 
@@ -91,6 +100,10 @@ public class Player extends AliveMobile implements IAliveMobile {
 
     public void setMovingOrder(final ControllerOrder movingOrder) {
         this.movingOrder = movingOrder;
+    }
+
+    public void setNumberOfTakenDiamond(final int numberOfTakenDiamond) {
+        this.numberOfTakenDiamond = numberOfTakenDiamond;
     }
 
 }

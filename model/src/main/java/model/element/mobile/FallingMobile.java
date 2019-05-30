@@ -4,7 +4,7 @@ import contract.Permeability;
 import contract.iSprite;
 
 public abstract class FallingMobile extends Mobile implements IFallingMobile {
-    private Boolean falling;
+    private Boolean falling = false;
 
     public FallingMobile(final iSprite sprite, final Permeability permeability, final Boolean explosable, final int x,
             final int y, final StrategyMove strategyMove) {

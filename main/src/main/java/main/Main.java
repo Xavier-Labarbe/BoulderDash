@@ -7,12 +7,14 @@ package main;
 import java.util.Iterator;
 
 import model.PlayableMap;
+import model.element.mobile.Diamond;
 import model.element.mobile.Mobile;
 import model.element.mobile.Monster;
 import model.element.mobile.Player;
 import model.element.mobile.Rock;
 import model.element.motionless.Border;
 import model.element.motionless.Dirt;
+import model.element.motionless.Exit;
 import model.element.motionless.Tunnel;
 
 /**
@@ -28,7 +30,7 @@ public abstract class Main {
      * @param args the arguments
      */
     public static void main(final String[] args) {
-        final PlayableMap playableMap = new PlayableMap();
+        final PlayableMap playableMap = new PlayableMap(2);
 
         for (int y = 0; y < 10; y++) {
             for (int x = 0; x < 10; x++) {
@@ -39,7 +41,7 @@ public abstract class Main {
                 }
             }
         }
-
+        playableMap.setXYElement(8, 2, new Exit(playableMap));
         playableMap.setXYElement(3, 1, new Rock(3, 1, playableMap));
         playableMap.setXYElement(3, 2, new Dirt());
         playableMap.setXYElement(3, 3, new Tunnel());
@@ -48,11 +50,13 @@ public abstract class Main {
         playableMap.setXYElement(3, 6, new Tunnel());
         playableMap.setXYElement(3, 7, new Tunnel());
         playableMap.setXYElement(3, 8, new Tunnel());
+        // playableMap.setXYElement(5, 2, new Diamond(5, 2, playableMap));
+        playableMap.setXYElement(6, 2, new Diamond(6, 2, playableMap));
         // playableMap.setXYElement(3, 1, new Dirt());
         // playableMap.setXYElement(3, 1, new Diamond(3, 1, playableMap));
         final Monster monster = new Monster(3, 8, playableMap);
         final Player player = new Player(2, 2, playableMap);
-        while (player.isAlive() == true) {
+        while ((player.isAlive() == true) && (playableMap.getWin() == false)) {
             try {
                 Thread.sleep(1000);
             } catch (final InterruptedException e) {
@@ -89,7 +93,7 @@ public abstract class Main {
             }
 
         }
-        System.out.println("perdu");
+        System.out.println("perdu ou gagné");
 
     }
 }
