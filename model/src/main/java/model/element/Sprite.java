@@ -16,19 +16,19 @@ public class Sprite implements ISprite {
     private String imageName;
 
     /** The console image. */
-    private char consoleImage;
+    private String consoleImage;
 
     /** The is image loaded. */
     private boolean imageLoaded;
 
-    public Sprite(final char character, final String imageName) {
+    public Sprite(final String character, final String imageName) {
         this.setImageLoaded(false);
         this.setConsoleImage(character);
         this.setImageName(imageName);
     }
 
     @Override
-    public final char getConsoleImage() {
+    public final String getConsoleImage() {
         return this.consoleImage;
     }
 
@@ -55,8 +55,8 @@ public class Sprite implements ISprite {
 
     }
 
-    private void setConsoleImage(final char consoleImage) {
-        this.consoleImage = consoleImage;
+    private void setConsoleImage(final String character) {
+        this.consoleImage = character;
     }
 
     private void setImage(final Image image) {
