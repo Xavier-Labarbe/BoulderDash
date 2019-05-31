@@ -8,7 +8,7 @@ public class Map extends Entity {
     private final String label;
     private final int width;
     private final int height;
-    private ArrayList<FillingMap> fillingMaps;
+    private final ArrayList<FillingMap> fillingMaps = new ArrayList<FillingMap>();
 
     public Map(final int id, final String label, final int width, final int height) {
         this.id = id;
@@ -18,7 +18,7 @@ public class Map extends Entity {
     }
 
     public void add(final FillingMap fillingMap) {
-        this.getFillingMaps().add(fillingMap);
+        this.fillingMaps.add(fillingMap);
     }
 
     public String getelementLabel() {

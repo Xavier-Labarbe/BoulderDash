@@ -3,9 +3,9 @@ package model.element.mobile;
 import model.PlayableMap;
 
 public class MobileFactory {
-    static int x;
-    static int y;
-    static PlayableMap playableMap;
+    static int x = 0;
+    static int y = 0;
+    static PlayableMap playableMap = new PlayableMap();
     private static Diamond diamond = new Diamond(x, y, playableMap);
     private static Monster monster = new Monster(x, y, playableMap);
     private static Rock rock = new Rock(x, y, playableMap);

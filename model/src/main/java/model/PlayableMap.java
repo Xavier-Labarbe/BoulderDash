@@ -12,7 +12,7 @@ public class PlayableMap {
     private String label;
 
     public PlayableMap() {
-        this.elements = new Element[10][10];
+        this.elements = new Element[20][20];
         this.mobiles = new ArrayList<Mobile>();
     }
 

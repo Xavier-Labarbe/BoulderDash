@@ -26,6 +26,6 @@ public abstract class Main {
     public static void main(final String[] args) throws SQLException {
 
         final DAOMap daoMap = new DAOMap(DBConnection.getInstance().getConnection());
-        daoMap.create(daoMap.find(1));
+        daoMap.create(daoMap.find(1, "LABEL", 20, 20));
     }
 }

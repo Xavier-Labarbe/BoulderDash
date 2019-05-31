@@ -14,91 +14,120 @@ import model.element.motionless.MotionlessFactory;
 public class DAOMap extends DAOEntity<Map> {
 
     private Connection connection;
-    final PlayableMap playableMap = new PlayableMap();
 
     public DAOMap(final Connection connection) throws SQLException {
         super(connection);
+        this.connection = connection;
     }
 
     @Override
-    public PlayableMap create(final Map entity) {
+    public PlayableMap create(final Map map) {
 
+        final PlayableMap playableMap = new PlayableMap();
+        final MotionlessFactory factory = new MotionlessFactory();
+
+        int i = 0;
         // for (int i = 0; i < entity.getFillingMaps().size(); i++)
-        for (final FillingMap name : entity.getFillingMaps()) {
+        for (final FillingMap FillingMap : map.getFillingMaps()) {
 
-            // entity.getFillingMaps().forEach(name -> {
+            // entity.getFillingMaps().forEach(FillingMap -> {
 
-            switch (name.getElementChar()) {
+            switch (FillingMap.getElementChar()) {
             case "|":
-                this.playableMap.setXYElement(name.getX(), name.getY(),
-                        MotionlessFactory.getFromFileSymbol(name.getElementChar()));
+                System.out.println("|" + factory.getFromFileSymbol(FillingMap.getElementChar()));
+                playableMap.setXYElement(FillingMap.getX(), FillingMap.getY(),
+                        factory.getFromFileSymbol(FillingMap.getElementChar()));
+                i++;
                 break;
             case " ":
-                this.playableMap.setXYElement(name.getX(), name.getY(),
-                        MotionlessFactory.getFromFileSymbol(name.getElementChar()));
+                System.out.println(" " + factory.getFromFileSymbol(FillingMap.getElementChar()));
+                playableMap.setXYElement(FillingMap.getX(), FillingMap.getY(),
+                        factory.getFromFileSymbol(FillingMap.getElementChar()));
+                i++;
                 break;
             case "W":
-                this.playableMap.setXYElement(name.getX(), name.getY(),
-                        MotionlessFactory.getFromFileSymbol(name.getElementChar()));
+                System.out.println("W" + factory.getFromFileSymbol(FillingMap.getElementChar()));
+                playableMap.setXYElement(FillingMap.getX(), FillingMap.getY(),
+                        factory.getFromFileSymbol(FillingMap.getElementChar()));
+                i++;
                 break;
             case "T":
-                this.playableMap.setXYElement(name.getX(), name.getY(),
-                        MotionlessFactory.getFromFileSymbol(name.getElementChar()));
+                System.out.println("T" + factory.getFromFileSymbol(FillingMap.getElementChar()));
+                playableMap.setXYElement(FillingMap.getX(), FillingMap.getY(),
+                        factory.getFromFileSymbol(FillingMap.getElementChar()));
+                i++;
                 break;
             case "E":
-                this.playableMap.setXYElement(name.getX(), name.getY(),
-                        MotionlessFactory.getFromFileSymbol(name.getElementChar()));
+                System.out.println("E" + factory.getFromFileSymbol(FillingMap.getElementChar()));
+                playableMap.setXYElement(FillingMap.getX(), FillingMap.getY(),
+                        factory.getFromFileSymbol(FillingMap.getElementChar()));
+                i++;
                 break;
             case "R":
-                this.playableMap.setXYElement(name.getX(), name.getY(), MobileFactory
-                        .getFromFileSymbol(name.getElementChar(), name.getX(), name.getY(), this.playableMap));
-                this.playableMap.addMobiles(MobileFactory.getFromFileSymbol(name.getElementChar(), name.getX(),
-                        name.getY(), this.playableMap));
+                System.out.println("R" + MobileFactory.getFromFileSymbol(FillingMap.getElementChar(), FillingMap.getX(),
+                        FillingMap.getY(), playableMap));
+                playableMap.setXYElement(FillingMap.getX(), FillingMap.getY(), MobileFactory.getFromFileSymbol(
+                        FillingMap.getElementChar(), FillingMap.getX(), FillingMap.getY(), playableMap));
+                playableMap.addMobiles(MobileFactory.getFromFileSymbol(FillingMap.getElementChar(), FillingMap.getX(),
+                        FillingMap.getY(), playableMap));
+                i++;
+                break;
             case "M":
-                this.playableMap.setXYElement(name.getX(), name.getY(), MobileFactory
-                        .getFromFileSymbol(name.getElementChar(), name.getX(), name.getY(), this.playableMap));
-                this.playableMap.addMobiles(MobileFactory.getFromFileSymbol(name.getElementChar(), name.getX(),
-                        name.getY(), this.playableMap));
+                playableMap.setXYElement(FillingMap.getX(), FillingMap.getY(), MobileFactory.getFromFileSymbol(
+                        FillingMap.getElementChar(), FillingMap.getX(), FillingMap.getY(), playableMap));
+                playableMap.addMobiles(MobileFactory.getFromFileSymbol(FillingMap.getElementChar(), FillingMap.getX(),
+                        FillingMap.getY(), playableMap));
+                i++;
                 break;
             case "D":
-                this.playableMap.setXYElement(name.getX(), name.getY(), MobileFactory
-                        .getFromFileSymbol(name.getElementChar(), name.getX(), name.getY(), this.playableMap));
-                this.playableMap.addMobiles(MobileFactory.getFromFileSymbol(name.getElementChar(), name.getX(),
-                        name.getY(), this.playableMap));
+                System.out.println("D" + MobileFactory.getFromFileSymbol(FillingMap.getElementChar(), FillingMap.getX(),
+                        FillingMap.getY(), playableMap));
+                playableMap.setXYElement(FillingMap.getX(), FillingMap.getY(), MobileFactory.getFromFileSymbol(
+                        FillingMap.getElementChar(), FillingMap.getX(), FillingMap.getY(), playableMap));
+                playableMap.addMobiles(MobileFactory.getFromFileSymbol(FillingMap.getElementChar(), FillingMap.getX(),
+                        FillingMap.getY(), playableMap));
+                i++;
                 break;
             case "P":
-                this.playableMap.setXYElement(name.getX(), name.getY(), MobileFactory
-                        .getFromFileSymbol(name.getElementChar(), name.getX(), name.getY(), this.playableMap));
-                this.playableMap.addMobiles(MobileFactory.getFromFileSymbol(name.getElementChar(), name.getX(),
-                        name.getY(), this.playableMap));
+                System.out.println("P" + MobileFactory.getFromFileSymbol(FillingMap.getElementChar(), FillingMap.getX(),
+                        FillingMap.getY(), playableMap));
+                playableMap.setXYElement(FillingMap.getX(), FillingMap.getY(), MobileFactory.getFromFileSymbol(
+                        FillingMap.getElementChar(), FillingMap.getX(), FillingMap.getY(), playableMap));
+                playableMap.addMobiles(MobileFactory.getFromFileSymbol(FillingMap.getElementChar(), FillingMap.getX(),
+                        FillingMap.getY(), playableMap));
+                i++;
                 break;
             default:
                 break;
             }
         }
         // });
-        // this.display(this.playableMap);
-        return this.playableMap;
+        System.out.println(i);
+        this.display(playableMap);
+        return playableMap;
     }
 
     @Override
-    public boolean delete(final Map entity) {
+    public boolean delete(final Map map) {
         return false;
     }
 
     public void display(final PlayableMap playableMap) {
-        ;
         for (int y = 0; y < 20; y++) {
             for (int x = 0; x < 20; x++) {
-                System.out.print(playableMap.getXYElement(x, y));
-            }
-        }
-    }
+                try {
+                    /*
+                     * System.out.println("x : " + x); System.out.println("y : "
+                     * + y); System.out.println(playableMap.getXYElement(x, y) +
+                     * " ");
+                     */
+                    System.out.print(playableMap.getXYElement(x, y).getSprite().getConsoleImage());
+                } catch (final Exception e) {
 
-    @Override
-    public Map find(final int id) {
-        // TODO Auto-generated method stub
-        return null;
+                }
+            }
+            System.out.println();
+        }
     }
 
     /*
@@ -109,36 +138,44 @@ public class DAOMap extends DAOEntity<Map> {
      * code, resultSet.getString("message"));
      */
 
+    @Override
     public Map find(final int id, final String label, final int width, final int height) {
         Map map = new Map(id, label, height, width);
-
         try {
-            final String sql = "{call  getLabelXY(1)}";
-            final CallableStatement call = this.getConnection().prepareCall(sql);
-            call.setInt(1, id);
-            call.execute();
-            final ResultSet resultSet = call.getResultSet();
-            if (resultSet.first()) {
-                map = new Map(id, resultSet.getString("label"), width, height);
+            final String FillingMapRequest = "{call  getLabelXY(1)}";
+            final String mapRequest = "{call  getMap(\"MAP\")}";
+
+            final CallableStatement requestMap = this.getConnection().prepareCall(mapRequest);
+            final CallableStatement requestFillingMap = this.getConnection().prepareCall(FillingMapRequest);
+            // call.setInt();
+            requestMap.execute();
+            requestFillingMap.execute();
+            final ResultSet mapResultSet = requestMap.getResultSet();
+            final ResultSet fillingMapResultSet = requestFillingMap.getResultSet();
+
+            if (mapResultSet.first()) {
+                map = new Map(id, mapResultSet.getString("label"), width, height);
             }
 
-            if (resultSet.next()) {
+            while (fillingMapResultSet.next()) {
 
-                map.add(new FillingMap(new ElementType(resultSet.getString("ELEMENT_CHAR")), resultSet.getInt("x"),
-                        resultSet.getInt("y")));
+                map.add(new FillingMap(new ElementType(fillingMapResultSet.getString("ELEMENT_CHAR")),
+                        fillingMapResultSet.getInt("x"), fillingMapResultSet.getInt("y")));
             }
 
+            int i = 0;
+            for (final FillingMap fillingMap : map.getFillingMaps()) {
+                System.out.println(fillingMap.getElementChar());
+                i++;
+            }
+            System.out.print(i);
+            System.out.println("nice fdp");
             return map;
 
         } catch (final SQLException e) {
             e.printStackTrace();
         }
-        return null;
-    }
-
-    @Override
-    public Map find(final String code) {
-        // TODO Auto-generated method stub
+        System.out.println("null fdp");
         return null;
     }
 
