@@ -6,9 +6,9 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import contract.iSprite;
+import contract.ISprite;
 
-public class Sprite implements iSprite {
+public class Sprite implements ISprite {
     /** The image. */
     private Image image;
 
@@ -55,8 +55,8 @@ public class Sprite implements iSprite {
 
     }
 
-    private void setConsoleImage(final String consoleImage) {
-        this.consoleImage = consoleImage;
+    private void setConsoleImage(final String character) {
+        this.consoleImage = character;
     }
 
     private void setImage(final Image image) {
