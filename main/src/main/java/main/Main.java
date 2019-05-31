@@ -4,10 +4,11 @@
  */
 package main;
 
-import java.util.Iterator;
+import java.sql.SQLException;
 
 import contract.IMobile;
 import contract.IPlayableMap;
+import model.DAOMap;
 import model.PlayableMap;
 import model.element.mobile.Diamond;
 import model.element.mobile.Monster;
@@ -29,9 +30,15 @@ public abstract class Main {
     /**
      * The main method.
      *
-     * @param args the arguments
+     * @param args
+     *            the arguments
+     * @throws SQLException
      */
-    public static void main(final String[] args) {
+    public static void main(final String[] args) throws SQLException {
+
+        final DAOMap daoMap = new DAOMap(DBConnection.getInstance().getConnection());
+        daoMap.create(daoMap.find(1, "LABEL", 20, 20));
+
         final IPlayableMap playableMap = new PlayableMap(2);
 
         for (int y = 0; y < 10; y++) {
@@ -73,7 +80,8 @@ public abstract class Main {
             for (final Iterator<IMobile> i = playableMap.getWaitingMobilesForRemoving().iterator(); i.hasNext();) {
                 final IMobile i_n = i.next();
                 playableMap.removeMobiles(i_n);
-                // i_n.getMap().setXYElement(i_n.getX(), i_n.getY(), new Tunnel());
+                // i_n.getMap().setXYElement(i_n.getX(), i_n.getY(), new
+                // Tunnel());
                 i.remove();
                 System.out.println("supp");
             }
