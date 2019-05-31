@@ -48,7 +48,8 @@ public class MobileFactory {
         return new Rock(x, y, playableMap);
     }
 
-    public IMobile getFromFileSymbol(final char fileSymbol, final int x, final int y, final IPlayableMap playableMap) {
+    public IMobile getFromFileSymbol(final String fileSymbol, final int x, final int y,
+            final IPlayableMap playableMap) {
         for (final IMobile mobile : this.mobile) {
             if (mobile.getSprite().getConsoleImage() == fileSymbol) {
                 mobile.setX(x);
