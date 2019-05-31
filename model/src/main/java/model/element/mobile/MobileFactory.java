@@ -1,22 +1,26 @@
 package model.element.mobile;
 
-import model.PlayableMap;
+import contract.IDiamond;
+import contract.IMobile;
+import contract.IPlayableMap;
+import contract.IPlayer;
+import contract.IRock;
 
 public class MobileFactory {
     static int x = 0;
     static int y = 0;
 
-    private final Mobile[] mobile = new Mobile[4];
+    private final IMobile[] mobile = new IMobile[4];
 
-    private final Diamond diamond;
+    private final IDiamond diamond;
 
     private final Monster monster;
-    private final Rock rock;
-    private final Player player;
+    private final IRock rock;
+    private final IPlayer player;
 
-    private PlayableMap playableMap = null;
+    private IPlayableMap playableMap = null;
 
-    public MobileFactory(final PlayableMap map) {
+    public MobileFactory(final IPlayableMap map) {
         this.playableMap = map;
         this.diamond = new Diamond(x, y, this.playableMap);
         this.mobile[0] = this.diamond;
@@ -28,25 +32,26 @@ public class MobileFactory {
         this.mobile[3] = this.diamond;
     }
 
-    public Mobile createDiamond(final int x, final int y, final PlayableMap playableMap) {
+    public IMobile createDiamond(final int x, final int y, final IPlayableMap playableMap) {
         return new Diamond(x, y, playableMap);
     }
 
-    public Mobile createMonster(final int x, final int y, final PlayableMap playableMap) {
+    public IMobile createMonster(final int x, final int y, final IPlayableMap playableMap) {
         return new Monster(x, y, playableMap);
     }
 
-    public Mobile createPlayer(final int x, final int y, final PlayableMap playableMap) {
+    public IMobile createPlayer(final int x, final int y, final IPlayableMap playableMap) {
         return new Player(x, y, playableMap);
     }
 
-    public Mobile createRock(final int x, final int y, final PlayableMap playableMap) {
+    public IMobile createRock(final int x, final int y, final IPlayableMap playableMap) {
         return new Rock(x, y, playableMap);
     }
 
-    public Mobile getFromFileSymbol(final String fileSymbol, final int x, final int y, final PlayableMap playableMap) {
-        for (final Mobile mobile : this.mobile) {
-            if (mobile.getSprite().getConsoleImage().equals(fileSymbol)) {
+    public IMobile getFromFileSymbol(final String fileSymbol, final int x, final int y,
+            final IPlayableMap playableMap) {
+        for (final IMobile mobile : this.mobile) {
+            if (mobile.getSprite().getConsoleImage() == fileSymbol) {
                 mobile.setX(x);
                 mobile.setY(y);
                 mobile.setMap(playableMap);
