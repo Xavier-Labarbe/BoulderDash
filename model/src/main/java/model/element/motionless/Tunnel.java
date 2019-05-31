@@ -1,17 +1,17 @@
 package model.element.motionless;
 
+import contract.ISprite;
 import contract.Permeability;
-import contract.iSprite;
 import model.element.Sprite;
 
 public class Tunnel extends Motionless {
-    private static iSprite SPRITE = new Sprite("T", "Tunnel.jpg");
-    private static Boolean BREAKABLE = false;
-    private static Permeability PERMEABILITY = Permeability.BLOCKING;
-    private static Boolean EXPLOSABLE = true;
+    private static ISprite sprite = new Sprite("T", "Tunnel.jpg");
+    private static Boolean breakable = false;
+    private static Permeability premeability = Permeability.PENETRABLE;
+    private static Boolean explosable = true;
 
     public Tunnel() {
-        super(SPRITE, PERMEABILITY, EXPLOSABLE);
-        this.setBreakable(BREAKABLE);
+        super(sprite, premeability, explosable, breakable);
+
     }
 }
