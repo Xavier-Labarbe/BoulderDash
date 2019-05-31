@@ -1,26 +1,30 @@
 package model.element.motionless;
 
+import contract.IExit;
+import contract.IPlayableMap;
+import contract.ISprite;
 import contract.Permeability;
-import contract.iSprite;
 import model.element.Sprite;
 
-public class Exit extends Motionless {
-    private static iSprite SPRITE = new Sprite("E", "Exit.jpg");
-    private static Boolean BREAKABLE = false;
-    private static Permeability PERMEABILITY = Permeability.OPENABLE;
-    private static Boolean EXPLOSABLE = false;
+public class Exit extends Motionless implements IExit {
+    private static ISprite sprite = new Sprite("E", "Exit.jpg");
+    private static Boolean breakable = false;
+    private static Permeability premeability = Permeability.OPENABLE;
+    private static Boolean explosable = false;
     private DoorState doorState;
 
-    public Exit() {
-        super(SPRITE, PERMEABILITY, EXPLOSABLE);
-        this.setBreakable(BREAKABLE);
+    public Exit(final IPlayableMap map) {
+        super(sprite, premeability, explosable, breakable);
         this.setDoorState(DoorState.CLOSE);
+        map.setExit(this);
     }
 
+    @Override
     public DoorState getDoorState() {
         return this.doorState;
     }
 
+    @Override
     public void open() {
         this.setDoorState(DoorState.OPEN);
     }
@@ -28,4 +32,5 @@ public class Exit extends Motionless {
     private void setDoorState(final DoorState doorState) {
         this.doorState = doorState;
     }
+
 }
