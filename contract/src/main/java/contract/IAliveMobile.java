@@ -1,4 +1,4 @@
-package model.element.mobile;
+package contract;
 
 public interface IAliveMobile extends IMobile {
 

@@ -3,10 +3,11 @@ package model;
 import java.util.ArrayList;
 
 import contract.IElement;
+import contract.IExit;
+import contract.IMobile;
+import contract.IPlayableMap;
+import contract.IPlayer;
 import model.element.Element;
-import model.element.mobile.IMobile;
-import model.element.mobile.IPlayer;
-import model.element.motionless.Exit;
 
 public class PlayableMap implements IPlayableMap {
     private IElement[][] elements;
@@ -14,7 +15,7 @@ public class PlayableMap implements IPlayableMap {
     private final ArrayList<IMobile> waitingMobilesForCreation;
     private final ArrayList<IMobile> waitingMobilesForRemoving;
     private IPlayer player;
-    private Exit exit;
+    private IExit exit;
     private Boolean win = false;
 
     private int numberOfDiamondForWin;
@@ -55,7 +56,7 @@ public class PlayableMap implements IPlayableMap {
     }
 
     @Override
-    public Exit getExit() {
+    public IExit getExit() {
         return this.exit;
     }
 
@@ -115,7 +116,7 @@ public class PlayableMap implements IPlayableMap {
     }
 
     @Override
-    public void setExit(final Exit exit) {
+    public void setExit(final IExit exit) {
         this.exit = exit;
     }
 

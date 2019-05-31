@@ -1,4 +1,4 @@
-package model.element.motionless;
+package contract;
 
 public enum DoorState {
     OPEN, CLOSE;

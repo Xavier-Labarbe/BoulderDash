@@ -1,6 +1,4 @@
-package model.element.mobile;
-
-import contract.ControllerOrder;
+package contract;
 
 public interface IPlayer extends IAliveMobile {
 
@@ -10,9 +8,9 @@ public interface IPlayer extends IAliveMobile {
 
     int getNumberOfTakenDiamond();
 
-    void pickupDiamond(Diamond diamond);
+    void pickupDiamond(IDiamond diamond);
 
-    void pushRock(Rock rock);
+    void pushRock(IRock rock);
 
     void setMovingOrder(ControllerOrder movingOrder);
 

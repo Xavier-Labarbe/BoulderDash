@@ -1,6 +1,6 @@
-package model.element.mobile;
+package contract;
 
-public interface IFallingMobile {
+public interface IFallingMobile extends IMobile {
 
     Boolean isFalling();
 

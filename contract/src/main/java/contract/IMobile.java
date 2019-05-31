@@ -1,7 +1,4 @@
-package model.element.mobile;
-
-import contract.IElement;
-import model.IPlayableMap;
+package contract;
 
 public interface IMobile extends IElement {
 

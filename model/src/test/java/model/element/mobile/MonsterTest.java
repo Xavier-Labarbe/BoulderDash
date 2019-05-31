@@ -22,7 +22,7 @@ public class MonsterTest {
 
     @Test
     public void createDiamondstest() {
-        final Diamond diamond = new Diamond(0, 0, null);
+        final IDiamond diamond = new Diamond(0, 0, null);
         this.monster.setX(5);
         this.monster.setY(5);
         this.monster.createDiamonds();

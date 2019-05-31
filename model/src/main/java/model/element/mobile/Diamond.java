@@ -1,11 +1,12 @@
 package model.element.mobile;
 
+import contract.IDiamond;
+import contract.IPlayableMap;
 import contract.ISprite;
 import contract.Permeability;
-import model.IPlayableMap;
 import model.element.Sprite;
 
-public class Diamond extends FallingMobile {
+public class Diamond extends FallingMobile implements IDiamond {
     private static ISprite sprite = new Sprite('D', "Diamond.jpg");
     private static Permeability permeability = Permeability.BLOCKING;
     private static Boolean explosable = true;

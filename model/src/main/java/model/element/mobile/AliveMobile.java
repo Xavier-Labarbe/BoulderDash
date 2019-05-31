@@ -1,8 +1,9 @@
 package model.element.mobile;
 
+import contract.IAliveMobile;
+import contract.IPlayableMap;
 import contract.ISprite;
 import contract.Permeability;
-import model.IPlayableMap;
 
 public class AliveMobile extends Mobile implements IAliveMobile {
     private Boolean alive = true;

@@ -1,6 +1,6 @@
 package model.element.motionless;
 
-import model.IPlayableMap;
+import contract.IPlayableMap;
 
 public class MotionlessFactory {
     private static Border border = new Border();

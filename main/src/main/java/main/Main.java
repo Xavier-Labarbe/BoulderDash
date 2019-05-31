@@ -6,10 +6,10 @@ package main;
 
 import java.util.Iterator;
 
-import model.IPlayableMap;
+import contract.IMobile;
+import contract.IPlayableMap;
 import model.PlayableMap;
 import model.element.mobile.Diamond;
-import model.element.mobile.IMobile;
 import model.element.mobile.Monster;
 import model.element.mobile.Player;
 import model.element.mobile.Rock;

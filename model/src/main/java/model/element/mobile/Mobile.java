@@ -1,8 +1,9 @@
 package model.element.mobile;
 
+import contract.IMobile;
+import contract.IPlayableMap;
 import contract.ISprite;
 import contract.Permeability;
-import model.IPlayableMap;
 import model.element.Element;
 
 public abstract class Mobile extends Element implements IMobile {

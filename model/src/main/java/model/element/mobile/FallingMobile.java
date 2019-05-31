@@ -1,8 +1,10 @@
 package model.element.mobile;
 
+import contract.IAliveMobile;
+import contract.IFallingMobile;
+import contract.IPlayableMap;
 import contract.ISprite;
 import contract.Permeability;
-import model.IPlayableMap;
 
 public abstract class FallingMobile extends Mobile implements IFallingMobile {
     private static StrategyMove strategyMove = new MoveGravity();

@@ -1,13 +1,16 @@
 package model.element.mobile;
 
 import contract.ControllerOrder;
+import contract.IDiamond;
+import contract.IPlayableMap;
+import contract.IPlayer;
+import contract.IRock;
 import contract.ISprite;
 import contract.Permeability;
-import model.IPlayableMap;
 import model.element.Sprite;
 import model.element.motionless.Tunnel;
 
-public class Player extends AliveMobile implements IAliveMobile, IPlayer {
+public class Player extends AliveMobile implements IPlayer {
     private static ISprite sprite = new Sprite('P', "Player.jpg");
     private static Permeability permeability = Permeability.PENETRABLE;
     private static Boolean explosable = true;
@@ -38,7 +41,7 @@ public class Player extends AliveMobile implements IAliveMobile, IPlayer {
     }
 
     @Override
-    public void pickupDiamond(final Diamond diamond) {
+    public void pickupDiamond(final IDiamond diamond) {
         this.getMap().addwaitingMobilesForRemoving(diamond);
         this.setNumberOfTakenDiamond(this.getNumberOfTakenDiamond() + 1);
         if (this.getNumberOfTakenDiamond() == this.getMap().getNumberOfDiamondForWin()) {
@@ -48,7 +51,7 @@ public class Player extends AliveMobile implements IAliveMobile, IPlayer {
     }
 
     @Override
-    public void pushRock(final Rock rock) {
+    public void pushRock(final IRock rock) {
         final int xPlayer = this.getX();
         final int yPlayer = this.getY();
         final int xRock = rock.getX();
@@ -74,7 +77,7 @@ public class Player extends AliveMobile implements IAliveMobile, IPlayer {
         this.numberOfTakenDiamond = numberOfTakenDiamond;
     }
 
-    private void verifyAndPushForRockPushing(final int x, final int y, final Rock rock) {
+    private void verifyAndPushForRockPushing(final int x, final int y, final IRock rock) {
         if (this.getMap().getXYElement(x, y).getPermeability() == Permeability.PENETRABLE) {
             this.getMap().setXYElement(rock.getX(), rock.getY(), new Tunnel());
             rock.setX(x);

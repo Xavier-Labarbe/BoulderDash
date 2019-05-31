@@ -1,8 +1,9 @@
 package model.element.mobile;
 
+import contract.IAliveMobile;
+import contract.IPlayableMap;
 import contract.ISprite;
 import contract.Permeability;
-import model.IPlayableMap;
 import model.element.Sprite;
 import model.element.motionless.Tunnel;
 

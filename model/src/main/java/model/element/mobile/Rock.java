@@ -1,11 +1,12 @@
 package model.element.mobile;
 
+import contract.IPlayableMap;
+import contract.IRock;
 import contract.ISprite;
 import contract.Permeability;
-import model.IPlayableMap;
 import model.element.Sprite;
 
-public class Rock extends FallingMobile {
+public class Rock extends FallingMobile implements IRock {
     private static ISprite sprite = new Sprite('R', "Rock.jpg");
     private static Permeability permeability = Permeability.BLOCKING;
     private static Boolean explosable = true;

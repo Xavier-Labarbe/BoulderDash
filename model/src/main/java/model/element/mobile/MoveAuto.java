@@ -1,5 +1,6 @@
 package model.element.mobile;
 
+import contract.IMobile;
 import contract.Permeability;
 import model.element.motionless.Tunnel;
 

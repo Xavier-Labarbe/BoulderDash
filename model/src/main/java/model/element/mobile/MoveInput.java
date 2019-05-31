@@ -1,10 +1,12 @@
 package model.element.mobile;
 
 import contract.ControllerOrder;
+import contract.DoorState;
+import contract.IExit;
+import contract.IMobile;
+import contract.IPlayer;
 import contract.Permeability;
 import model.element.motionless.Dirt;
-import model.element.motionless.DoorState;
-import model.element.motionless.Exit;
 import model.element.motionless.Tunnel;
 
 public class MoveInput extends StrategyMove {
@@ -35,7 +37,7 @@ public class MoveInput extends StrategyMove {
 
     private Boolean isOpenableAndOpen(final IMobile mobile, final int x, final int y) {
         if (mobile.getMap().getXYElement(x, y).getPermeability() == Permeability.OPENABLE) {
-            if (((Exit) mobile.getMap().getXYElement(x, y)).getDoorState() == DoorState.OPEN) {
+            if (((IExit) mobile.getMap().getXYElement(x, y)).getDoorState() == DoorState.OPEN) {
                 return true;
             }
         } else {

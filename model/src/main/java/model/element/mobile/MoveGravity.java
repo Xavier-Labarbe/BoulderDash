@@ -1,5 +1,7 @@
 package model.element.mobile;
 
+import contract.IFallingMobile;
+import contract.IMobile;
 import contract.Permeability;
 import model.element.motionless.ExplosableWall;
 import model.element.motionless.Tunnel;

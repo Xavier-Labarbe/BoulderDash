@@ -1,11 +1,6 @@
-package model;
+package contract;
 
 import java.util.ArrayList;
-
-import contract.IElement;
-import model.element.mobile.IMobile;
-import model.element.mobile.IPlayer;
-import model.element.motionless.Exit;
 
 public interface IPlayableMap {
 
@@ -17,7 +12,7 @@ public interface IPlayableMap {
 
     IElement[][] getElements();
 
-    Exit getExit();
+    IExit getExit();
 
     int getHeight();
 
@@ -41,7 +36,7 @@ public interface IPlayableMap {
 
     void setElements(IElement[][] elements);
 
-    void setExit(Exit exit);
+    void setExit(IExit exit);
 
     void setHeight(int height);
 
