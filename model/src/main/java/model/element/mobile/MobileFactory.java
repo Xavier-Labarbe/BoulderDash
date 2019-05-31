@@ -5,24 +5,27 @@ import model.PlayableMap;
 public class MobileFactory {
     static int x = 0;
     static int y = 0;
-    static PlayableMap playableMap = new PlayableMap();
-    private static Diamond diamond = new Diamond(x, y, playableMap);
-    private static Monster monster = new Monster(x, y, playableMap);
-    private static Rock rock = new Rock(x, y, playableMap);
-    private static Player player = new Player(x, y, playableMap);
-    private static Mobile[] mobile = { diamond, monster, rock, player, };
 
-    public static Mobile getFromFileSymbol(final String fileSymbol, final int x, final int y,
-            final PlayableMap playableMap) {
-        for (final Mobile mobile : mobile) {
-            if (mobile.getSprite().getConsoleImage() == fileSymbol) {
-                mobile.setX(x);
-                mobile.setY(y);
-                mobile.setMap(playableMap);
-                return mobile;
-            }
-        }
-        return null;
+    private final Mobile[] mobile = new Mobile[4];
+
+    private final Diamond diamond;
+
+    private final Monster monster;
+    private final Rock rock;
+    private final Player player;
+
+    private PlayableMap playableMap = null;
+
+    public MobileFactory(final PlayableMap map) {
+        this.playableMap = map;
+        this.diamond = new Diamond(x, y, this.playableMap);
+        this.mobile[0] = this.diamond;
+        this.monster = new Monster(x, y, this.playableMap);
+        this.mobile[1] = this.diamond;
+        this.rock = new Rock(x, y, this.playableMap);
+        this.mobile[2] = this.diamond;
+        this.player = new Player(x, y, this.playableMap);
+        this.mobile[3] = this.diamond;
     }
 
     public Mobile createDiamond(final int x, final int y, final PlayableMap playableMap) {
@@ -39,5 +42,17 @@ public class MobileFactory {
 
     public Mobile createRock(final int x, final int y, final PlayableMap playableMap) {
         return new Rock(x, y, playableMap);
+    }
+
+    public Mobile getFromFileSymbol(final String fileSymbol, final int x, final int y, final PlayableMap playableMap) {
+        for (final Mobile mobile : this.mobile) {
+            if (mobile.getSprite().getConsoleImage().equals(fileSymbol)) {
+                mobile.setX(x);
+                mobile.setY(y);
+                mobile.setMap(playableMap);
+                return mobile;
+            }
+        }
+        return null;
     }
 }

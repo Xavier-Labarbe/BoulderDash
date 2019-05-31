@@ -7,7 +7,6 @@ import model.element.Element;
 
 public abstract class Mobile extends Element {
     private int x;
-
     private int y;
     private StrategyMove strategyMove = null;
     private PlayableMap map;

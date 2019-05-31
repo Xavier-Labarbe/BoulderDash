@@ -23,78 +23,86 @@ public class DAOMap extends DAOEntity<Map> {
     @Override
     public PlayableMap create(final Map map) {
 
+        int i = 0;
+        for (final FillingMap fillingMap : map.getFillingMaps()) {
+            System.out.println(fillingMap.getElementChar());
+            i++;
+        }
+        System.out.println(i);
+
         final PlayableMap playableMap = new PlayableMap();
         final MotionlessFactory factory = new MotionlessFactory();
+        final MobileFactory mobileFactory = new MobileFactory(playableMap);
 
-        int i = 0;
+        i = 0;
         // for (int i = 0; i < entity.getFillingMaps().size(); i++)
-        for (final FillingMap FillingMap : map.getFillingMaps()) {
+        for (final FillingMap fillingMap : map.getFillingMaps()) {
 
             // entity.getFillingMaps().forEach(FillingMap -> {
 
-            switch (FillingMap.getElementChar()) {
+            switch (fillingMap.getElementChar()) {
             case "|":
-                System.out.println("|" + factory.getFromFileSymbol(FillingMap.getElementChar()));
-                playableMap.setXYElement(FillingMap.getX(), FillingMap.getY(),
-                        factory.getFromFileSymbol(FillingMap.getElementChar()));
+                System.out.println("|" + factory.getFromFileSymbol(fillingMap.getElementChar()));
+                playableMap.setXYElement(fillingMap.getX(), fillingMap.getY(),
+                        factory.getFromFileSymbol(fillingMap.getElementChar()));
                 i++;
                 break;
             case " ":
-                System.out.println(" " + factory.getFromFileSymbol(FillingMap.getElementChar()));
-                playableMap.setXYElement(FillingMap.getX(), FillingMap.getY(),
-                        factory.getFromFileSymbol(FillingMap.getElementChar()));
+                System.out.println(" " + factory.getFromFileSymbol(fillingMap.getElementChar()));
+                playableMap.setXYElement(fillingMap.getX(), fillingMap.getY(),
+                        factory.getFromFileSymbol(fillingMap.getElementChar()));
                 i++;
                 break;
             case "W":
-                System.out.println("W" + factory.getFromFileSymbol(FillingMap.getElementChar()));
-                playableMap.setXYElement(FillingMap.getX(), FillingMap.getY(),
-                        factory.getFromFileSymbol(FillingMap.getElementChar()));
+                System.out.println("W" + factory.getFromFileSymbol(fillingMap.getElementChar()));
+                playableMap.setXYElement(fillingMap.getX(), fillingMap.getY(),
+                        factory.getFromFileSymbol(fillingMap.getElementChar()));
                 i++;
                 break;
             case "T":
-                System.out.println("T" + factory.getFromFileSymbol(FillingMap.getElementChar()));
-                playableMap.setXYElement(FillingMap.getX(), FillingMap.getY(),
-                        factory.getFromFileSymbol(FillingMap.getElementChar()));
+                System.out.println("T" + factory.getFromFileSymbol(fillingMap.getElementChar()));
+                playableMap.setXYElement(fillingMap.getX(), fillingMap.getY(),
+                        factory.getFromFileSymbol(fillingMap.getElementChar()));
                 i++;
                 break;
             case "E":
-                System.out.println("E" + factory.getFromFileSymbol(FillingMap.getElementChar()));
-                playableMap.setXYElement(FillingMap.getX(), FillingMap.getY(),
-                        factory.getFromFileSymbol(FillingMap.getElementChar()));
+                System.out.println("E" + factory.getFromFileSymbol(fillingMap.getElementChar()));
+                playableMap.setXYElement(fillingMap.getX(), fillingMap.getY(),
+                        factory.getFromFileSymbol(fillingMap.getElementChar()));
                 i++;
                 break;
             case "R":
-                System.out.println("R" + MobileFactory.getFromFileSymbol(FillingMap.getElementChar(), FillingMap.getX(),
-                        FillingMap.getY(), playableMap));
-                playableMap.setXYElement(FillingMap.getX(), FillingMap.getY(), MobileFactory.getFromFileSymbol(
-                        FillingMap.getElementChar(), FillingMap.getX(), FillingMap.getY(), playableMap));
-                playableMap.addMobiles(MobileFactory.getFromFileSymbol(FillingMap.getElementChar(), FillingMap.getX(),
-                        FillingMap.getY(), playableMap));
+                System.out.println("R" + mobileFactory.getFromFileSymbol(fillingMap.getElementChar(), fillingMap.getX(),
+                        fillingMap.getY(), playableMap));
+                playableMap.setXYElement(fillingMap.getX(), fillingMap.getY(), mobileFactory.getFromFileSymbol(
+                        fillingMap.getElementChar(), fillingMap.getX(), fillingMap.getY(), playableMap));
+                playableMap.addMobiles(mobileFactory.getFromFileSymbol(fillingMap.getElementChar(), fillingMap.getX(),
+                        fillingMap.getY(), playableMap));
                 i++;
                 break;
             case "M":
-                playableMap.setXYElement(FillingMap.getX(), FillingMap.getY(), MobileFactory.getFromFileSymbol(
-                        FillingMap.getElementChar(), FillingMap.getX(), FillingMap.getY(), playableMap));
-                playableMap.addMobiles(MobileFactory.getFromFileSymbol(FillingMap.getElementChar(), FillingMap.getX(),
-                        FillingMap.getY(), playableMap));
+                playableMap.setXYElement(fillingMap.getX(), fillingMap.getY(), mobileFactory.getFromFileSymbol(
+                        fillingMap.getElementChar(), fillingMap.getX(), fillingMap.getY(), playableMap));
+                playableMap.addMobiles(mobileFactory.getFromFileSymbol(fillingMap.getElementChar(), fillingMap.getX(),
+                        fillingMap.getY(), playableMap));
                 i++;
                 break;
             case "D":
-                System.out.println("D" + MobileFactory.getFromFileSymbol(FillingMap.getElementChar(), FillingMap.getX(),
-                        FillingMap.getY(), playableMap));
-                playableMap.setXYElement(FillingMap.getX(), FillingMap.getY(), MobileFactory.getFromFileSymbol(
-                        FillingMap.getElementChar(), FillingMap.getX(), FillingMap.getY(), playableMap));
-                playableMap.addMobiles(MobileFactory.getFromFileSymbol(FillingMap.getElementChar(), FillingMap.getX(),
-                        FillingMap.getY(), playableMap));
+                System.out.println("D" + mobileFactory.getFromFileSymbol(fillingMap.getElementChar(), fillingMap.getX(),
+                        fillingMap.getY(), playableMap));
+                playableMap.setXYElement(fillingMap.getX(), fillingMap.getY(), mobileFactory.getFromFileSymbol(
+                        fillingMap.getElementChar(), fillingMap.getX(), fillingMap.getY(), playableMap));
+                playableMap.addMobiles(mobileFactory.getFromFileSymbol(fillingMap.getElementChar(), fillingMap.getX(),
+                        fillingMap.getY(), playableMap));
                 i++;
                 break;
             case "P":
-                System.out.println("P" + MobileFactory.getFromFileSymbol(FillingMap.getElementChar(), FillingMap.getX(),
-                        FillingMap.getY(), playableMap));
-                playableMap.setXYElement(FillingMap.getX(), FillingMap.getY(), MobileFactory.getFromFileSymbol(
-                        FillingMap.getElementChar(), FillingMap.getX(), FillingMap.getY(), playableMap));
-                playableMap.addMobiles(MobileFactory.getFromFileSymbol(FillingMap.getElementChar(), FillingMap.getX(),
-                        FillingMap.getY(), playableMap));
+                System.out.println("P" + mobileFactory.getFromFileSymbol(fillingMap.getElementChar(), fillingMap.getX(),
+                        fillingMap.getY(), playableMap));
+                playableMap.setXYElement(fillingMap.getX(), fillingMap.getY(), mobileFactory.getFromFileSymbol(
+                        fillingMap.getElementChar(), fillingMap.getX(), fillingMap.getY(), playableMap));
+                playableMap.addMobiles(mobileFactory.getFromFileSymbol(fillingMap.getElementChar(), fillingMap.getX(),
+                        fillingMap.getY(), playableMap));
                 i++;
                 break;
             default:
