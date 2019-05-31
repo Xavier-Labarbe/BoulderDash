@@ -10,6 +10,8 @@ public interface IMobile extends IElement {
 
     void move();
 
+    public void setMap(final IPlayableMap map);
+
     void setX(int x);
 
     void setY(int y);
