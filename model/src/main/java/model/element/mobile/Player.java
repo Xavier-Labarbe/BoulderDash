@@ -11,7 +11,7 @@ import model.element.Sprite;
 import model.element.motionless.Tunnel;
 
 public class Player extends AliveMobile implements IPlayer {
-    private static ISprite sprite = new Sprite('P', "Player.jpg");
+    private static ISprite sprite = new Sprite("P", "Player.jpg");
     private static Permeability permeability = Permeability.PENETRABLE;
     private static Boolean explosable = true;
     private static StrategyMove strategyMove = new MoveInput();
