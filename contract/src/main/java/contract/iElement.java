@@ -4,7 +4,7 @@ public interface iElement {
 
     Permeability getPermeability();
 
-    iSprite getSprite();
+    ISprite getSprite();
 
     Boolean isExplosable();
 

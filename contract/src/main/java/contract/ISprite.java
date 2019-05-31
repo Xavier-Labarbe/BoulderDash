@@ -3,9 +3,9 @@ package contract;
 import java.awt.Image;
 import java.io.IOException;
 
-public interface iSprite {
+public interface ISprite {
 
-    String getConsoleImage();
+    char getConsoleImage();
 
     Image getImage();
 
