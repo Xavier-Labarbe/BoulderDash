@@ -1,26 +1,29 @@
 package model.element.mobile;
 
+import contract.IMobile;
+import contract.IPlayableMap;
+import contract.ISprite;
 import contract.Permeability;
-import contract.iSprite;
-import model.PlayableMap;
 import model.element.Element;
 
-public abstract class Mobile extends Element {
+public abstract class Mobile extends Element implements IMobile {
     private int x;
     private int y;
-    private StrategyMove strategyMove = null;
-    private PlayableMap map;
+    private final StrategyMove strategyMove;
+    private IPlayableMap map;
 
-    public Mobile(final iSprite sprite, final Permeability permeability, final Boolean explosable, final int x,
-            final int y, final StrategyMove strategyMove) {
+    public Mobile(final ISprite sprite, final Permeability permeability, final Boolean explosable, final int x,
+            final int y, final StrategyMove strategyMove, final IPlayableMap map) {
         super(sprite, permeability, explosable);
-        this.map = new PlayableMap();
-        this.setStrategyMove(strategyMove);
-        this.setX(x);
-        this.setY(y);
+        this.map = map;
+        this.strategyMove = strategyMove;
+        this.x = x;
+        this.y = y;
+
     }
 
-    public PlayableMap getMap() {
+    @Override
+    public IPlayableMap getMap() {
         return this.map;
     }
 
@@ -28,34 +31,31 @@ public abstract class Mobile extends Element {
         return this.strategyMove;
     }
 
+    @Override
     public int getX() {
         return this.x;
     }
 
+    @Override
     public int getY() {
         return this.y;
     }
 
-    public Boolean isLocationUsed(final int x, final int y) {
-        return true;
-    }
-
+    @Override
     public void move() {
-        this.strategyMove.move();
+        this.strategyMove.move(this);
     }
 
-    public void setMap(final PlayableMap map) {
+    public void setMap(final IPlayableMap map) {
         this.map = map;
     }
 
-    public void setStrategyMove(final StrategyMove strategyMove) {
-        this.strategyMove = strategyMove;
-    }
-
+    @Override
     public void setX(final int x) {
         this.x = x;
     }
 
+    @Override
     public void setY(final int y) {
         this.y = y;
     }
