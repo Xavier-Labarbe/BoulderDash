@@ -31,7 +31,6 @@ public class MotionlessFactory {
     public Motionless getFromFileSymbol(final String fileSymbol) {
 
         for (final Motionless motionless : motionless) {
-            System.out.println(motionless.getSprite().getConsoleImage() + "    //   " + fileSymbol);
             if (motionless.getSprite().getConsoleImage().equals(fileSymbol)) {
                 return motionless;
             }

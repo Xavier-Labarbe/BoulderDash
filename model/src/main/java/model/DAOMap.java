@@ -24,11 +24,6 @@ public class DAOMap extends DAOEntity<Map> {
     public PlayableMap create(final Map map) {
 
         int i = 0;
-        for (final FillingMap fillingMap : map.getFillingMaps()) {
-            System.out.println(fillingMap.getElementChar());
-            i++;
-        }
-        System.out.println(i);
 
         final PlayableMap playableMap = new PlayableMap();
         final MotionlessFactory factory = new MotionlessFactory();
@@ -42,38 +37,31 @@ public class DAOMap extends DAOEntity<Map> {
 
             switch (fillingMap.getElementChar()) {
             case "|":
-                System.out.println("|" + factory.getFromFileSymbol(fillingMap.getElementChar()));
                 playableMap.setXYElement(fillingMap.getX(), fillingMap.getY(),
                         factory.getFromFileSymbol(fillingMap.getElementChar()));
                 i++;
                 break;
             case " ":
-                System.out.println(" " + factory.getFromFileSymbol(fillingMap.getElementChar()));
                 playableMap.setXYElement(fillingMap.getX(), fillingMap.getY(),
                         factory.getFromFileSymbol(fillingMap.getElementChar()));
                 i++;
                 break;
             case "W":
-                System.out.println("W" + factory.getFromFileSymbol(fillingMap.getElementChar()));
                 playableMap.setXYElement(fillingMap.getX(), fillingMap.getY(),
                         factory.getFromFileSymbol(fillingMap.getElementChar()));
                 i++;
                 break;
             case "T":
-                System.out.println("T" + factory.getFromFileSymbol(fillingMap.getElementChar()));
                 playableMap.setXYElement(fillingMap.getX(), fillingMap.getY(),
                         factory.getFromFileSymbol(fillingMap.getElementChar()));
                 i++;
                 break;
             case "E":
-                System.out.println("E" + factory.getFromFileSymbol(fillingMap.getElementChar()));
                 playableMap.setXYElement(fillingMap.getX(), fillingMap.getY(),
                         factory.getFromFileSymbol(fillingMap.getElementChar()));
                 i++;
                 break;
             case "R":
-                System.out.println("R" + mobileFactory.getFromFileSymbol(fillingMap.getElementChar(), fillingMap.getX(),
-                        fillingMap.getY(), playableMap));
                 playableMap.setXYElement(fillingMap.getX(), fillingMap.getY(), mobileFactory.getFromFileSymbol(
                         fillingMap.getElementChar(), fillingMap.getX(), fillingMap.getY(), playableMap));
                 playableMap.addMobiles(mobileFactory.getFromFileSymbol(fillingMap.getElementChar(), fillingMap.getX(),
@@ -88,8 +76,6 @@ public class DAOMap extends DAOEntity<Map> {
                 i++;
                 break;
             case "D":
-                System.out.println("D" + mobileFactory.getFromFileSymbol(fillingMap.getElementChar(), fillingMap.getX(),
-                        fillingMap.getY(), playableMap));
                 playableMap.setXYElement(fillingMap.getX(), fillingMap.getY(), mobileFactory.getFromFileSymbol(
                         fillingMap.getElementChar(), fillingMap.getX(), fillingMap.getY(), playableMap));
                 playableMap.addMobiles(mobileFactory.getFromFileSymbol(fillingMap.getElementChar(), fillingMap.getX(),
@@ -97,8 +83,6 @@ public class DAOMap extends DAOEntity<Map> {
                 i++;
                 break;
             case "P":
-                System.out.println("P" + mobileFactory.getFromFileSymbol(fillingMap.getElementChar(), fillingMap.getX(),
-                        fillingMap.getY(), playableMap));
                 playableMap.setXYElement(fillingMap.getX(), fillingMap.getY(), mobileFactory.getFromFileSymbol(
                         fillingMap.getElementChar(), fillingMap.getX(), fillingMap.getY(), playableMap));
                 playableMap.addMobiles(mobileFactory.getFromFileSymbol(fillingMap.getElementChar(), fillingMap.getX(),
@@ -110,7 +94,6 @@ public class DAOMap extends DAOEntity<Map> {
             }
         }
         // });
-        System.out.println(i);
         this.display(playableMap);
         return playableMap;
     }
@@ -125,9 +108,8 @@ public class DAOMap extends DAOEntity<Map> {
             for (int x = 0; x < 20; x++) {
                 try {
                     /*
-                     * System.out.println("x : " + x); System.out.println("y : "
-                     * + y); System.out.println(playableMap.getXYElement(x, y) +
-                     * " ");
+                     * System.out.println("x : " + x); System.out.println("y : " + y);
+                     * System.out.println(playableMap.getXYElement(x, y) + " ");
                      */
                     System.out.print(playableMap.getXYElement(x, y).getSprite().getConsoleImage());
                 } catch (final Exception e) {
@@ -139,8 +121,8 @@ public class DAOMap extends DAOEntity<Map> {
     }
 
     /*
-     * final String sql = "{call helloworldByCode(?)}"; final CallableStatement
-     * call = this.getConnection().prepareCall(sql); call.setString(1, code);
+     * final String sql = "{call helloworldByCode(?)}"; final CallableStatement call
+     * = this.getConnection().prepareCall(sql); call.setString(1, code);
      * call.execute(); final ResultSet resultSet = call.getResultSet(); if
      * (resultSet.first()) { helloWorld = new HelloWorld(resultSet.getInt("id"),
      * code, resultSet.getString("message"));
@@ -171,13 +153,6 @@ public class DAOMap extends DAOEntity<Map> {
                         fillingMapResultSet.getInt("x"), fillingMapResultSet.getInt("y")));
             }
 
-            int i = 0;
-            for (final FillingMap fillingMap : map.getFillingMaps()) {
-                System.out.println(fillingMap.getElementChar());
-                i++;
-            }
-            System.out.print(i);
-            System.out.println("nice fdp");
             return map;
 
         } catch (final SQLException e) {

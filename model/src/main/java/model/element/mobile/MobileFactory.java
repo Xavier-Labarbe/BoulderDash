@@ -1,12 +1,14 @@
 package model.element.mobile;
 
+import java.util.ArrayList;
+
 import model.PlayableMap;
 
 public class MobileFactory {
     static int x = 0;
     static int y = 0;
 
-    private final Mobile[] mobile = new Mobile[4];
+    private final ArrayList<Mobile> mobile = new ArrayList<Mobile>();
 
     private final Diamond diamond;
 
@@ -19,13 +21,13 @@ public class MobileFactory {
     public MobileFactory(final PlayableMap map) {
         this.playableMap = map;
         this.diamond = new Diamond(x, y, this.playableMap);
-        this.mobile[0] = this.diamond;
+        this.mobile.add(this.diamond);
         this.monster = new Monster(x, y, this.playableMap);
-        this.mobile[1] = this.diamond;
+        this.mobile.add(this.monster);
         this.rock = new Rock(x, y, this.playableMap);
-        this.mobile[2] = this.diamond;
+        this.mobile.add(this.rock);
         this.player = new Player(x, y, this.playableMap);
-        this.mobile[3] = this.diamond;
+        this.mobile.add(this.player);
     }
 
     public Mobile createDiamond(final int x, final int y, final PlayableMap playableMap) {
