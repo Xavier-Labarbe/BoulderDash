@@ -30,7 +30,6 @@ public final class Controller implements IController {
 		setView(view);
 		setModel(model);
 		setLoopGame(loopGame);
-		loopGame.setController(this);
 	}
 
 	public IModel getModel() {
@@ -98,7 +97,7 @@ public final class Controller implements IController {
 	 */
 
 	private void setView(final IView pview) {
-		view = pview;
+		this.view = pview;
 	}
 	
 	private void setLoopGame(final LoopGame loopGame) {

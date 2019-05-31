@@ -4,19 +4,32 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class ViewFrameTest {
-    int controller=1;
-    int expected = 1;
-    int testnumber=0;
+import contract.IController;
+import contract.IModel;
 
+public class ViewFrameTest {
+    public IController controller;
+    public IModel model;
+    public ViewFrame viewFrame;
     @Test
-    public void getController() {
-        assertEquals(expected, controller);
+    public void getControllerTest() {
+        assertEquals(this.viewFrame.getController(), controller);
     }
 
     @Test
-    public void setController() {
-        testnumber=expected;
-        assertEquals(expected, testnumber);
+    public void getModelTest() {
+        assertEquals(this.viewFrame.getModel(), model);
+    }
+    
+    @Test
+    public void setControllerTest() {
+    	this.viewFrame.setController(controller);
+    	assertEquals(controller, this.viewFrame.getController());
+    }
+    
+    @Test
+    public void setModelTest() {
+    	this.viewFrame.setModel(model);
+    	assertEquals(model, this.viewFrame.getModel());
     }
 }

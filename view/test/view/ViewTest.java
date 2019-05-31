@@ -19,17 +19,4 @@ public class ViewTest {
 	     assertTrue(expectedBool);
 	 }
 
-	 @Test
-	    public void run() {
-		 	int expected = 0;
-	        testNumber = expected;
-	        assertEquals(expected, testNumber);
-	 }
-	 
-	 @Test
-	 public void setController() {
-		 int expected = 0;
-	     assertEquals(expected, testNumber);
-	 
-	 }
 }

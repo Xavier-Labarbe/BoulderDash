@@ -1,13 +1,15 @@
 package controller;
 
+import contract.IMobile;
+import contract.IPlayer;
 import model.PlayableMap;
 import model.element.mobile.Mobile;
 import model.element.mobile.Player;
 
 public class LoopGame {
-	private static Boolean isRunning = true;
+	private Boolean isRunning = true;
 
-	public static void loopGame() throws InterruptedException
+	public void loopGame() throws InterruptedException
 	{
 		while (getIsRunning()) {
 			doGameUpdates();
@@ -17,25 +19,25 @@ public class LoopGame {
 	}
 	
 
-	private static void doGameUpdates() {
+	private void doGameUpdates() {
 		if (Player.getAlive() == true){
 			Mobile.move();
 		}else {
-			setIsRunning(false);
+			this.setIsRunning(false);
 		}
 	}
 	
-	private static void render() {
+	private void render() {
 		if (getIsRunning() == false) {
 			System.out.println("Vous avez perdu...");
 		}
 	}
 	
-	 public static void setIsRunning(Boolean isRunning) {
-		 isRunning = isRunning;
+	 public void setIsRunning(Boolean isRunning) {
+		 this.isRunning = isRunning;
 	 }
 	 
-	 public static Boolean getIsRunning() {
-		 return isRunning;
+	 public Boolean getIsRunning() {
+		 return this.isRunning;
 	 }
 }
