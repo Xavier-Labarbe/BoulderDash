@@ -7,7 +7,7 @@ import contract.Permeability;
 import model.element.Sprite;
 
 public class Rock extends FallingMobile implements IRock {
-    private static ISprite sprite = new Sprite('R', "Rock.jpg");
+    private static ISprite sprite = new Sprite("R", "Rock.jpg");
     private static Permeability permeability = Permeability.BLOCKING;
     private static Boolean explosable = true;
 
