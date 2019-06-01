@@ -26,8 +26,10 @@ public class PlayableMap implements IPlayableMap {
 
     private String label;
 
-    public PlayableMap(final int numberOfDiamondForWin) {
-        this.elements = new Element[10][10];
+    public PlayableMap(final int numberOfDiamondForWin, final int width, final int height) {
+        this.elements = new Element[width][height];
+        this.width = width;
+        this.height = height;
         this.mobiles = new ArrayList<IMobile>();
         this.waitingMobilesForCreation = new ArrayList<IMobile>();
         this.waitingMobilesForRemoving = new ArrayList<IMobile>();
@@ -96,13 +98,13 @@ public class PlayableMap implements IPlayableMap {
     }
 
     @Override
-    public Boolean getWin() {
-        return this.win;
+    public IElement getXYElement(final int x, final int y) {
+        return this.elements[x][y];
     }
 
     @Override
-    public IElement getXYElement(final int x, final int y) {
-        return this.elements[x][y];
+    public Boolean isWin() {
+        return this.win;
     }
 
     @Override

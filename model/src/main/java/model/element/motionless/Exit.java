@@ -8,7 +8,7 @@ import contract.Permeability;
 import model.element.Sprite;
 
 public class Exit extends Motionless implements IExit {
-    private static ISprite sprite = new Sprite('E', "Exit.jpg");
+    private static ISprite sprite = new Sprite("E", "exit.png");
     private static Boolean breakable = false;
     private static Permeability premeability = Permeability.OPENABLE;
     private static Boolean explosable = false;

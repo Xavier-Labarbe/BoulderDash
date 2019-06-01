@@ -28,7 +28,7 @@ public interface IPlayableMap {
 
     int getWidth();
 
-    Boolean getWin();
+    Boolean isWin();
 
     IElement getXYElement(int x, int y);
 

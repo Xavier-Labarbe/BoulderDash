@@ -56,11 +56,11 @@ public class MoveInput extends StrategyMove {
 
     @Override
     public void move(final IMobile mobile) {
-        ControllerOrder movingOrder = mobile.getMap().getPlayer().getMovingOrder();
+        final ControllerOrder movingOrder = mobile.getMap().getPlayer().getMovingOrder();
         final int x = mobile.getX();
         final int y = mobile.getY();
 
-        movingOrder = ControllerOrder.RIGHT;
+        // movingOrder = ControllerOrder.RIGHT;
         switch (movingOrder) {
         case UP:
             this.verifyAndMove(x, y - 1, mobile);
@@ -77,6 +77,7 @@ public class MoveInput extends StrategyMove {
         case NOTHING:
             break;
         }
+        mobile.getMap().getPlayer().setMovingOrder(ControllerOrder.NOTHING);
     }
 
     private void moveAtXY(final IMobile mobile, final int x, final int y) {

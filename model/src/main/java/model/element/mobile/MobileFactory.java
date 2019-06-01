@@ -7,29 +7,22 @@ import contract.IPlayer;
 import contract.IRock;
 
 public class MobileFactory {
-    static int x = 0;
-    static int y = 0;
+    static int x;
+    static int y;
 
     private final IMobile[] mobile = new IMobile[4];
 
-    private final IDiamond diamond;
+    private IDiamond diamond;
 
-    private final Monster monster;
-    private final IRock rock;
-    private final IPlayer player;
+    private Monster monster;
+    private IRock rock;
+    private IPlayer player;
 
     private IPlayableMap playableMap = null;
 
     public MobileFactory(final IPlayableMap map) {
         this.playableMap = map;
-        this.diamond = new Diamond(x, y, this.playableMap);
-        this.mobile[0] = this.diamond;
-        this.monster = new Monster(x, y, this.playableMap);
-        this.mobile[1] = this.diamond;
-        this.rock = new Rock(x, y, this.playableMap);
-        this.mobile[2] = this.diamond;
-        this.player = new Player(x, y, this.playableMap);
-        this.mobile[3] = this.diamond;
+        this.resetFactory(0, 0, map);
     }
 
     public IMobile createDiamond(final int x, final int y, final IPlayableMap playableMap) {
@@ -48,15 +41,33 @@ public class MobileFactory {
         return new Rock(x, y, playableMap);
     }
 
-    public IMobile getFromFileSymbol(final char fileSymbol, final int x, final int y, final IPlayableMap playableMap) {
+    public IMobile getFromFileSymbol(final String fileSymbol, final int x, final int y,
+            final IPlayableMap playableMap) {
+        this.resetFactory(x, y, playableMap);
         for (final IMobile mobile : this.mobile) {
-            if (mobile.getSprite().getConsoleImage() == fileSymbol) {
+            if (mobile.getSprite().getConsoleImage().equals(fileSymbol)) {
                 mobile.setX(x);
                 mobile.setY(y);
                 mobile.setMap(playableMap);
+                playableMap.addMobiles(mobile);
                 return mobile;
             }
         }
         return null;
+    }
+
+    private void resetFactory(final int x, final int y, final IPlayableMap playableMap) {
+        this.diamond = new Diamond(x, y, this.playableMap);
+        this.mobile[0] = this.diamond;
+        this.monster = new Monster(x, y, this.playableMap);
+        this.mobile[1] = this.monster;
+        this.rock = new Rock(x, y, this.playableMap);
+        this.mobile[2] = this.rock;
+        this.player = new Player(x, y, this.playableMap);
+        this.mobile[3] = this.player;
+        this.playableMap.addwaitingMobilesForRemoving(this.diamond);
+        this.playableMap.addwaitingMobilesForRemoving(this.monster);
+        this.playableMap.addwaitingMobilesForRemoving(this.rock);
+        this.playableMap.addwaitingMobilesForRemoving(this.player);
     }
 }

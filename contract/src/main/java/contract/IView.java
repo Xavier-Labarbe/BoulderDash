@@ -7,11 +7,14 @@ package contract;
  */
 public interface IView {
 
-	/**
-	 * Prints the message.
-	 *
-	 * @param message
-	 *          the message
-	 */
-	void printMessage(final String message);
+    IController getController();
+
+    /**
+     * Prints the message.
+     *
+     * @param message the message
+     */
+    void printMessage(final String message);
+
+    void setController(IController controller);
 }

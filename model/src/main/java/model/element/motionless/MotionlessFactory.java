@@ -1,5 +1,7 @@
 package model.element.motionless;
 
+import java.util.ArrayList;
+
 import contract.IPlayableMap;
 
 public class MotionlessFactory {
@@ -24,22 +26,26 @@ public class MotionlessFactory {
         return tunnel;
     }
 
-    private final IMotionless[] motionless = { border, explosableWall, dirt, tunnel };
+    private final ArrayList<IMotionless> motionless = new ArrayList<IMotionless>();
 
     private final Exit exit;
 
     public MotionlessFactory(final IPlayableMap map) {
         this.exit = new Exit(map);
-        this.motionless[4] = this.exit;
+        this.motionless.add(border);
+        this.motionless.add(dirt);
+        this.motionless.add(explosableWall);
+        this.motionless.add(tunnel);
+        this.motionless.add(this.exit);
     }
 
     public IMotionless createExit() {
         return this.exit;
     }
 
-    public IMotionless getFromFileSymbol(final char fileSymbol) {
+    public IMotionless getFromFileSymbol(final String fileSymbol) {
         for (final IMotionless motionless : this.motionless) {
-            if (motionless.getSprite().getConsoleImage() == fileSymbol) {
+            if (motionless.getSprite().getConsoleImage().equals(fileSymbol)) {
                 return motionless;
             }
         }

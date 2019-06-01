@@ -7,7 +7,7 @@ import contract.Permeability;
 import model.element.Sprite;
 
 public class Diamond extends FallingMobile implements IDiamond {
-    private static ISprite sprite = new Sprite('D', "Diamond.jpg");
+    private static ISprite sprite = new Sprite("D", "diamond.png");
     private static Permeability permeability = Permeability.BLOCKING;
     private static Boolean explosable = true;
 

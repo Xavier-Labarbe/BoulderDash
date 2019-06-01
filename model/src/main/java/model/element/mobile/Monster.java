@@ -8,7 +8,7 @@ import model.element.Sprite;
 import model.element.motionless.Tunnel;
 
 public class Monster extends AliveMobile implements IAliveMobile, IMonster {
-    private static ISprite sprite = new Sprite('M', "Monster.jpg");
+    private static ISprite sprite = new Sprite("M", "monster.png");
     private static Permeability permeability = Permeability.PENETRABLE;
     private static Boolean explosable = true;
     private static StrategyMove strategyMove = new MoveAuto();

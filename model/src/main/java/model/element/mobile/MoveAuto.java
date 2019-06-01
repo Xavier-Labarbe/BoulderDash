@@ -13,14 +13,13 @@ public class MoveAuto extends StrategyMove {
         int movingVector = (((Monster) mobile).getMovingVector());
         int i = 0;
         Boolean moved = false;
-        final int initialMovingVector = movingVector;
         while ((i < 4) && (moved == false)) {
             switch (movingVector) {
             case 1:
                 if (this.verifyAndMoveIfPossible(x, y - 1, mobile)) {
                     moved = true;
                 } else {
-                    movingVector = initialMovingVector;
+                    movingVector = 2;
                     i++;
                 }
                 break;

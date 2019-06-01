@@ -13,7 +13,6 @@ public class MoveGravity extends StrategyMove {
         final int x = mobile.getX();
         final int y = mobile.getY();
         if (mobile.getMap().getXYElement(x, y + 1).getPermeability() == Permeability.PENETRABLE) {
-
             if ((mobile.getMap().getXYElement(x, y + 1) instanceof AliveMobile)) {
                 if (((IFallingMobile) mobile).isFalling()) {
                     ((IFallingMobile) mobile).kill((AliveMobile) mobile.getMap().getXYElement(x, y + 1));

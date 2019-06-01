@@ -1,12 +1,15 @@
 package view;
 
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 
 import javax.swing.SwingUtilities;
 
 import contract.ControllerOrder;
 import contract.IController;
+import contract.IMap;
 import contract.IModel;
+import contract.IPlayableMap;
 import contract.IView;
 
 /**
@@ -15,68 +18,100 @@ import contract.IView;
  * @author Jean-Aymeric Diet
  */
 public final class View implements IView, Runnable {
+    /**
+     * Key code to controller order.
+     *
+     * @param keyCode the key code
+     * @return the controller order
+     */
+    protected static ControllerOrder keyCodeToControllerOrder(final int keyCode) {
+        switch (keyCode) {
+        case KeyEvent.VK_UP:
+            return ControllerOrder.UP;
+        case KeyEvent.VK_DOWN:
+            return ControllerOrder.DOWN;
+        case KeyEvent.VK_LEFT:
+            return ControllerOrder.LEFT;
+        case KeyEvent.VK_RIGHT:
+            return ControllerOrder.RIGHT;
+        default:
+            return ControllerOrder.NOTHING;
+        }
+    }
 
-	/** The frame. */
-	private final ViewFrame viewFrame;
+    private IPlayableMap map;
 
-	/**
-	 * Instantiates a new view.
-	 *
-	 * @param model
-	 *          the model
-	 */
-	public View(final IModel model) {
-		this.viewFrame = new ViewFrame(model);
-		SwingUtilities.invokeLater(this);
-	}
+    /** The frame. */
+    private final ViewFrame viewFrame;
 
-	/**
-	 * Key code to controller order.
-	 *
-	 * @param keyCode
-	 *          the key code
-	 * @return the controller order
-	 */
-	protected static ControllerOrder keyCodeToControllerOrder(final int keyCode) {
-		switch (keyCode) {
-			case KeyEvent.VK_G:
-				return ControllerOrder.English;
-			case KeyEvent.VK_F:
-				return ControllerOrder.Francais;
-			case KeyEvent.VK_D:
-				return ControllerOrder.Deutsch;
-			case KeyEvent.VK_I:
-				return ControllerOrder.Indonesia;
-			default:
-				return ControllerOrder.English;
-		}
-	}
+    private IController controller;
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see contract.IView#printMessage(java.lang.String)
-	 */
-	public void printMessage(final String message) {
-		this.viewFrame.printMessage(message);
-	}
+    /**
+     * Instantiates a new view.
+     *
+     * @param model the model
+     */
+    public View(final IModel model) {
+        this.viewFrame = new ViewFrame(model, this.controller);
+        this.viewFrame.setView(this);
+        this.setMap(model.getPlayableMap());
+        SwingUtilities.invokeLater(this);
+    }
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see java.lang.Runnable#run()
-	 */
-	public void run() {
-		this.viewFrame.setVisible(true);
-	}
+    public void display(final IMap map) {
 
-	/**
-	 * Sets the controller.
-	 *
-	 * @param controller
-	 *          the new controller
-	 */
-	public void setController(final IController controller) {
-		this.viewFrame.setController(controller);
-	}
+    }
+
+    @Override
+    public IController getController() {
+        return this.controller;
+    }
+
+    public IPlayableMap getMap() {
+        return this.map;
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see contract.IView#printMessage(java.lang.String)
+     */
+    @Override
+    public void printMessage(final String message) {
+        this.viewFrame.printMessage(message);
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see java.lang.Runnable#run()
+     */
+    @Override
+    public void run() {
+
+        this.viewFrame.setVisible(true);
+    }
+
+    /**
+     * Sets the controller.
+     *
+     * @param controller the new controller
+     */
+    @Override
+    public void setController(final IController controller) {
+        this.controller = controller;
+    }
+
+    public void setMap(final IPlayableMap map) {
+        this.map = map;
+        for (int x = 0; x < map.getWidth(); x++) {
+            for (int y = 0; y < map.getHeight(); y++) {
+                try {
+                    map.getXYElement(x, y).getSprite().loadImage();
+                } catch (final IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 }
