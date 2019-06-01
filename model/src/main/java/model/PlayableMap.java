@@ -27,7 +27,7 @@ public class PlayableMap implements IPlayableMap {
     private String label;
 
     public PlayableMap(final int numberOfDiamondForWin) {
-        this.elements = new Element[20][20];
+        this.elements = new Element[10][10];
         this.mobiles = new ArrayList<IMobile>();
         this.waitingMobilesForCreation = new ArrayList<IMobile>();
         this.waitingMobilesForRemoving = new ArrayList<IMobile>();
