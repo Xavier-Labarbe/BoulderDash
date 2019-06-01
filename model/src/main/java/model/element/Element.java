@@ -1,10 +1,10 @@
 package model.element;
 
 import contract.Permeability;
-import contract.iElement;
+import contract.IElement;
 import contract.iSprite;
 
-public abstract class Element implements iElement {
+public abstract class Element implements IElement {
     private iSprite sprite;
     private Permeability permeability;
     private Boolean explosable;

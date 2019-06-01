@@ -2,7 +2,7 @@ package contract;
 
 public interface iMap {
 
-    iElement[][] getElements();
+    IElement[][] getElements();
 
     int getHeight();
 
@@ -10,6 +10,6 @@ public interface iMap {
 
     int getWidth();
 
-    void setElements(iElement[][] elements);
+    void setElements(IElement[][] elements);
 
 }

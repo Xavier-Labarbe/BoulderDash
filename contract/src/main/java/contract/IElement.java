@@ -1,6 +1,6 @@
 package contract;
 
-public interface iElement {
+public interface IElement {
 
     Permeability getPermeability();
 
