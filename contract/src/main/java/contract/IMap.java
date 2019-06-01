@@ -1,6 +1,6 @@
 package contract;
 
-public interface iMap {
+public interface IMap {
 
     IElement[][] getElements();
 
