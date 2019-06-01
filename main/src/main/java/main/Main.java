@@ -6,6 +6,8 @@ package main;
 
 import java.sql.SQLException;
 
+import contract.IMobile;
+import contract.IPlayableMap;
 import model.DAOMap;
 import model.DBConnection;
 import model.PlayableMap;
