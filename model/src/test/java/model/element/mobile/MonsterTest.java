@@ -1,13 +1,15 @@
 package model.element.mobile;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import model.PlayableMap;
+import model.element.motionless.Tunnel;
 
 public class MonsterTest {
     @BeforeClass
@@ -19,28 +21,11 @@ public class MonsterTest {
     }
 
     public Monster monster;
-
-    @Test
-    public void createDiamondstest() {
-        final IDiamond diamond = new Diamond(0, 0, null);
-        this.monster.setX(5);
-        this.monster.setY(5);
-        this.monster.createDiamonds();
-        final int x = this.monster.getX();
-        final int y = this.monster.getY();
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (this.monster.getMap().getXYElement((x - 1) + i, (y - 1) + j).getClass() != diamond.getClass()) {
-                    fail("Error in diamonds creation");
-                }
-
-            }
-        }
-    }
+    public PlayableMap map;
 
     @Test
     public void killtest() {
-        final Player player = new Player(0, 0, null);
+        final Player player = new Player(0, 0, this.map);
         final Boolean expected = false;
         this.monster.kill(player);
         assertEquals(expected, player.isAlive());
@@ -48,7 +33,13 @@ public class MonsterTest {
 
     @Before
     public void setUp() throws Exception {
-        this.monster = new Monster(0, 0, null);
+        this.map = new PlayableMap(2, 10, 10);
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                this.map.setXYElement(i, j, new Tunnel());
+            }
+        }
+        this.monster = new Monster(5, 5, this.map);
     }
 
     @After

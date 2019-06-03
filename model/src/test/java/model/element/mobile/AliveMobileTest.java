@@ -1,4 +1,4 @@
-package model.element;
+package model.element.mobile;
 
 import static org.junit.Assert.assertEquals;
 
@@ -8,7 +8,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class SpriteTest {
+import model.PlayableMap;
+
+public class AliveMobileTest {
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
     }
@@ -17,23 +19,24 @@ public class SpriteTest {
     public static void tearDownAfterClass() throws Exception {
     }
 
-    public Sprite sprite;
+    public Player player;
 
     @Test
-    public void getConsoleImagetest() {
-        final String expected = "R";
-        assertEquals(expected, this.sprite.getConsoleImage());
+    public void isAlivetest() {
+        final Boolean expected = true;
+        assertEquals(expected, this.player.isAlive());
     }
 
     @Test
-    public void getImageNametest() {
-        final String expected = "rock.png";
-        assertEquals(expected, this.sprite.getImageName());
+    public void setAlivetest() {
+        final Boolean expected = false;
+        this.player.setAlive(false);
+        assertEquals(expected, this.player.isAlive());
     }
 
     @Before
     public void setUp() throws Exception {
-        this.sprite = new Sprite("R", "rock.png");
+        this.player = new Player(1, 1, new PlayableMap(2, 2, 2));
     }
 
     @After

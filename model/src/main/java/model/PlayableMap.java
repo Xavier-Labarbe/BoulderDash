@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
 import contract.IElement;
 import contract.IExit;
@@ -9,7 +10,7 @@ import contract.IPlayableMap;
 import contract.IPlayer;
 import model.element.Element;
 
-public class PlayableMap implements IPlayableMap {
+public class PlayableMap extends Observable implements IPlayableMap {
     private IElement[][] elements;
     private final ArrayList<IMobile> mobiles;
     private final ArrayList<IMobile> waitingMobilesForCreation;
@@ -75,6 +76,10 @@ public class PlayableMap implements IPlayableMap {
     @Override
     public int getNumberOfDiamondForWin() {
         return this.numberOfDiamondForWin;
+    }
+
+    public Observable getObservable() {
+        return this;
     }
 
     @Override
@@ -150,5 +155,7 @@ public class PlayableMap implements IPlayableMap {
     @Override
     public void setXYElement(final int x, final int y, final IElement element) {
         this.elements[x][y] = element;
+        this.notifyObservers();
+        this.setChanged();
     }
 }

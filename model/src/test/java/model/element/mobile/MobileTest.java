@@ -8,6 +8,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import model.PlayableMap;
+
 public class MobileTest {
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
@@ -37,15 +39,9 @@ public class MobileTest {
         assertEquals(expected, this.rock.getY());
     }
 
-    @Test
-    public void isLocationUsedtest() {
-        final Boolean expected = false;
-        assertEquals(expected, this.rock.isLocationUsed(1, 1));
-    }
-
     @Before
     public void setUp() throws Exception {
-        this.rock = new Rock(0, 0, null);
+        this.rock = new Rock(1, 1, new PlayableMap(2, 2, 2));
 
     }
 

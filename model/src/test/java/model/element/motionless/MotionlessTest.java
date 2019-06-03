@@ -1,4 +1,4 @@
-package model.element;
+package model.element.motionless;
 
 import static org.junit.Assert.assertEquals;
 
@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class SpriteTest {
+public class MotionlessTest {
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
     }
@@ -17,23 +17,17 @@ public class SpriteTest {
     public static void tearDownAfterClass() throws Exception {
     }
 
-    public Sprite sprite;
+    Dirt dirt;
 
     @Test
-    public void getConsoleImagetest() {
-        final String expected = "R";
-        assertEquals(expected, this.sprite.getConsoleImage());
-    }
-
-    @Test
-    public void getImageNametest() {
-        final String expected = "rock.png";
-        assertEquals(expected, this.sprite.getImageName());
+    public void iSBreakabletest() {
+        final Boolean expected = true;
+        assertEquals(expected, this.dirt.isExplosable());
     }
 
     @Before
     public void setUp() throws Exception {
-        this.sprite = new Sprite("R", "rock.png");
+        this.dirt = new Dirt();
     }
 
     @After

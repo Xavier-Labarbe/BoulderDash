@@ -8,6 +8,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import model.PlayableMap;
+
 public class FallingMobileTest {
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
@@ -20,12 +22,6 @@ public class FallingMobileTest {
     public Rock rock;
 
     @Test
-    public void getVisibletest() {
-        final Boolean expected = true;
-        assertEquals(expected, this.rock.getVisible());
-    }
-
-    @Test
     public void isFallingtest() {
         final Boolean expected = false;
         assertEquals(expected, this.rock.isFalling());
@@ -33,7 +29,7 @@ public class FallingMobileTest {
 
     @Test
     public void killtest() {
-        final Monster monster = new Monster(0, 0, null);
+        final Monster monster = new Monster(0, 0, new PlayableMap(2, 2, 2));
         final Boolean expected = false;
         this.rock.kill(monster);
         assertEquals(expected, monster.isAlive());
@@ -41,21 +37,14 @@ public class FallingMobileTest {
 
     @Test
     public void setFallingtest() {
-        final Boolean expected = false;
-        this.rock.setFalling(false);
+        final Boolean expected = true;
+        this.rock.setFalling(true);
         assertEquals(expected, this.rock.isFalling());
     }
 
     @Before
     public void setUp() throws Exception {
-        this.rock = new Rock(0, 0, null);
-    }
-
-    @Test
-    public void setVisibletest() {
-        final Boolean expected = false;
-        this.rock.setVisible(false);
-        assertEquals(expected, this.rock.getVisible());
+        this.rock = new Rock(0, 0, new PlayableMap(2, 2, 2));
     }
 
     @After

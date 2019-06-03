@@ -1,4 +1,4 @@
-package model.element;
+package model.element.motionless;
 
 import static org.junit.Assert.assertEquals;
 
@@ -8,7 +8,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class SpriteTest {
+import model.PlayableMap;
+
+public class MotionlessFactoryTest {
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
     }
@@ -17,23 +19,20 @@ public class SpriteTest {
     public static void tearDownAfterClass() throws Exception {
     }
 
-    public Sprite sprite;
+    MotionlessFactory fatory;
+
+    PlayableMap map;
 
     @Test
-    public void getConsoleImagetest() {
-        final String expected = "R";
-        assertEquals(expected, this.sprite.getConsoleImage());
-    }
-
-    @Test
-    public void getImageNametest() {
-        final String expected = "rock.png";
-        assertEquals(expected, this.sprite.getImageName());
+    public void getFromFileSymboltest() {
+        final Dirt expected = new Dirt();
+        assertEquals(expected.getClass(), this.fatory.getFromFileSymbol(" ").getClass());
     }
 
     @Before
     public void setUp() throws Exception {
-        this.sprite = new Sprite("R", "rock.png");
+        this.map = new PlayableMap(2, 2, 2);
+        this.fatory = new MotionlessFactory(this.map);
     }
 
     @After

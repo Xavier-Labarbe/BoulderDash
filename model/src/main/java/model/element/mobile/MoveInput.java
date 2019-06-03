@@ -38,6 +38,7 @@ public class MoveInput extends StrategyMove {
     private Boolean isOpenableAndOpen(final IMobile mobile, final int x, final int y) {
         if (mobile.getMap().getXYElement(x, y).getPermeability() == Permeability.OPENABLE) {
             if (((IExit) mobile.getMap().getXYElement(x, y)).getDoorState() == DoorState.OPEN) {
+                mobile.getMap().setWin(true);
                 return true;
             }
         } else {

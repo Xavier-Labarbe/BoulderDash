@@ -1,6 +1,7 @@
 package contract;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
 public interface IPlayableMap {
 
@@ -20,6 +21,8 @@ public interface IPlayableMap {
 
     int getNumberOfDiamondForWin();
 
+    Observable getObservable();
+
     IPlayer getPlayer();
 
     ArrayList<IMobile> getWaitingMobilesForCreation();
@@ -28,9 +31,9 @@ public interface IPlayableMap {
 
     int getWidth();
 
-    Boolean isWin();
-
     IElement getXYElement(int x, int y);
+
+    Boolean isWin();
 
     void removeMobiles(IMobile mobile);
 

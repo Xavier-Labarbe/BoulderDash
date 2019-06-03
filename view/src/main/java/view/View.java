@@ -7,7 +7,6 @@ import javax.swing.SwingUtilities;
 
 import contract.ControllerOrder;
 import contract.IController;
-import contract.IMap;
 import contract.IModel;
 import contract.IPlayableMap;
 import contract.IView;
@@ -56,10 +55,6 @@ public final class View implements IView, Runnable {
         this.viewFrame.setView(this);
         this.setMap(model.getPlayableMap());
         SwingUtilities.invokeLater(this);
-    }
-
-    public void display(final IMap map) {
-
     }
 
     @Override

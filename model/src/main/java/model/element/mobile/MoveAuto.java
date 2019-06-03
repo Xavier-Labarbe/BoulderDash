@@ -51,7 +51,8 @@ public class MoveAuto extends StrategyMove {
             ((Monster) mobile).setMovingVector(movingVector);
             if ((mobile.getX() == mobile.getMap().getPlayer().getX())
                     && (mobile.getY() == mobile.getMap().getPlayer().getY())) {
-                mobile.getMap().getPlayer().setAlive(false);
+                ((Monster) mobile).kill(mobile.getMap().getPlayer());
+                ;
             }
         }
     }

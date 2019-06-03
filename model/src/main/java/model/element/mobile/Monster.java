@@ -2,12 +2,13 @@ package model.element.mobile;
 
 import contract.IAliveMobile;
 import contract.IPlayableMap;
+import contract.IPlayer;
 import contract.ISprite;
 import contract.Permeability;
 import model.element.Sprite;
 import model.element.motionless.Tunnel;
 
-public class Monster extends AliveMobile implements IAliveMobile, IMonster {
+public class Monster extends AliveMobile implements IAliveMobile {
     private static ISprite sprite = new Sprite("M", "monster.png");
     private static Permeability permeability = Permeability.PENETRABLE;
     private static Boolean explosable = true;
@@ -20,7 +21,6 @@ public class Monster extends AliveMobile implements IAliveMobile, IMonster {
         this.getMap().addMobiles(this);
     }
 
-    @Override
     public void createDiamonds() {
         final int x = this.getX();
         final int y = this.getY();
@@ -36,7 +36,6 @@ public class Monster extends AliveMobile implements IAliveMobile, IMonster {
         }
     }
 
-    @Override
     public void explose() {
         final int x = this.getX();
         final int y = this.getY();
@@ -53,7 +52,7 @@ public class Monster extends AliveMobile implements IAliveMobile, IMonster {
         return this.movingVector;
     }
 
-    public void kill(final Player player) {
+    public void kill(final IPlayer player) {
         player.setAlive(false);
     }
 

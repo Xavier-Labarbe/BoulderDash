@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import model.PlayableMap;
 import model.element.Element;
 import model.element.motionless.Dirt;
 import model.element.motionless.Tunnel;
@@ -21,41 +22,39 @@ public class PlayerTest {
     public static void tearDownAfterClass() throws Exception {
     }
 
-    public Player player;
+    PlayableMap map1;
+    public Player player1;
 
     @Test
     public void digTunneltest() {
         final Element expected = new Tunnel();
-        this.player.getMap().setXYElement(5, 6, new Dirt());
-        this.player.digTunnel(5, 6);
-        assertEquals(expected.getClass(), this.player.getMap().getXYElement(5, 6).getClass());
-    }
-
-    @Test
-    public void pickupDiamondtest() {
-        final Diamond diamond = new Diamond(0, 0, null);
-        final Boolean expected = false;
-        diamond.setX(5);
-        diamond.setY(6);
-        this.player.pickupDiamond(diamond);
-        assertEquals(expected, diamond.getVisible());
+        this.player1.getMap().setXYElement(5, 6, new Dirt());
+        this.player1.digTunnel(5, 6);
+        assertEquals(expected.getClass(), this.player1.getMap().getXYElement(5, 6).getClass());
     }
 
     @Test
     public void pushRocktest() {
-        final Rock rock = new Rock(0, 0, null);
-        rock.setX(5);
-        rock.setY(6);
-        this.player.pushRock(rock);
-        assertEquals(5, rock.getX());
-        assertEquals(7, rock.getY());
+        final Rock rock1 = new Rock(6, 5, this.map1);
+        this.player1.pushRock(rock1);
+        final Rock rock2 = new Rock(4, 5, this.map1);
+        this.player1.pushRock(rock2);
+        assertEquals(6, rock1.getX());
+        assertEquals(5, rock1.getY());
+        assertEquals(3, rock2.getX());
+        assertEquals(5, rock2.getY());
     }
 
     @Before
     public void setUp() throws Exception {
-        this.player = new Player(0, 0, null);
-        this.player.setX(5);
-        this.player.setY(5);
+        this.map1 = new PlayableMap(2, 10, 10);
+        this.player1 = new Player(5, 5, this.map1);
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                this.map1.setXYElement(i, j, new Dirt());
+            }
+        }
+        this.map1.setXYElement(3, 5, new Tunnel());
     }
 
     @After

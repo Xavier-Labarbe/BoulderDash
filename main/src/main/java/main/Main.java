@@ -17,7 +17,6 @@ import model.Model;
 import model.element.mobile.Diamond;
 import model.element.mobile.Monster;
 import model.element.mobile.Rock;
-import model.element.motionless.Exit;
 import model.element.motionless.Tunnel;
 import view.View;
 
@@ -34,8 +33,6 @@ public abstract class Main {
         playableMap.setXYElement(2, 9, new Monster(2, 9, playableMap));
         playableMap.setXYElement(14, 1, new Diamond(14, 1, playableMap));
         playableMap.setXYElement(12, 1, new Diamond(12, 1, playableMap));
-        playableMap.setXYElement(16, 1, new Exit(playableMap));
-        playableMap.setExit((Exit) playableMap.getXYElement(16, 1));
 
         final IModel model = new Model();
         model.setPlayableMap(playableMap);
@@ -47,5 +44,6 @@ public abstract class Main {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+
     }
 }

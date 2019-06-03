@@ -16,8 +16,8 @@ public class MoveGravity extends StrategyMove {
             if ((mobile.getMap().getXYElement(x, y + 1) instanceof AliveMobile)) {
                 if (((IFallingMobile) mobile).isFalling()) {
                     ((IFallingMobile) mobile).kill((AliveMobile) mobile.getMap().getXYElement(x, y + 1));
-                    if (mobile.getMap().getXYElement(x, y + 1) instanceof IMonster) {
-                        ((IMonster) mobile.getMap().getXYElement(x, y + 1)).createDiamonds();
+                    if (mobile.getMap().getXYElement(x, y + 1) instanceof Monster) {
+                        ((Monster) mobile.getMap().getXYElement(x, y + 1)).createDiamonds();
                     }
                     this.moveAtXY(x, y + 1, mobile);
                 }
