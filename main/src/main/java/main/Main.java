@@ -20,7 +20,7 @@ public abstract class Main {
 
     public static void main(final String[] args) throws SQLException {
         final DAOMap dao = new DAOMap(DBConnection.getInstance().getConnection());
-        final IPlayableMap playableMap = dao.create(dao.find(4, "Map_3"));
+        final IPlayableMap playableMap = dao.create(dao.find(1, "TUTO"));
 
         final IModel model = new Model();
         model.setPlayableMap(playableMap);

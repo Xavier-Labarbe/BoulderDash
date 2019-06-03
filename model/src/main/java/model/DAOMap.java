@@ -25,7 +25,6 @@ public class DAOMap extends DAOEntity<Map> {
 
         int i = 0;
         final PlayableMap playableMap = new PlayableMap(map.getDiamondNumberForWin(), map.getWidth(), map.getHeight());
-        final MotionlessFactory factory = new MotionlessFactory(playableMap);
 
         i = 0;
         for (final FillingMap fillingMap : map.getFillingMaps()) {
@@ -33,23 +32,23 @@ public class DAOMap extends DAOEntity<Map> {
             switch (fillingMap.getElementChar()) {
             case "|":
                 playableMap.setXYElement(fillingMap.getX(), fillingMap.getY(),
-                        factory.getFromFileSymbol(fillingMap.getElementChar()));
+                        MotionlessFactory.getFromFileSymbol(fillingMap.getElementChar(), playableMap));
                 break;
             case " ":
                 playableMap.setXYElement(fillingMap.getX(), fillingMap.getY(),
-                        factory.getFromFileSymbol(fillingMap.getElementChar()));
+                        MotionlessFactory.getFromFileSymbol(fillingMap.getElementChar(), playableMap));
                 break;
             case "W":
                 playableMap.setXYElement(fillingMap.getX(), fillingMap.getY(),
-                        factory.getFromFileSymbol(fillingMap.getElementChar()));
+                        MotionlessFactory.getFromFileSymbol(fillingMap.getElementChar(), playableMap));
                 break;
             case "T":
                 playableMap.setXYElement(fillingMap.getX(), fillingMap.getY(),
-                        factory.getFromFileSymbol(fillingMap.getElementChar()));
+                        MotionlessFactory.getFromFileSymbol(fillingMap.getElementChar(), playableMap));
                 break;
             case "E":
                 playableMap.setXYElement(fillingMap.getX(), fillingMap.getY(),
-                        factory.getFromFileSymbol(fillingMap.getElementChar()));
+                        MotionlessFactory.getFromFileSymbol(fillingMap.getElementChar(), playableMap));
                 break;
             case "R":
                 playableMap.setXYElement(fillingMap.getX(), fillingMap.getY(), MobileFactory.getFromFileSymbol(
