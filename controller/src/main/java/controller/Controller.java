@@ -76,7 +76,7 @@ public final class Controller implements IController {
         this.getModel().getPlayableMap().getPlayer().move();
     }
 
-    private void setLoopGame(final ILoopGame loopGame) {
+    public void setLoopGame(final ILoopGame loopGame) {
         this.loopGame = loopGame;
     }
 
@@ -86,7 +86,7 @@ public final class Controller implements IController {
      * @param model the new model
      */
 
-    private void setModel(final IModel model) {
+    public void setModel(final IModel model) {
         this.model = model;
     }
 

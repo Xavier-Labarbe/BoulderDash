@@ -61,7 +61,7 @@ class DBProperties extends Properties {
 	 * @param url
 	 *          the new url
 	 */
-	private void setUrl(final String url) {
+	void setUrl(final String url) {
 		this.url = url;
 	}
 
@@ -80,7 +80,7 @@ class DBProperties extends Properties {
 	 * @param login
 	 *          the new login
 	 */
-	private void setLogin(final String login) {
+	void setLogin(final String login) {
 		this.login = login;
 	}
 
@@ -99,7 +99,7 @@ class DBProperties extends Properties {
 	 * @param password
 	 *          the new password
 	 */
-	private void setPassword(final String password) {
+	void setPassword(final String password) {
 		this.password = password;
 	}
 
