@@ -98,11 +98,11 @@ public class DAOMap extends DAOEntity<Map> {
     }
 
     @Override
-    public Map find(final int id) {
+    public Map find(final int id, final String label) {
         Map map = null;
         try {
-            final String FillingMapRequest = "{call  getLabelXY(1)}";
-            final String mapRequest = "{call  getMap(\"MAP\")}";
+            final String FillingMapRequest = "{call  getLabelXY(" + id + ")}";
+            final String mapRequest = "{call  getMap(\"" + label + "\")}";
 
             final CallableStatement requestMap = this.getConnection().prepareCall(mapRequest);
             final CallableStatement requestFillingMap = this.getConnection().prepareCall(FillingMapRequest);
@@ -111,10 +111,11 @@ public class DAOMap extends DAOEntity<Map> {
             requestFillingMap.execute();
             final ResultSet mapResultSet = requestMap.getResultSet();
             final ResultSet fillingMapResultSet = requestFillingMap.getResultSet();
-
+            System.out.println("ok");
             if (mapResultSet.first()) {
                 map = new Map(id, mapResultSet.getString("label"), mapResultSet.getInt("WIDTH"),
                         mapResultSet.getInt("HEIGHT"), mapResultSet.getInt("D_NUMBER_FOR_WIN"));
+
                 while (fillingMapResultSet.next()) {
                     map.add(new FillingMap(new ElementType(fillingMapResultSet.getString("ELEMENT_CHAR")),
                             fillingMapResultSet.getInt("x"), fillingMapResultSet.getInt("y")));
@@ -127,12 +128,6 @@ public class DAOMap extends DAOEntity<Map> {
         } catch (final SQLException e) {
             e.printStackTrace();
         }
-        return null;
-    }
-
-    @Override
-    public Map find(final String code) {
-        // TODO Auto-generated method stub
         return null;
     }
 

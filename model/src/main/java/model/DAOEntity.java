@@ -49,7 +49,7 @@ abstract class DAOEntity<E extends Entity> {
      * @param id the id
      * @return the e
      */
-    public abstract E find(int id);
+    public abstract E find(int id, String label);
 
     /**
      * Find.
@@ -57,7 +57,6 @@ abstract class DAOEntity<E extends Entity> {
      * @param code the code
      * @return the e
      */
-    public abstract E find(String code);
 
     /**
      * Gets the connection.

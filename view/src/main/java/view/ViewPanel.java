@@ -131,8 +131,8 @@ class ViewPanel extends JPanel implements Observer {
 
         if (player.isAlive()) {
 
-            for (int i = 0; i < 20; i++) {
-                for (int j = 0; j < 20; j++) {
+            for (int i = 0; i < this.getViewFrame().getModel().getPlayableMap().getWidth(); i++) {
+                for (int j = 0; j < this.getViewFrame().getModel().getPlayableMap().getHeight(); j++) {
                     graphics.drawImage(
                             this.getViewFrame().getModel().getPlayableMap().getXYElement(i, j).getSprite().getImage(),
                             i * 16, j * 16, null);
