@@ -23,8 +23,10 @@ public final class Controller implements IController {
     /**
      * Instantiates a new controller.
      *
-     * @param view  the view
-     * @param model the model
+     * @param view
+     *            the view
+     * @param model
+     *            the model
      */
 
     public Controller(final IView view, final IModel model) {
@@ -63,7 +65,8 @@ public final class Controller implements IController {
     /**
      * Order perform.
      *
-     * @param controllerOrder the controller order
+     * @param controllerOrder
+     *            the controller order
      */
     /*
      * (non-Javadoc)
@@ -82,7 +85,8 @@ public final class Controller implements IController {
     /**
      * Sets the model.
      *
-     * @param model the new model
+     * @param model
+     *            the new model
      */
 
     private void setModel(final IModel model) {
@@ -92,11 +96,16 @@ public final class Controller implements IController {
     /**
      * Sets the view.
      *
-     * @param pview the new view
+     * @param pview
+     *            the new view
      */
 
     private void setView(final IView pview) {
         this.view = pview;
+    }
+
+    public void start() {
+
     }
 
 }

@@ -21,16 +21,17 @@ public class LoopGame implements ILoopGame {
                 i.remove();
                 System.out.println("supp");
             }
-            for (final Iterator<IMobile> i = map.getWaitingMobilesForCreation().iterator(); i.hasNext();) {
-                final IMobile i_n = i.next();
-                map.addMobiles(i_n);
-                i_n.getMap().setXYElement(i_n.getX(), i_n.getY(), i_n);
-                i.remove();
-                System.out.println("add");
-            }
+            // for (final Iterator<IMobile> i =
+            // map.getWaitingMobilesForCreation().iterator(); i.hasNext();) {
+            // final IMobile i_n = i.next();
+            // map.addMobiles(i_n);
+            // i_n.getMap().setXYElement(i_n.getX(), i_n.getY(), i_n);
+            // i.remove();
+            // System.out.println("add");
+            // }
 
-            for (int y = 0; y < 20; y++) {
-                for (int x = 0; x < 20; x++) {
+            for (int y = 0; y < map.getHeight(); y++) {
+                for (int x = 0; x < map.getWidth(); x++) {
                     System.out.print(map.getXYElement(x, y).getSprite().getConsoleImage() + " ");
                 }
                 System.out.println();
@@ -41,7 +42,6 @@ public class LoopGame implements ILoopGame {
 
             for (final Iterator<IMobile> i = map.getMobiles().iterator(); i.hasNext();) {
                 final IMobile i_n = i.next();
-
                 i_n.move();
                 if (i_n instanceof IFallingMobile) {
                     ((IFallingMobile) i_n).setFrozen(false);
