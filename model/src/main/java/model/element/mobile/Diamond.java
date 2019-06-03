@@ -18,6 +18,8 @@ public class Diamond extends FallingMobile implements IDiamond {
     }
 
     public Diamond(final int x, final int y, final IPlayableMap map, final int nullParamater) {
+
         super(sprite, permeability, explosable, x, y, map);
+        this.getMap().setXYElement(x, y, this);
     }
 }

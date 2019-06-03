@@ -1,6 +1,7 @@
 package model.element.mobile;
 
 import contract.IAliveMobile;
+import contract.IFallingMobile;
 import contract.IPlayableMap;
 import contract.IPlayer;
 import contract.ISprite;
@@ -29,7 +30,11 @@ public class Monster extends AliveMobile implements IAliveMobile {
                 if (this.getMap().getXYElement(i, j).isExplosable()) {
                     if (this.getMap().getXYElement(i, j) instanceof Mobile) {
                         this.getMap().addwaitingMobilesForRemoving((Mobile) this.getMap().getXYElement(i, j));
+                        if (this.getMap().getXYElement(i, y - 2) instanceof IFallingMobile) {
+                            ((Rock) this.getMap().getXYElement(i, y - 2)).setFrozen(true);
+                        }
                     }
+                    this.getMap().setXYElement(i, j, new Tunnel());
                     this.getMap().addwaitingMobilesForCreation(new Diamond(i, j, this.getMap(), 0));
                 }
             }

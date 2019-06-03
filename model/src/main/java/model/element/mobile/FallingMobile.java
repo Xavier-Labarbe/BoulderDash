@@ -9,6 +9,7 @@ import contract.Permeability;
 public abstract class FallingMobile extends Mobile implements IFallingMobile {
     private static StrategyMove strategyMove = new MoveGravity();
     private Boolean falling = false;
+    private Boolean frozen = false;
 
     public FallingMobile(final ISprite sprite, final Permeability permeability, final Boolean explosable, final int x,
             final int y, final IPlayableMap map) {
@@ -18,6 +19,10 @@ public abstract class FallingMobile extends Mobile implements IFallingMobile {
     @Override
     public Boolean isFalling() {
         return this.falling;
+    }
+
+    public Boolean isFrozen() {
+        return this.frozen;
     }
 
     @Override
@@ -30,6 +35,10 @@ public abstract class FallingMobile extends Mobile implements IFallingMobile {
     @Override
     public void setFalling(final Boolean falling) {
         this.falling = falling;
+    }
+
+    public void setFrozen(final Boolean frozen) {
+        this.frozen = frozen;
     }
 
 }

@@ -49,7 +49,6 @@ public class Sprite implements ISprite {
 
     @Override
     public final void loadImage() throws IOException {
-        System.out.println(this.getImageName());
         this.setImage(ImageIO.read(new File("images/" + this.getImageName())));
 
         this.setImageLoaded(true);

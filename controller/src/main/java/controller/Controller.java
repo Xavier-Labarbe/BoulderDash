@@ -73,7 +73,6 @@ public final class Controller implements IController {
     @Override
     public void orderPerform(final ControllerOrder controllerOrder) {
         this.getModel().getPlayableMap().getPlayer().setMovingOrder(controllerOrder);
-        this.getModel().getPlayableMap().getPlayer().move();
     }
 
     private void setLoopGame(final ILoopGame loopGame) {

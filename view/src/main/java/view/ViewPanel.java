@@ -2,6 +2,7 @@ package view;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -33,8 +34,7 @@ class ViewPanel extends JPanel implements Observer {
     /**
      * Instantiates a new view panel.
      *
-     * @param viewFrame
-     *            the view frame
+     * @param viewFrame the view frame
      */
     public ViewPanel(final ViewFrame viewFrame) {
 
@@ -67,7 +67,7 @@ class ViewPanel extends JPanel implements Observer {
 
     @Override
     protected void paintComponent(Graphics graphics) {
-
+        this.reloadImage();
         graphics.clearRect(0, 0, this.getViewFrame().getModel().getPlayableMap().getWidth(),
                 this.getViewFrame().getModel().getPlayableMap().getHeight());
         graphics = this.getComponentGraphics(graphics);
@@ -157,6 +157,17 @@ class ViewPanel extends JPanel implements Observer {
         this.previousPosY = player.getY();
     }
 
+    private void reloadImage() {
+        for (int x = 0; x < this.getViewFrame().getModel().getPlayableMap().getWidth(); x++) {
+            for (int y = 0; y < this.getViewFrame().getModel().getPlayableMap().getHeight(); y++) {
+                try {
+                    this.getViewFrame().getModel().getPlayableMap().getXYElement(x, y).getSprite().loadImage();
+                } catch (final IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
     // graphics.drawImage(this.getViewFrame().getModel().getPlayableMap().getXYElement(1,
     // 6).getSprite().getImage(), 0,
     // 0, null);
@@ -164,8 +175,7 @@ class ViewPanel extends JPanel implements Observer {
     /**
      * Sets the view frame.
      *
-     * @param viewFrame
-     *            the new view frame
+     * @param viewFrame the new view frame
      */
     private void setViewFrame(final ViewFrame viewFrame) {
         this.viewFrame = viewFrame;

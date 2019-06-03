@@ -42,6 +42,7 @@ public class Player extends AliveMobile implements IPlayer {
 
     @Override
     public void pickupDiamond(final IDiamond diamond) {
+        this.getMap().setXYElement(diamond.getX(), diamond.getY(), new Tunnel());
         this.getMap().addwaitingMobilesForRemoving(diamond);
         this.setNumberOfTakenDiamond(this.getNumberOfTakenDiamond() + 1);
         if (this.getNumberOfTakenDiamond() == this.getMap().getNumberOfDiamondForWin()) {
@@ -60,8 +61,7 @@ public class Player extends AliveMobile implements IPlayer {
             this.verifyAndPushForRockPushing(xRock + 1, yRock, rock);
         } else if ((xRock == (xPlayer - 1)) && (yRock == yPlayer)) {
             this.verifyAndPushForRockPushing(xRock - 1, yRock, rock);
-        } else if ((yRock == (yPlayer - 1)) && (xRock == xPlayer)) {
-            this.verifyAndPushForRockPushing(xRock, yRock - 1, rock);
+
         } else if ((yRock == (yPlayer + 1)) && (xRock == xPlayer)) {
             this.verifyAndPushForRockPushing(xRock, yRock + 1, rock);
         }

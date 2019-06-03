@@ -3,10 +3,10 @@ package controller;
 import java.util.Iterator;
 
 import contract.IController;
+import contract.IFallingMobile;
 import contract.ILoopGame;
 import contract.IMobile;
 import contract.IPlayableMap;
-import contract.IPlayer;
 
 public class LoopGame implements ILoopGame {
     private Boolean isRunning = true;
@@ -19,12 +19,14 @@ public class LoopGame implements ILoopGame {
                 final IMobile i_n = i.next();
                 map.removeMobiles(i_n);
                 i.remove();
+                System.out.println("supp");
             }
             for (final Iterator<IMobile> i = map.getWaitingMobilesForCreation().iterator(); i.hasNext();) {
                 final IMobile i_n = i.next();
                 map.addMobiles(i_n);
                 i_n.getMap().setXYElement(i_n.getX(), i_n.getY(), i_n);
                 i.remove();
+                System.out.println("add");
             }
 
             for (int y = 0; y < 20; y++) {
@@ -39,12 +41,11 @@ public class LoopGame implements ILoopGame {
 
             for (final Iterator<IMobile> i = map.getMobiles().iterator(); i.hasNext();) {
                 final IMobile i_n = i.next();
-                if (i_n instanceof IPlayer) {
-                } else {
 
-                    i_n.move();
+                i_n.move();
+                if (i_n instanceof IFallingMobile) {
+                    ((IFallingMobile) i_n).setFrozen(false);
                 }
-
             }
         } else {
             this.setIsRunning(false);
@@ -66,7 +67,7 @@ public class LoopGame implements ILoopGame {
         while (this.getIsRunning()) {
             this.doGameUpdates();
             this.render();
-            Thread.sleep(1000); // the timing mechanism
+            Thread.sleep(350); // the timing mechanism
         }
     }
 

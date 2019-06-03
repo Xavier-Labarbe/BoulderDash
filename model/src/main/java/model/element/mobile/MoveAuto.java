@@ -11,6 +11,7 @@ public class MoveAuto extends StrategyMove {
         final int x = mobile.getX();
         final int y = mobile.getY();
         int movingVector = (((Monster) mobile).getMovingVector());
+
         int i = 0;
         Boolean moved = false;
         while ((i < 4) && (moved == false)) {
@@ -60,6 +61,7 @@ public class MoveAuto extends StrategyMove {
     private Boolean verifyAndMoveIfPossible(final int x, final int y, final IMobile mobile) {
         if (mobile.getMap().getXYElement(x, y).getPermeability() == Permeability.PENETRABLE) {
             mobile.getMap().setXYElement(mobile.getX(), mobile.getY(), new Tunnel());
+            mobile.getMap().setXYElement(x, y, new Tunnel());
             mobile.getMap().setXYElement(x, y, mobile);
             mobile.setX(x);
             mobile.setY(y);
