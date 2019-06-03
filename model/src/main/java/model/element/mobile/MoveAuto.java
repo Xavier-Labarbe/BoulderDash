@@ -11,60 +11,121 @@ public class MoveAuto extends StrategyMove {
         final int x = mobile.getX();
         final int y = mobile.getY();
         int movingVector = (((Monster) mobile).getMovingVector());
-
-        int i = 0;
         Boolean moved = false;
-        while ((i < 4) && (moved == false)) {
-            switch (movingVector) {
-            case 1:
-                if (this.verifyAndMoveIfPossible(x, y - 1, mobile)) {
-                    moved = true;
-                } else {
-                    movingVector = 2;
-                    i++;
-                }
-                break;
-            case 2:
-                if (this.verifyAndMoveIfPossible(x - 1, y, mobile)) {
-                    moved = true;
-                } else {
-                    movingVector = 3;
-                    i++;
-                }
-                break;
-            case 3:
-                if (this.verifyAndMoveIfPossible(x, y + 1, mobile)) {
-                    moved = true;
-                } else {
-                    movingVector = 4;
-                    i++;
-                }
-                break;
-            case 4:
-                if (this.verifyAndMoveIfPossible(x + 1, y, mobile)) {
-                    moved = true;
-                } else {
-                    movingVector = 1;
-                    i++;
-                }
-                break;
+        final Boolean checkRight = false;
+        final Boolean checkFront = false;
+        final Boolean checkLeft = false;
+
+        switch (movingVector) {
+        case 1:
+            if (this.verifyIfPossible(x + 1, y, mobile) && (moved == false)) {
+                this.moveAtXY(x + 1, y, mobile);
+                moved = true;
+                movingVector = 2;
             }
-            ((Monster) mobile).setMovingVector(movingVector);
-            if ((mobile.getX() == mobile.getMap().getPlayer().getX())
-                    && (mobile.getY() == mobile.getMap().getPlayer().getY())) {
-                ((Monster) mobile).kill(mobile.getMap().getPlayer());
-                ;
+            if (this.verifyIfPossible(x, y - 1, mobile) && (moved == false)) {
+                this.moveAtXY(x, y - 1, mobile);
+                moved = true;
+                movingVector = 1;
             }
+            if (this.verifyIfPossible(x - 1, y, mobile) && (moved == false)) {
+                this.moveAtXY(x - 1, y, mobile);
+                moved = true;
+                movingVector = 4;
+            }
+            if (this.verifyIfPossible(x, y + 1, mobile) && (moved == false)) {
+                this.moveAtXY(x, y + 1, mobile);
+                moved = true;
+                movingVector = 3;
+            }
+            break;
+        case 2:
+            if (this.verifyIfPossible(x, y + 1, mobile) && (moved == false)) {
+                this.moveAtXY(x, y + 1, mobile);
+                moved = true;
+                movingVector = 3;
+            }
+            if (this.verifyIfPossible(x + 1, y, mobile) && (moved == false)) {
+                this.moveAtXY(x + 1, y, mobile);
+                moved = true;
+                movingVector = 2;
+            }
+            if (this.verifyIfPossible(x, y - 1, mobile) && (moved == false)) {
+                this.moveAtXY(x, y - 1, mobile);
+                moved = true;
+                movingVector = 1;
+            }
+            if (this.verifyIfPossible(x - 1, y, mobile) && (moved == false)) {
+                this.moveAtXY(x - 1, y, mobile);
+                moved = true;
+                movingVector = 4;
+            }
+
+            break;
+        case 3:
+            if (this.verifyIfPossible(x - 1, y, mobile) && (moved == false)) {
+                this.moveAtXY(x - 1, y, mobile);
+                moved = true;
+                movingVector = 4;
+            }
+            if (this.verifyIfPossible(x, y + 1, mobile) && (moved == false)) {
+                this.moveAtXY(x, y + 1, mobile);
+                moved = true;
+                movingVector = 3;
+            }
+            if (this.verifyIfPossible(x + 1, y, mobile) && (moved == false)) {
+                this.moveAtXY(x + 1, y, mobile);
+                moved = true;
+                movingVector = 2;
+            }
+            if (this.verifyIfPossible(x, y - 1, mobile) && (moved == false)) {
+                this.moveAtXY(x, y - 1, mobile);
+                moved = true;
+                movingVector = 1;
+            }
+
+            break;
+        case 4:
+            if (this.verifyIfPossible(x, y - 1, mobile) && (moved == false)) {
+                this.moveAtXY(x, y - 1, mobile);
+                moved = true;
+                movingVector = 1;
+            }
+            if (this.verifyIfPossible(x - 1, y, mobile) && (moved == false)) {
+                this.moveAtXY(x - 1, y, mobile);
+                moved = true;
+                movingVector = 4;
+            }
+            if (this.verifyIfPossible(x, y + 1, mobile) && (moved == false)) {
+                this.moveAtXY(x, y + 1, mobile);
+                moved = true;
+                movingVector = 3;
+            }
+            if (this.verifyIfPossible(x + 1, y, mobile) && (moved == false)) {
+                this.moveAtXY(x + 1, y, mobile);
+                moved = true;
+                movingVector = 2;
+            }
+            break;
+        }
+        ((Monster) mobile).setMovingVector(movingVector);
+        if ((mobile.getX() == mobile.getMap().getPlayer().getX())
+                && (mobile.getY() == mobile.getMap().getPlayer().getY())) {
+            ((Monster) mobile).kill(mobile.getMap().getPlayer());
+            ;
         }
     }
 
-    private Boolean verifyAndMoveIfPossible(final int x, final int y, final IMobile mobile) {
+    private void moveAtXY(final int x, final int y, final IMobile mobile) {
+        mobile.getMap().setXYElement(mobile.getX(), mobile.getY(), new Tunnel());
+        mobile.getMap().setXYElement(x, y, new Tunnel());
+        mobile.getMap().setXYElement(x, y, mobile);
+        mobile.setX(x);
+        mobile.setY(y);
+    }
+
+    private Boolean verifyIfPossible(final int x, final int y, final IMobile mobile) {
         if (mobile.getMap().getXYElement(x, y).getPermeability() == Permeability.PENETRABLE) {
-            mobile.getMap().setXYElement(mobile.getX(), mobile.getY(), new Tunnel());
-            mobile.getMap().setXYElement(x, y, new Tunnel());
-            mobile.getMap().setXYElement(x, y, mobile);
-            mobile.setX(x);
-            mobile.setY(y);
             return true;
         }
         return false;

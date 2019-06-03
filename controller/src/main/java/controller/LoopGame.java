@@ -7,6 +7,7 @@ import contract.IFallingMobile;
 import contract.ILoopGame;
 import contract.IMobile;
 import contract.IPlayableMap;
+import contract.IPlayer;
 
 public class LoopGame implements ILoopGame {
     private Boolean isRunning = true;
@@ -41,12 +42,16 @@ public class LoopGame implements ILoopGame {
 
             for (final Iterator<IMobile> i = map.getMobiles().iterator(); i.hasNext();) {
                 final IMobile i_n = i.next();
-
-                i_n.move();
+                if (i_n instanceof IPlayer) {
+                } else {
+                    i_n.move();
+                }
                 if (i_n instanceof IFallingMobile) {
                     ((IFallingMobile) i_n).setFrozen(false);
                 }
             }
+
+            this.getController().getModel().getPlayableMap().getPlayer().move();
         } else {
             this.setIsRunning(false);
         }
