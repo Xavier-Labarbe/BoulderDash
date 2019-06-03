@@ -1,12 +1,15 @@
 package view;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import contract.IPlayer;
 
 /**
  * The Class ViewPanel.
@@ -19,16 +22,38 @@ class ViewPanel extends JPanel implements Observer {
     private static final long serialVersionUID = -998294702363713521L;
     /** The view frame. */
     private ViewFrame viewFrame;
+    int previousPosX;
+    int previousPosY;
+    int previousX;
+    int previousY;
+    int countX;
+    int countY;
+    boolean motionCamera = true;
 
     /**
      * Instantiates a new view panel.
      *
-     * @param viewFrame the view frame
+     * @param viewFrame
+     *            the view frame
      */
     public ViewPanel(final ViewFrame viewFrame) {
 
         this.setViewFrame(viewFrame);
         viewFrame.getModel().getPlayableMap().getObservable().addObserver(this);
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+     */
+    @Override
+    protected Graphics getComponentGraphics(final Graphics g) {
+        final Graphics2D g2d = (Graphics2D) g;
+        // g2d.translate(9, 2);
+        g2d.scale(2, 2);
+
+        return super.getComponentGraphics(g2d);
     }
 
     /**
@@ -40,16 +65,72 @@ class ViewPanel extends JPanel implements Observer {
         return this.viewFrame;
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
-     */
     @Override
-    protected void paintComponent(final Graphics graphics) {
+    protected void paintComponent(Graphics graphics) {
+
         graphics.clearRect(0, 0, this.getViewFrame().getModel().getPlayableMap().getWidth(),
                 this.getViewFrame().getModel().getPlayableMap().getHeight());
-        if (this.getViewFrame().getModel().getPlayableMap().getPlayer().isAlive()) {
+        graphics = this.getComponentGraphics(graphics);
+        final IPlayer player = this.getViewFrame().getModel().getPlayableMap().getPlayer();
+        graphics.translate(-(player.getX() * 16) + (16 * 7), -(player.getY() * 16) + (16 * 7));
+
+        // // when player forward
+        // if ((this.previousPosX - player.getX()) == 1) {
+        // this.countX--;
+        // }
+        // // when player backward
+        // if ((this.previousPosX - player.getX()) == -1) {
+        // this.countX++;
+        // }
+        // // when player go down
+        // if ((this.previousPosY - player.getY()) == 1) {
+        // this.countY--;
+        // }
+        // // when player go up
+        // if ((this.previousPosY - player.getY()) == -1) {
+        // this.countY++;
+        // }
+        //
+        // System.out.println("countX: " + this.countX);
+        // System.out.println("countY: " + this.countY);
+        //
+        // if ((this.countX > 4) || (this.countX < -4)) {
+        // this.motionCamera = true;
+        // this.countX = 0;
+        // }
+        //
+        // if ((this.countY > 4) || (this.countY < -4)) {
+        // this.motionCamera = true;
+        // this.countY = 0;
+        // }
+        //
+        // if (this.motionCamera == false) {
+        // graphics.translate(-(this.previousX * 16) + (16 * 7),
+        // -(this.previousY * 16) + (16 * 7));
+        // }
+        // if (this.motionCamera == true) {
+        // graphics.translate(-(player.getX() * 16) + (16 * 7), -(player.getY()
+        // * 16) + (16 * 7));
+        // this.previousX = player.getX();
+        // this.previousY = player.getY();
+        // this.motionCamera = false;
+        // }
+
+        System.out.print("Position joueur : " + player.getX() + " ");
+        System.out.println("Position du zoom : " + (-(player.getX() * 16) + (16 * 7)));
+
+        // if (player.getX() > (-(player.getX() * 16) + (16 * 7))) {
+
+        // }
+
+        // if ((((player.getX() % 16) <= 5) && ((player.getX() % 16) > 0))
+        // || (((player.getX() % 16) <= -5) && ((player.getX() % 16) < 0))) {
+        // graphics.translate(-(player.getX() * 16) + (16 * 7), -(player.getY()
+        // * 16) + (16 * 7));
+        // }
+
+        if (player.isAlive()) {
+
             for (int i = 0; i < 20; i++) {
                 for (int j = 0; j < 20; j++) {
                     graphics.drawImage(
@@ -72,13 +153,19 @@ class ViewPanel extends JPanel implements Observer {
         // graphics.drawImage(this.getViewFrame().getModel().getPlayableMap().getXYElement(1,
         // 6).getSprite().getImage(), 0,
         // 0, null);
-
+        this.previousPosX = player.getX();
+        this.previousPosY = player.getY();
     }
+
+    // graphics.drawImage(this.getViewFrame().getModel().getPlayableMap().getXYElement(1,
+    // 6).getSprite().getImage(), 0,
+    // 0, null);
 
     /**
      * Sets the view frame.
      *
-     * @param viewFrame the new view frame
+     * @param viewFrame
+     *            the new view frame
      */
     private void setViewFrame(final ViewFrame viewFrame) {
         this.viewFrame = viewFrame;

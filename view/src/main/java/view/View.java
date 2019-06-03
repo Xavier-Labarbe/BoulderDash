@@ -20,7 +20,8 @@ public final class View implements IView, Runnable {
     /**
      * Key code to controller order.
      *
-     * @param keyCode the key code
+     * @param keyCode
+     *            the key code
      * @return the controller order
      */
     protected static ControllerOrder keyCodeToControllerOrder(final int keyCode) {
@@ -48,7 +49,8 @@ public final class View implements IView, Runnable {
     /**
      * Instantiates a new view.
      *
-     * @param model the model
+     * @param model
+     *            the model
      */
     public View(final IModel model) {
         this.viewFrame = new ViewFrame(model, this.controller);
@@ -90,7 +92,8 @@ public final class View implements IView, Runnable {
     /**
      * Sets the controller.
      *
-     * @param controller the new controller
+     * @param controller
+     *            the new controller
      */
     @Override
     public void setController(final IController controller) {
