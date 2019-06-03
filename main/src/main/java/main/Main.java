@@ -26,12 +26,7 @@ public abstract class Main {
         model.setPlayableMap(playableMap);
         final IView view = new View(model);
         final IController controller = new Controller(view, model);
-        try {
-            controller.getLoopGame().loopGame();
-        } catch (final InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        controller.start();
 
     }
 }

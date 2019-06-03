@@ -99,4 +99,14 @@ public final class Controller implements IController {
         this.view = pview;
     }
 
+    @Override
+    public void start() {
+        try {
+            this.loopGame.loopGame();
+        } catch (final InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
 }
