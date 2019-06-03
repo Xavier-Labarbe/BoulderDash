@@ -26,7 +26,6 @@ public class DAOMap extends DAOEntity<Map> {
         int i = 0;
         final PlayableMap playableMap = new PlayableMap(map.getDiamondNumberForWin(), map.getWidth(), map.getHeight());
         final MotionlessFactory factory = new MotionlessFactory(playableMap);
-        final MobileFactory mobileFactory = new MobileFactory(playableMap);
 
         i = 0;
         for (final FillingMap fillingMap : map.getFillingMaps()) {
@@ -53,20 +52,20 @@ public class DAOMap extends DAOEntity<Map> {
                         factory.getFromFileSymbol(fillingMap.getElementChar()));
                 break;
             case "R":
-                playableMap.setXYElement(fillingMap.getX(), fillingMap.getY(), mobileFactory.getFromFileSymbol(
+                playableMap.setXYElement(fillingMap.getX(), fillingMap.getY(), MobileFactory.getFromFileSymbol(
                         fillingMap.getElementChar(), fillingMap.getX(), fillingMap.getY(), playableMap));
 
                 break;
             case "M":
-                playableMap.setXYElement(fillingMap.getX(), fillingMap.getY(), mobileFactory.getFromFileSymbol(
+                playableMap.setXYElement(fillingMap.getX(), fillingMap.getY(), MobileFactory.getFromFileSymbol(
                         fillingMap.getElementChar(), fillingMap.getX(), fillingMap.getY(), playableMap));
                 break;
             case "D":
-                playableMap.setXYElement(fillingMap.getX(), fillingMap.getY(), mobileFactory.getFromFileSymbol(
+                playableMap.setXYElement(fillingMap.getX(), fillingMap.getY(), MobileFactory.getFromFileSymbol(
                         fillingMap.getElementChar(), fillingMap.getX(), fillingMap.getY(), playableMap));
                 break;
             case "P":
-                playableMap.setXYElement(fillingMap.getX(), fillingMap.getY(), mobileFactory.getFromFileSymbol(
+                playableMap.setXYElement(fillingMap.getX(), fillingMap.getY(), MobileFactory.getFromFileSymbol(
                         fillingMap.getElementChar(), fillingMap.getX(), fillingMap.getY(), playableMap));
                 break;
             default:
