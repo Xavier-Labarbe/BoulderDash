@@ -36,14 +36,6 @@ abstract class DAOEntity<E extends Entity> {
     public abstract PlayableMap create(E entity);
 
     /**
-     * Delete.
-     *
-     * @param entity the entity
-     * @return true, if successful
-     */
-    public abstract boolean delete(E entity);
-
-    /**
      * Find.
      *
      * @param id the id
@@ -73,6 +65,5 @@ abstract class DAOEntity<E extends Entity> {
      * @param entity the entity
      * @return true, if successful
      */
-    public abstract boolean update(E entity);
 
 }

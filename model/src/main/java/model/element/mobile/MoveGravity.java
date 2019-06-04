@@ -4,6 +4,7 @@ import contract.IFallingMobile;
 import contract.IMobile;
 import contract.Permeability;
 import model.element.motionless.ExplosableWall;
+import model.element.motionless.MotionlessFactory;
 import model.element.motionless.Tunnel;
 
 public class MoveGravity extends StrategyMove {
@@ -21,7 +22,7 @@ public class MoveGravity extends StrategyMove {
                     if (mobile.getMap().getXYElement(x, y + 1) instanceof Monster) {
                         mobile.getMap().addwaitingMobilesForRemoving((Mobile) mobile.getMap().getXYElement(x, y + 1));
                         ((Monster) mobile.getMap().getXYElement(x, y + 1)).createDiamonds();
-                        mobile.getMap().setXYElement(x, y + 1, new Tunnel());
+                        mobile.getMap().setXYElement(x, y + 1, MotionlessFactory.createTunnel());
                     }
 
                     this.moveAtXY(x, y + 1, mobile);
@@ -56,8 +57,8 @@ public class MoveGravity extends StrategyMove {
     }
 
     private void moveAtXY(final int x, final int y, final IMobile mobile) {
-        mobile.getMap().setXYElement(mobile.getX(), mobile.getY(), new Tunnel());
-        mobile.getMap().setXYElement(x, y, new Tunnel());
+        mobile.getMap().setXYElement(mobile.getX(), mobile.getY(), MotionlessFactory.createTunnel());
+        mobile.getMap().setXYElement(x, y, MotionlessFactory.createTunnel());
         mobile.getMap().setXYElement(x, y, mobile);
         mobile.setX(x);
         mobile.setY(y);

@@ -76,11 +76,6 @@ public class DAOMap extends DAOEntity<Map> {
         return playableMap;
     }
 
-    @Override
-    public boolean delete(final Map map) {
-        return false;
-    }
-
     public void display(final PlayableMap playableMap) {
         for (int y = 0; y < 20; y++) {
             for (int x = 0; x < 20; x++) {
@@ -137,11 +132,6 @@ public class DAOMap extends DAOEntity<Map> {
 
     public void setConnection(final Connection connection) {
         this.connection = connection;
-    }
-
-    @Override
-    public boolean update(final Map entity) {
-        return false;
     }
 
 }

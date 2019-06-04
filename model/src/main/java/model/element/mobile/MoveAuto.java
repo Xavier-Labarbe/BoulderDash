@@ -2,7 +2,7 @@ package model.element.mobile;
 
 import contract.IMobile;
 import contract.Permeability;
-import model.element.motionless.Tunnel;
+import model.element.motionless.MotionlessFactory;
 
 public class MoveAuto extends StrategyMove {
 
@@ -12,9 +12,6 @@ public class MoveAuto extends StrategyMove {
         final int y = mobile.getY();
         int movingVector = (((Monster) mobile).getMovingVector());
         Boolean moved = false;
-        final Boolean checkRight = false;
-        final Boolean checkFront = false;
-        final Boolean checkLeft = false;
 
         switch (movingVector) {
         case 1:
@@ -117,8 +114,8 @@ public class MoveAuto extends StrategyMove {
     }
 
     private void moveAtXY(final int x, final int y, final IMobile mobile) {
-        mobile.getMap().setXYElement(mobile.getX(), mobile.getY(), new Tunnel());
-        mobile.getMap().setXYElement(x, y, new Tunnel());
+        mobile.getMap().setXYElement(mobile.getX(), mobile.getY(), MotionlessFactory.createTunnel());
+        mobile.getMap().setXYElement(x, y, MotionlessFactory.createTunnel());
         mobile.getMap().setXYElement(x, y, mobile);
         mobile.setX(x);
         mobile.setY(y);

@@ -7,7 +7,7 @@ import contract.IPlayer;
 import contract.ISprite;
 import contract.Permeability;
 import model.element.Sprite;
-import model.element.motionless.Tunnel;
+import model.element.motionless.MotionlessFactory;
 
 public class Monster extends AliveMobile implements IAliveMobile {
     private static ISprite sprite = new Sprite("M", "monster.png");
@@ -34,8 +34,9 @@ public class Monster extends AliveMobile implements IAliveMobile {
                             ((Rock) this.getMap().getXYElement(i, y - 2)).setFrozen(true);
                         }
                     }
-                    this.getMap().setXYElement(i, j, new Tunnel());
-                    this.getMap().addwaitingMobilesForCreation(new Diamond(i, j, this.getMap(), 0));
+                    this.getMap().setXYElement(i, j, MotionlessFactory.createTunnel());
+                    this.getMap().addwaitingMobilesForCreation(MobileFactory.createDiamond(i, j, this.getMap(), 0));
+
                 }
             }
         }
@@ -47,7 +48,7 @@ public class Monster extends AliveMobile implements IAliveMobile {
         for (int i = x - 1; i < ((3 + x) - 1); i++) {
             for (int j = y - 1; j < ((3 + y) - 1); j++) {
                 if (this.getMap().getXYElement(i, j).isExplosable()) {
-                    this.getMap().setXYElement(i, j, new Tunnel());
+                    this.getMap().setXYElement(i, j, MotionlessFactory.createTunnel());
                 }
             }
         }

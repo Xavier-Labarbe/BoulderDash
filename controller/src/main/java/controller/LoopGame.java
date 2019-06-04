@@ -30,16 +30,6 @@ public class LoopGame implements ILoopGame {
                 System.out.println("add");
             }
 
-//            for (int y = 0; y < map.getWidth(); y++) {
-//                for (int x = 0; x < map.getHeight(); x++) {
-//                    System.out.print(map.getXYElement(x, y).getSprite().getConsoleImage() + " ");
-//                }
-//                System.out.println();
-//
-//            }
-//            System.out.println();
-//            System.out.println();
-
             for (final Iterator<IMobile> i = map.getMobiles().iterator(); i.hasNext();) {
                 final IMobile i_n = i.next();
                 if (i_n instanceof IPlayer) {
@@ -72,7 +62,7 @@ public class LoopGame implements ILoopGame {
         while (this.getIsRunning()) {
             this.doGameUpdates();
             this.render();
-            Thread.sleep(350); // the timing mechanism
+            Thread.sleep(100); // the timing mechanism
         }
     }
 

@@ -25,8 +25,6 @@ public class PlayableMap extends Observable implements IPlayableMap {
 
     private int height;
 
-    private String label;
-
     public PlayableMap(final int numberOfDiamondForWin, final int width, final int height) {
         this.elements = new Element[width][height];
         this.width = width;
@@ -78,6 +76,7 @@ public class PlayableMap extends Observable implements IPlayableMap {
         return this.numberOfDiamondForWin;
     }
 
+    @Override
     public Observable getObservable() {
         return this;
     }

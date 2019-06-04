@@ -19,6 +19,10 @@ public abstract class MotionlessFactory {
         return dirt;
     }
 
+    public static IMotionless createExit() {
+        return MotionlessFactory.exit;
+    }
+
     public static IMotionless createExplosableWall() {
         return explosableWall;
     }
@@ -38,10 +42,6 @@ public abstract class MotionlessFactory {
             }
         }
         return tunnel;
-    }
-
-    public IMotionless createExit() {
-        return MotionlessFactory.exit;
     }
 
 }

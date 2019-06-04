@@ -8,7 +8,7 @@ import contract.IRock;
 import contract.ISprite;
 import contract.Permeability;
 import model.element.Sprite;
-import model.element.motionless.Tunnel;
+import model.element.motionless.MotionlessFactory;
 
 public class Player extends AliveMobile implements IPlayer {
     private static ISprite sprite = new Sprite("P", "player.png");
@@ -27,7 +27,7 @@ public class Player extends AliveMobile implements IPlayer {
 
     @Override
     public void digTunnel(final int x, final int y) {
-        this.getMap().setXYElement(x, y, new Tunnel());
+        this.getMap().setXYElement(x, y, MotionlessFactory.createTunnel());
     }
 
     @Override
@@ -42,7 +42,7 @@ public class Player extends AliveMobile implements IPlayer {
 
     @Override
     public void pickupDiamond(final IDiamond diamond) {
-        this.getMap().setXYElement(diamond.getX(), diamond.getY(), new Tunnel());
+        this.getMap().setXYElement(diamond.getX(), diamond.getY(), MotionlessFactory.createTunnel());
         this.getMap().addwaitingMobilesForRemoving(diamond);
         this.setNumberOfTakenDiamond(this.getNumberOfTakenDiamond() + 1);
         if (this.getNumberOfTakenDiamond() == this.getMap().getNumberOfDiamondForWin()) {
@@ -79,7 +79,7 @@ public class Player extends AliveMobile implements IPlayer {
 
     private void verifyAndPushForRockPushing(final int x, final int y, final IRock rock) {
         if (this.getMap().getXYElement(x, y).getPermeability() == Permeability.PENETRABLE) {
-            this.getMap().setXYElement(rock.getX(), rock.getY(), new Tunnel());
+            this.getMap().setXYElement(rock.getX(), rock.getY(), MotionlessFactory.createTunnel());
             rock.setX(x);
             rock.setY(y);
             this.getMap().setXYElement(x, y, rock);

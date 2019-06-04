@@ -13,11 +13,6 @@ public final class Model implements IModel {
     }
 
     @Override
-    public void loadMap(final int id) {
-
-    }
-
-    @Override
     public void setPlayableMap(final IPlayableMap playableMap) {
         this.playableMap = playableMap;
     }

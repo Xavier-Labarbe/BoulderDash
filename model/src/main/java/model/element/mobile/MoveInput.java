@@ -7,7 +7,6 @@ import contract.IMobile;
 import contract.IPlayer;
 import contract.Permeability;
 import model.element.motionless.Dirt;
-import model.element.motionless.Tunnel;
 
 public class MoveInput extends StrategyMove {
 
@@ -68,7 +67,6 @@ public class MoveInput extends StrategyMove {
             this.verifyAndMove(x, y + 1, mobile);
             break;
         case RIGHT:
-            System.out.println("ok");
             this.verifyAndMove(x + 1, y, mobile);
             break;
         case LEFT:
@@ -78,14 +76,6 @@ public class MoveInput extends StrategyMove {
             break;
         }
         mobile.getMap().getPlayer().setMovingOrder(ControllerOrder.NOTHING);
-    }
-
-    private void moveAtXY(final IMobile mobile, final int x, final int y) {
-        mobile.getMap().setXYElement(mobile.getX(), mobile.getY(), new Tunnel());
-        mobile.getMap().setXYElement(x, y, new Tunnel());
-        mobile.getMap().setXYElement(x, y, mobile);
-        mobile.setX(x);
-        mobile.setY(y);
     }
 
     private void verifyAndMove(final int x, final int y, final IMobile mobile) {
