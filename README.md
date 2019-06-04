@@ -1,4 +1,17 @@
-# BoulderDash
+![img](https://i.imgur.com/myPZt0x.jpg)
 
-Project realized by Xavier Labarbe, Mathéo Berger, Elouan Jeannot and Axel Brosset.
-The best game of the year !
+# BOULDERDASH_GROUP_1
+
+##JAVA/UML PROJECT EXIA A1
+
+*Group Members : Mathéo Berger, Axel Brosset, Elouan Jeannot and Xavier Labarbe.*
+
+###Branch to download : Master
+
+**BDD dump path : BoulderDash\model\src\main\ressources\BoulderDash.sql**
+
+**JavaDocs and SureFire path (Site) : BoulderDash\target\site\index.html**
+
+**Diagrams path : BoulderDash\diagram\JavaDiagrams\BoulderDash.vpp**
+
+**MCD path : BoulderDash\diagram\MCD\BoulderDash**
