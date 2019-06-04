@@ -91,7 +91,7 @@ public class DAOMap extends DAOEntity<Map> {
         Map map = null;
         try {
             final String FillingMapRequest = "{call  getLabelXY(" + id + ")}";
-            final String mapRequest = "{call  getMap(\"" + id + "\")}";
+            final String mapRequest = "{call  getMap(" + id + ")}";
 
             final CallableStatement requestMap = this.getConnection().prepareCall(mapRequest);
             final CallableStatement requestFillingMap = this.getConnection().prepareCall(FillingMapRequest);

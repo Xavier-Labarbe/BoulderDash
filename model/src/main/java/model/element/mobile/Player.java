@@ -15,7 +15,9 @@ public class Player extends AliveMobile implements IPlayer {
     private static Permeability permeability = Permeability.PENETRABLE;
     private static Boolean explosable = true;
     private static StrategyMove strategyMove = new MoveInput();
+
     private int numberOfTakenDiamond = 0;
+
     private ControllerOrder movingOrder = ControllerOrder.NOTHING;
 
     public Player(final int x, final int y, final IPlayableMap map) {

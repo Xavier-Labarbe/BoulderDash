@@ -1,5 +1,11 @@
 package model.element.mobile;
 
+/*
+* The Class "StrategyMove".
+* @author "Group 1"
+* @version 1.0
+*/
+
 import contract.IMobile;
 import model.element.motionless.Tunnel;
 
