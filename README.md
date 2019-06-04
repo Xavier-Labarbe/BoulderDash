@@ -16,5 +16,7 @@
 
 **MCD path : BoulderDash\diagram\MCD\BoulderDash**
 
+
 ***Begin by map id 1 (set in the main) : this is the tuto map***
+
 *Level difficulty is set from level 1 (easy) to level 5 (hardcore)*
