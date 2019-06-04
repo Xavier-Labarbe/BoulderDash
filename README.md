@@ -9,6 +9,9 @@
 ###Branch to download : Master
 
 **BDD dump path : BoulderDash\model\src\main\ressources\BoulderDash.sql**
+
 **JavaDocs and SureFire path (Site) : BoulderDash\target\site\index.html**
+
 **Diagrams path : BoulderDash\diagram\JavaDiagrams\BoulderDash.vpp**
-				**BoulderDash\diagram\MCD\BoulderDash**
+
+**BoulderDash\diagram\MCD\BoulderDash**
