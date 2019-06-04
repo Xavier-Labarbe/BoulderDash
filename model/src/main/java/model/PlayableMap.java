@@ -26,8 +26,9 @@ public class PlayableMap extends Observable implements IPlayableMap {
     private int height;
 
     private String label;
+    private int id;
 
-    public PlayableMap(final int numberOfDiamondForWin, final int width, final int height) {
+    public PlayableMap(final int numberOfDiamondForWin, final int width, final int height, final int id) {
         this.elements = new Element[width][height];
         this.width = width;
         this.height = height;
@@ -35,6 +36,7 @@ public class PlayableMap extends Observable implements IPlayableMap {
         this.waitingMobilesForCreation = new ArrayList<IMobile>();
         this.waitingMobilesForRemoving = new ArrayList<IMobile>();
         this.setNumberOfDiamondForWin(numberOfDiamondForWin);
+        this.setId(id);
     }
 
     @Override
@@ -68,6 +70,10 @@ public class PlayableMap extends Observable implements IPlayableMap {
         return this.height;
     }
 
+    public int getId() {
+        return this.id;
+    }
+
     @Override
     public ArrayList<IMobile> getMobiles() {
         return this.mobiles;
@@ -78,6 +84,7 @@ public class PlayableMap extends Observable implements IPlayableMap {
         return this.numberOfDiamondForWin;
     }
 
+    @Override
     public Observable getObservable() {
         return this;
     }
@@ -130,6 +137,10 @@ public class PlayableMap extends Observable implements IPlayableMap {
     @Override
     public void setHeight(final int height) {
         this.height = height;
+    }
+
+    public void setId(final int id) {
+        this.id = id;
     }
 
     @Override

@@ -9,10 +9,10 @@ import model.PlayableMap;
 
 public abstract class MobileFactory {
 
-    private static IDiamond diamond = new Diamond(0, 0, new PlayableMap(2, 2, 2));
-    private static Monster monster = new Monster(0, 0, new PlayableMap(2, 2, 2));
-    private static IRock rock = new Rock(0, 0, new PlayableMap(2, 2, 2));
-    private static IPlayer player = new Player(0, 0, new PlayableMap(2, 2, 2));
+    private static IDiamond diamond = new Diamond(0, 0, new PlayableMap(2, 2, 2, 2));
+    private static Monster monster = new Monster(0, 0, new PlayableMap(2, 2, 2, 2));
+    private static IRock rock = new Rock(0, 0, new PlayableMap(2, 2, 2, 2));
+    private static IPlayer player = new Player(0, 0, new PlayableMap(2, 2, 2, 2));
     private static final IMobile[] mobile = { diamond, monster, rock, player };
 
     public static IMobile getFromFileSymbol(final String fileSymbol, final int x, final int y,

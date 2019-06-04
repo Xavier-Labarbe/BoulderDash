@@ -1,9 +1,11 @@
 package view;
 
+import java.awt.Frame;
 import java.awt.GraphicsConfiguration;
 import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.sql.SQLException;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -32,8 +34,10 @@ class ViewFrame extends JFrame implements KeyListener {
     /**
      * Instantiates a new view frame.
      *
-     * @param model the model
-     * @param gc    the gc
+     * @param model
+     *            the model
+     * @param gc
+     *            the gc
      */
     public ViewFrame(final IModel model, final GraphicsConfiguration gc) {
         super(gc);
@@ -43,8 +47,10 @@ class ViewFrame extends JFrame implements KeyListener {
     /**
      * Instantiates a new view frame.
      *
-     * @param model the model
-     * @throws HeadlessException the headless exception
+     * @param model
+     *            the model
+     * @throws HeadlessException
+     *             the headless exception
      */
     public ViewFrame(final IModel model, final IController controller) throws HeadlessException {
         this.buildViewFrame(model);
@@ -54,9 +60,12 @@ class ViewFrame extends JFrame implements KeyListener {
     /**
      * Instantiates a new view frame.
      *
-     * @param model the model
-     * @param title the title
-     * @throws HeadlessException the headless exception
+     * @param model
+     *            the model
+     * @param title
+     *            the title
+     * @throws HeadlessException
+     *             the headless exception
      */
     public ViewFrame(final IModel model, final String title) throws HeadlessException {
         super(title);
@@ -66,9 +75,12 @@ class ViewFrame extends JFrame implements KeyListener {
     /**
      * Instantiates a new view frame.
      *
-     * @param model the model
-     * @param title the title
-     * @param gc    the gc
+     * @param model
+     *            the model
+     * @param title
+     *            the title
+     * @param gc
+     *            the gc
      */
     public ViewFrame(final IModel model, final String title, final GraphicsConfiguration gc) {
         super(title, gc);
@@ -78,7 +90,8 @@ class ViewFrame extends JFrame implements KeyListener {
     /**
      * Builds the view frame.
      *
-     * @param model the model
+     * @param model
+     *            the model
      */
     private void buildViewFrame(final IModel model) {
         this.setModel(model);
@@ -86,9 +99,9 @@ class ViewFrame extends JFrame implements KeyListener {
         this.setResizable(false);
         this.addKeyListener(this);
         this.setContentPane(new ViewPanel(this));
-
-        this.setSize(1000 + this.getInsets().left + this.getInsets().right,
-                1000 + this.getInsets().top + this.getInsets().bottom);
+        this.setExtendedState(Frame.MAXIMIZED_BOTH);
+        this.setUndecorated(true);
+        this.setVisible(true);
         this.setLocationRelativeTo(null);
     }
 
@@ -121,6 +134,7 @@ class ViewFrame extends JFrame implements KeyListener {
      */
     @Override
     public void keyPressed(final KeyEvent e) {
+        System.out.println(this.getView().getController());
         this.getView().getController().orderPerform(View.keyCodeToControllerOrder(e.getKeyCode()));
     }
 
@@ -147,16 +161,24 @@ class ViewFrame extends JFrame implements KeyListener {
     /**
      * Prints the message.
      *
-     * @param message the message
+     * @param message
+     *            the message
      */
     public void printMessage(final String message) {
         JOptionPane.showMessageDialog(null, message);
     }
 
+    public void restart(final int id) throws SQLException {
+        this.controller.restart(id);
+        // TODO Auto-generated method stub
+
+    }
+
     /**
      * Sets the controller.
      *
-     * @param controller the new controller
+     * @param controller
+     *            the new controller
      */
     protected void setController(final IController controller) {
         this.controller = controller;
@@ -165,7 +187,8 @@ class ViewFrame extends JFrame implements KeyListener {
     /**
      * Sets the model.
      *
-     * @param model the new model
+     * @param model
+     *            the new model
      */
     protected void setModel(final IModel model) {
         this.model = model;

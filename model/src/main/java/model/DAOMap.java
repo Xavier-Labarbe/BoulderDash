@@ -24,7 +24,8 @@ public class DAOMap extends DAOEntity<Map> {
     public PlayableMap create(final Map map) {
 
         int i = 0;
-        final PlayableMap playableMap = new PlayableMap(map.getDiamondNumberForWin(), map.getWidth(), map.getHeight());
+        final PlayableMap playableMap = new PlayableMap(map.getDiamondNumberForWin(), map.getWidth(), map.getHeight(),
+                map.getId());
         final MotionlessFactory factory = new MotionlessFactory(playableMap);
 
         i = 0;
@@ -98,11 +99,11 @@ public class DAOMap extends DAOEntity<Map> {
     }
 
     @Override
-    public Map find(final int id, final String label) {
+    public Map find(final int id) {
         Map map = null;
         try {
             final String FillingMapRequest = "{call  getLabelXY(" + id + ")}";
-            final String mapRequest = "{call  getMap(\"" + label + "\")}";
+            final String mapRequest = "{call  getMap(" + id + ")}";
 
             final CallableStatement requestMap = this.getConnection().prepareCall(mapRequest);
             final CallableStatement requestFillingMap = this.getConnection().prepareCall(FillingMapRequest);

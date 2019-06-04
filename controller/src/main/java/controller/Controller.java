@@ -1,10 +1,15 @@
 package controller;
 
+import java.sql.SQLException;
+
 import contract.ControllerOrder;
 import contract.IController;
 import contract.ILoopGame;
 import contract.IModel;
+import contract.IPlayableMap;
 import contract.IView;
+import model.DAOMap;
+import model.DBConnection;
 
 /**
  * The Class Controller.
@@ -23,8 +28,10 @@ public final class Controller implements IController {
     /**
      * Instantiates a new controller.
      *
-     * @param view  the view
-     * @param model the model
+     * @param view
+     *            the view
+     * @param model
+     *            the model
      */
 
     public Controller(final IView view, final IModel model) {
@@ -60,10 +67,16 @@ public final class Controller implements IController {
         return this.model;
     }
 
+    @Override
+    public IView getView() {
+        return this.view;
+    }
+
     /**
      * Order perform.
      *
-     * @param controllerOrder the controller order
+     * @param controllerOrder
+     *            the controller order
      */
     /*
      * (non-Javadoc)
@@ -75,6 +88,11 @@ public final class Controller implements IController {
         this.getModel().getPlayableMap().getPlayer().setMovingOrder(controllerOrder);
     }
 
+    @Override
+    public void restart(final int id) throws SQLException {
+        this.stop();
+    }
+
     private void setLoopGame(final ILoopGame loopGame) {
         this.loopGame = loopGame;
     }
@@ -82,7 +100,8 @@ public final class Controller implements IController {
     /**
      * Sets the model.
      *
-     * @param model the new model
+     * @param model
+     *            the new model
      */
 
     private void setModel(final IModel model) {
@@ -92,7 +111,8 @@ public final class Controller implements IController {
     /**
      * Sets the view.
      *
-     * @param pview the new view
+     * @param pview
+     *            the new view
      */
 
     private void setView(final IView pview) {
@@ -100,13 +120,33 @@ public final class Controller implements IController {
     }
 
     @Override
-    public void start() {
+    public void start(final int id) throws SQLException {
+        // reload model
+        final DAOMap dao = new DAOMap(DBConnection.getInstance().getConnection());
+        this.getModel().setPlayableMap(dao.create(dao.find(id)));
+        final IPlayableMap map = this.getModel().getPlayableMap();
+        for (int y = 0; y < map.getWidth(); y++) {
+            for (int x = 0; x < map.getHeight(); x++) {
+                System.out.print(map.getXYElement(x, y).getSprite().getConsoleImage() + " ");
+            }
+            System.out.println();
+
+        }
+        this.loopGame = new LoopGame();
+        this.loopGame.setController(this);
+        this.getView().setMap(this.getModel().getPlayableMap());
         try {
             this.loopGame.loopGame();
         } catch (final InterruptedException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void stop() {
+        this.loopGame = null;
+        // this.loopGame.setIsRunning(false);
     }
 
 }

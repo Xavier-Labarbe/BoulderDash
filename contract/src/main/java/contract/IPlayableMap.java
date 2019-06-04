@@ -17,6 +17,8 @@ public interface IPlayableMap {
 
     int getHeight();
 
+    int getId();
+
     ArrayList<IMobile> getMobiles();
 
     int getNumberOfDiamondForWin();
@@ -42,6 +44,8 @@ public interface IPlayableMap {
     void setExit(IExit exit);
 
     void setHeight(int height);
+
+    void setId(int id);
 
     void setNumberOfDiamondForWin(int numberOfDiamondForWin);
 

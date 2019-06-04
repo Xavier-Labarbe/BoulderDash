@@ -56,6 +56,7 @@ public final class View implements IView, Runnable {
         this.viewFrame = new ViewFrame(model, this.controller);
         this.viewFrame.setView(this);
         this.setMap(model.getPlayableMap());
+
         SwingUtilities.invokeLater(this);
     }
 
