@@ -2,6 +2,8 @@ package view;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -17,18 +19,11 @@ import contract.IPlayer;
  * @author Jean-Aymeric Diet
  */
 class ViewPanel extends JPanel implements Observer {
+
     /** The Constant serialVersionUID. */
     private static final long serialVersionUID = -998294702363713521L;
     /** The view frame. */
     private ViewFrame viewFrame;
-    int previousPosX;
-    int previousPosY;
-    int previousX;
-    int previousY;
-    int countX;
-    int countY;
-    boolean motionCamera = true;
-    boolean start = false;
 
     /**
      * Instantiates a new view panel.
@@ -38,6 +33,7 @@ class ViewPanel extends JPanel implements Observer {
     public ViewPanel(final ViewFrame viewFrame) {
 
         this.setViewFrame(viewFrame);
+
         viewFrame.getModel().getPlayableMap().getObservable().addObserver(this);
     }
 
@@ -66,32 +62,43 @@ class ViewPanel extends JPanel implements Observer {
 
     @Override
     protected void paintComponent(Graphics graphics) {
-        // this.reloadImage();
+
+        final GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+
+        final double width = gd.getDisplayMode().getWidth();
+        final double height = gd.getDisplayMode().getHeight();
+
         graphics.clearRect(0, 0, this.getViewFrame().getModel().getPlayableMap().getWidth(),
                 this.getViewFrame().getModel().getPlayableMap().getHeight());
         graphics = this.getComponentGraphics(graphics);
         final IPlayer player = this.getViewFrame().getModel().getPlayableMap().getPlayer();
-        graphics.translate(-(player.getX() * 16) + (16 * 7), -(player.getY() * 16) + (16 * 7));
+        final int playerX = player.getX();
+        final int playerY = player.getY();
 
         if (player.isAlive()) {
 
-            for (int i = 0; i < this.getViewFrame().getModel().getPlayableMap().getWidth(); i++) {
-                for (int j = 0; j < this.getViewFrame().getModel().getPlayableMap().getHeight(); j++) {
+            graphics.translate(((-(playerX * 16) + (((int) width / 16) * 2))),
+                    -(playerY * 16) + ((((int) height / 16) * 2)));
+            for (int i = 0; i < this.viewFrame.getModel().getPlayableMap().getWidth(); i++) {
+                for (int j = 0; j < this.viewFrame.getModel().getPlayableMap().getWidth(); j++) {
+
                     graphics.drawImage(
                             this.getViewFrame().getModel().getPlayableMap().getXYElement(i, j).getSprite().getImage(),
                             i * 16, j * 16, null);
                 }
             }
         } else {
+
             this.viewFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            JOptionPane.showMessageDialog(this.getViewFrame(), "Your are dead ! ", "Try again !",
-                    JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this.getViewFrame(), "Game over", "You loose...", JOptionPane.ERROR_MESSAGE);
+            System.exit(0);
+
         }
 
         if (this.getViewFrame().getModel().getPlayableMap().isWin().equals(true)) {
             this.viewFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            JOptionPane.showMessageDialog(this.getViewFrame(), "Bravo ", "Vous avez gagné !",
-                    JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this.getViewFrame(), "Well done ", "You win !", JOptionPane.ERROR_MESSAGE);
+            System.exit(0);
         }
 
     }

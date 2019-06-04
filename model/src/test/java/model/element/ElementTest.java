@@ -33,7 +33,7 @@ public class ElementTest {
 
     @Test
     public void getSpritetest() {
-        final Sprite expected = new Sprite("R", "Rock.jpg");
+
         assertNotNull(this.rock.getSprite());
     }
 

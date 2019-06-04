@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Frame;
 import java.awt.GraphicsConfiguration;
 import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
@@ -86,9 +87,9 @@ class ViewFrame extends JFrame implements KeyListener {
         this.setResizable(false);
         this.addKeyListener(this);
         this.setContentPane(new ViewPanel(this));
-
-        this.setSize(1000 + this.getInsets().left + this.getInsets().right,
-                1000 + this.getInsets().top + this.getInsets().bottom);
+        this.setExtendedState(Frame.MAXIMIZED_BOTH);
+        this.setUndecorated(true);
+        this.setVisible(true);
         this.setLocationRelativeTo(null);
     }
 
