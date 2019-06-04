@@ -1,20 +1,22 @@
 package contract;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Enum ControllerOrder.
  *
- * @author Jean-Aymeric Diet
+ * @author Group 1.
  */
 public enum ControllerOrder {
 
-    /** The English. */
+    /** The up. */
     UP,
-    /** The French. */
+    /** The right. */
     RIGHT,
-    /** The Deutch. */
+    /** The down. */
     DOWN,
-    /** The Indonesia. */
+    /** The left. */
     LEFT,
 
+    /** The nothing. */
     NOTHING,
 }

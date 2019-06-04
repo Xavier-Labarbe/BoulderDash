@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 
 import contract.IPlayer;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class ViewPanel.
  *
@@ -37,6 +38,12 @@ class ViewPanel extends JPanel implements Observer {
         viewFrame.getModel().getPlayableMap().getObservable().addObserver(this);
     }
 
+    /**
+     * Gets the component graphics.
+     *
+     * @param g the g
+     * @return the component graphics
+     */
     /*
      * (non-Javadoc)
      *
@@ -60,6 +67,11 @@ class ViewPanel extends JPanel implements Observer {
         return this.viewFrame;
     }
 
+    /**
+     * Paint component.
+     *
+     * @param graphics the graphics
+     */
     @Override
     protected void paintComponent(Graphics graphics) {
 
@@ -112,6 +124,12 @@ class ViewPanel extends JPanel implements Observer {
         this.viewFrame = viewFrame;
     }
 
+    /**
+     * Update.
+     *
+     * @param arg0 the arg 0
+     * @param arg1 the arg 1
+     */
     /*
      * (non-Javadoc)
      *

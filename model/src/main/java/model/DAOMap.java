@@ -11,15 +11,32 @@ import entity.Map;
 import model.element.mobile.MobileFactory;
 import model.element.motionless.MotionlessFactory;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class DAOMap.
+ */
 public class DAOMap extends DAOEntity<Map> {
 
+    /** The connection. */
     private Connection connection;
 
+    /**
+     * Instantiates a new DAO map.
+     *
+     * @param connection the connection
+     * @throws SQLException the SQL exception
+     */
     public DAOMap(final Connection connection) throws SQLException {
         super(connection);
         this.connection = connection;
     }
 
+    /**
+     * Creates the.
+     *
+     * @param map the map
+     * @return the playable map
+     */
     @Override
     public PlayableMap create(final Map map) {
 
@@ -67,25 +84,21 @@ public class DAOMap extends DAOEntity<Map> {
                 break;
             }
         }
-        this.display(playableMap);
         return playableMap;
     }
 
-    public void display(final PlayableMap playableMap) {
-        for (int y = 0; y < 20; y++) {
-            for (int x = 0; x < 20; x++) {
-                try {
-                    System.out.print(playableMap.getXYElement(x, y).getSprite().getConsoleImage());
-                } catch (final Exception e) {
+    /**
+     * Display.
+     *
+     * @param playableMap the playable map
+     */
 
-                }
-            }
-            System.out.println();
-        }
-        System.out.println();
-
-    }
-
+    /**
+     * Find.
+     *
+     * @param id the id
+     * @return the map
+     */
     @Override
     public Map find(final int id) {
         Map map = null;
@@ -100,7 +113,6 @@ public class DAOMap extends DAOEntity<Map> {
             requestFillingMap.execute();
             final ResultSet mapResultSet = requestMap.getResultSet();
             final ResultSet fillingMapResultSet = requestFillingMap.getResultSet();
-            System.out.println("ok");
             if (mapResultSet.first()) {
                 map = new Map(id, mapResultSet.getString("label"), mapResultSet.getInt("WIDTH"),
                         mapResultSet.getInt("HEIGHT"), mapResultSet.getInt("D_NUMBER_FOR_WIN"));
@@ -120,11 +132,21 @@ public class DAOMap extends DAOEntity<Map> {
         return null;
     }
 
+    /**
+     * Gets the connection.
+     *
+     * @return the connection
+     */
     @Override
     public Connection getConnection() {
         return this.connection;
     }
 
+    /**
+     * Sets the connection.
+     *
+     * @param connection the new connection
+     */
     public void setConnection(final Connection connection) {
         this.connection = connection;
     }

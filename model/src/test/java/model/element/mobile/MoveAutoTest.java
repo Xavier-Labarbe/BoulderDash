@@ -12,20 +12,43 @@ import model.PlayableMap;
 import model.element.motionless.Dirt;
 import model.element.motionless.Tunnel;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MoveAutoTest.
+ */
 public class MoveAutoTest {
+
+    /**
+     * Sets the up before class.
+     *
+     */
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
     }
 
+    /**
+     * Tear down after class.
+     *
+     */
     @AfterClass
     public static void tearDownAfterClass() throws Exception {
     }
 
+    /** The monster 1. */
     Monster monster1;
+
+    /** The map 1. */
     PlayableMap map1;
+
+    /** The monster 2. */
     Monster monster2;
+
+    /** The map 2. */
     PlayableMap map2;
 
+    /**
+     * Movetest.
+     */
     @Test
     public void movetest() {
         final int expectedx1 = 1;
@@ -40,6 +63,10 @@ public class MoveAutoTest {
         assertEquals(expectedy2, this.monster2.getY());
     }
 
+    /**
+     * Sets the up.
+     *
+     */
     @Before
     public void setUp() throws Exception {
         this.map1 = new PlayableMap(2, 3, 3);
@@ -57,6 +84,10 @@ public class MoveAutoTest {
         this.monster2 = new Monster(1, 1, this.map2);
     }
 
+    /**
+     * Tear down.
+     *
+     */
     @After
     public void tearDown() throws Exception {
     }

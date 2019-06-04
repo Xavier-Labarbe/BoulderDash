@@ -6,6 +6,7 @@ import contract.ILoopGame;
 import contract.IModel;
 import contract.IView;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class Controller.
  */
@@ -17,7 +18,7 @@ public final class Controller implements IController {
     /** The view. */
     private IView view;
 
-    /** The gameloop */
+    /**  The gameloop. */
     private ILoopGame loopGame;
 
     /**
@@ -50,11 +51,21 @@ public final class Controller implements IController {
                 "Appuyer sur les touches '↑', '↓', '←' ou '→', pour vous déplacer. Ramassez le nombre de diamant attendu pour atteindre la sortie. ATTENTION AUX CAILLOUX !");
     }
 
+    /**
+     * Gets the loop game.
+     *
+     * @return the loop game
+     */
     @Override
     public ILoopGame getLoopGame() {
         return this.loopGame;
     }
 
+    /**
+     * Gets the model.
+     *
+     * @return the model
+     */
     @Override
     public IModel getModel() {
         return this.model;
@@ -75,6 +86,11 @@ public final class Controller implements IController {
         this.getModel().getPlayableMap().getPlayer().setMovingOrder(controllerOrder);
     }
 
+    /**
+     * Sets the loop game.
+     *
+     * @param loopGame the new loop game
+     */
     private void setLoopGame(final ILoopGame loopGame) {
         this.loopGame = loopGame;
     }
@@ -99,6 +115,9 @@ public final class Controller implements IController {
         this.view = pview;
     }
 
+    /**
+     * Start.
+     */
     @Override
     public void start() {
         try {

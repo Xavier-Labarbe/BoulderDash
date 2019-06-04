@@ -14,24 +14,55 @@ import model.element.motionless.Border;
 import model.element.motionless.Dirt;
 import model.element.motionless.Tunnel;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MoveInputTest.
+ */
 public class MoveInputTest {
+
+    /**
+     * Sets the up before class.
+     *
+     */
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
     }
 
+    /**
+     * Tear down after class.
+     *
+     */
     @AfterClass
     public static void tearDownAfterClass() throws Exception {
     }
 
+    /** The p 1. */
     Player p1;
+
+    /** The map 1. */
     PlayableMap map1;
+
+    /** The p 2. */
     Player p2;
+
+    /** The map 2. */
     PlayableMap map2;
+
+    /** The p 3. */
     Player p3;
+
+    /** The map 3. */
     PlayableMap map3;
+
+    /** The p 4. */
     Player p4;
+
+    /** The map 4. */
     PlayableMap map4;
 
+    /**
+     * Move on diamondtest.
+     */
     @Test
     public void moveOnDiamondtest() {
         final int expectedx1 = 2;
@@ -41,6 +72,9 @@ public class MoveInputTest {
         assertEquals(expectedy1, this.p3.getY());
     }
 
+    /**
+     * Move on tunneltest.
+     */
     @Test
     public void moveOnTunneltest() {
         final int expectedx1 = 2;
@@ -51,6 +85,9 @@ public class MoveInputTest {
 
     }
 
+    /**
+     * Movetest.
+     */
     @Test
     public void movetest() {
         final int expectedx1 = 1;
@@ -65,6 +102,10 @@ public class MoveInputTest {
         assertEquals(expectedy2, this.p2.getY());
     }
 
+    /**
+     * Sets the up.
+     *
+     */
     @Before
     public void setUp() throws Exception {
         this.map1 = new PlayableMap(2, 3, 3);
@@ -94,6 +135,10 @@ public class MoveInputTest {
         this.p4.setMovingOrder(ControllerOrder.RIGHT);
     }
 
+    /**
+     * Tear down.
+     *
+     */
     @After
     public void tearDown() throws Exception {
     }

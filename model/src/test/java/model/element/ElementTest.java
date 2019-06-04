@@ -13,17 +13,35 @@ import contract.Permeability;
 import model.PlayableMap;
 import model.element.mobile.Rock;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ElementTest.
+ */
 public class ElementTest {
+
+    /**
+     * Sets the up before class.
+     *
+     */
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
     }
 
+    /**
+     * Tear down after class.
+     *
+     */
     @AfterClass
     public static void tearDownAfterClass() throws Exception {
     }
 
+    /** The rock. */
     public Rock rock;
 
+    /**
+     * Gets the permeabilitytest.
+     *
+     */
     @Test
     public void getPermeabilitytest() {
         final Permeability expected = Permeability.BLOCKING;
@@ -31,12 +49,19 @@ public class ElementTest {
 
     }
 
+    /**
+     * Gets the spritetest.
+     *
+     */
     @Test
     public void getSpritetest() {
 
         assertNotNull(this.rock.getSprite());
     }
 
+    /**
+     * Checks if is explosable test.
+     */
     @Test
     public void isExplosableTest() {
         final Boolean expected = true;
@@ -44,11 +69,19 @@ public class ElementTest {
 
     }
 
+    /**
+     * Sets the up.
+     *
+     */
     @Before
     public void setUp() throws Exception {
         this.rock = new Rock(0, 0, new PlayableMap(2, 2, 2));
     }
 
+    /**
+     * Tear down.
+     *
+     */
     @After
     public void tearDown() throws Exception {
     }

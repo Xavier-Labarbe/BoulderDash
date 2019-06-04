@@ -9,10 +9,21 @@ import contract.IMobile;
 import contract.IPlayableMap;
 import contract.IPlayer;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class LoopGame.
+ */
 public class LoopGame implements ILoopGame {
+
+    /** The is running. */
     private Boolean isRunning = true;
+
+    /** The controller. */
     private IController controller;
 
+    /**
+     * Do game updates.
+     */
     private void doGameUpdates() {
         final IPlayableMap map = this.controller.getModel().getPlayableMap();
         if (map.getPlayer().isAlive() && (map.isWin() == false)) {
@@ -33,6 +44,17 @@ public class LoopGame implements ILoopGame {
             for (final Iterator<IMobile> i = map.getMobiles().iterator(); i.hasNext();) {
                 final IMobile i_n = i.next();
                 if (i_n instanceof IPlayer) {
+                } else if (i_n instanceof IFallingMobile) {
+                    i_n.move();
+                }
+                if (i_n instanceof IFallingMobile) {
+                    ((IFallingMobile) i_n).setFrozen(false);
+                }
+            }
+            for (final Iterator<IMobile> i = map.getMobiles().iterator(); i.hasNext();) {
+                final IMobile i_n = i.next();
+                if (i_n instanceof IPlayer) {
+                } else if (i_n instanceof IFallingMobile) {
                 } else {
                     i_n.move();
                 }
@@ -47,16 +69,31 @@ public class LoopGame implements ILoopGame {
         }
     }
 
+    /**
+     * Gets the controller.
+     *
+     * @return the controller
+     */
     @Override
     public IController getController() {
         return this.controller;
     }
 
+    /**
+     * Gets the checks if is running.
+     *
+     * @return the checks if is running
+     */
     @Override
     public Boolean getIsRunning() {
         return this.isRunning;
     }
 
+    /**
+     * Loop game.
+     *
+     * @throws InterruptedException the interrupted exception
+     */
     @Override
     public void loopGame() throws InterruptedException {
         while (this.getIsRunning()) {
@@ -66,17 +103,30 @@ public class LoopGame implements ILoopGame {
         }
     }
 
+    /**
+     * Render.
+     */
     private void render() {
         if (this.getIsRunning() == false) {
             System.out.println("Vous avez perdu... Ou gagné");
         }
     }
 
+    /**
+     * Sets the controller.
+     *
+     * @param controller the new controller
+     */
     @Override
     public void setController(final IController controller) {
         this.controller = controller;
     }
 
+    /**
+     * Sets the checks if is running.
+     *
+     * @param isRunning the new checks if is running
+     */
     @Override
     public void setIsRunning(final Boolean isRunning) {
         this.isRunning = isRunning;

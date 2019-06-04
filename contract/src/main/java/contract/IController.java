@@ -1,9 +1,10 @@
 package contract;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Interface IController.
  *
- * @author Jean-Aymeric Diet
+ * @author Group 1.
  */
 public interface IController {
 
@@ -12,8 +13,18 @@ public interface IController {
      */
     public void control();
 
+    /**
+     * Gets the loop game.
+     *
+     * @return the loop game
+     */
     public ILoopGame getLoopGame();
 
+    /**
+     * Gets the model.
+     *
+     * @return the model
+     */
     public IModel getModel();
 
     /**
@@ -23,5 +34,8 @@ public interface IController {
      */
     public void orderPerform(ControllerOrder controllerOrder);
 
+    /**
+     * Start.
+     */
     public void start();
 }

@@ -12,21 +12,43 @@ import model.PlayableMap;
 import model.element.motionless.Dirt;
 import model.element.motionless.Tunnel;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MoveGravityTest.
+ */
 public class MoveGravityTest {
+
+    /**
+     * Sets the up before class.
+     *
+     */
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
     }
 
+    /**
+     * Tear down after class.
+     *
+     */
     @AfterClass
     public static void tearDownAfterClass() throws Exception {
     }
 
+    /** The rock 1. */
     Rock rock1;
+
+    /** The map 1. */
     PlayableMap map1;
+
+    /** The rock 2. */
     Rock rock2;
 
+    /** The map 2. */
     PlayableMap map2;
 
+    /**
+     * Move diagonaltest.
+     */
     @Test
     public void moveDiagonaltest() {
         final int expectedx1 = 2;
@@ -37,6 +59,9 @@ public class MoveGravityTest {
 
     }
 
+    /**
+     * Movedowntest.
+     */
     @Test
     public void movedowntest() {
         final int expectedx1 = 1;
@@ -47,6 +72,10 @@ public class MoveGravityTest {
 
     }
 
+    /**
+     * Sets the up.
+     *
+     */
     @Before
     public void setUp() throws Exception {
         this.map1 = new PlayableMap(2, 3, 3);
@@ -67,6 +96,10 @@ public class MoveGravityTest {
         this.rock2 = new Rock(1, 1, this.map2);
     }
 
+    /**
+     * Tear down.
+     *
+     */
     @After
     public void tearDown() throws Exception {
     }

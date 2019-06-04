@@ -1,5 +1,6 @@
 package contract;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Interface IView.
  *
@@ -7,6 +8,11 @@ package contract;
  */
 public interface IView {
 
+    /**
+     * Gets the controller.
+     *
+     * @return the controller
+     */
     IController getController();
 
     /**
@@ -16,5 +22,10 @@ public interface IView {
      */
     void printMessage(final String message);
 
+    /**
+     * Sets the controller.
+     *
+     * @param controller the new controller
+     */
     void setController(IController controller);
 }

@@ -11,6 +11,7 @@ import contract.IModel;
 import contract.IPlayableMap;
 import contract.IView;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class View.
  *
@@ -39,11 +40,13 @@ public final class View implements IView, Runnable {
         }
     }
 
+    /** The map. */
     private IPlayableMap map;
 
     /** The frame. */
     private final ViewFrame viewFrame;
 
+    /** The controller. */
     private IController controller;
 
     /**
@@ -59,15 +62,30 @@ public final class View implements IView, Runnable {
         SwingUtilities.invokeLater(this);
     }
 
+    /**
+     * Gets the controller.
+     *
+     * @return the controller
+     */
     @Override
     public IController getController() {
         return this.controller;
     }
 
+    /**
+     * Gets the map.
+     *
+     * @return the map
+     */
     public IPlayableMap getMap() {
         return this.map;
     }
 
+    /**
+     * Prints the message.
+     *
+     * @param message the message
+     */
     /*
      * (non-Javadoc)
      *
@@ -78,6 +96,9 @@ public final class View implements IView, Runnable {
         this.viewFrame.printMessage(message);
     }
 
+    /**
+     * Run.
+     */
     /*
      * (non-Javadoc)
      *
@@ -100,6 +121,11 @@ public final class View implements IView, Runnable {
         this.controller = controller;
     }
 
+    /**
+     * Sets the map.
+     *
+     * @param map the new map
+     */
     public void setMap(final IPlayableMap map) {
         this.map = map;
         for (int x = 0; x < map.getWidth(); x++) {

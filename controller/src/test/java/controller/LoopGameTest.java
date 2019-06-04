@@ -8,39 +8,65 @@ import org.junit.Test;
 
 import contract.IController;
 
-
+// TODO: Auto-generated Javadoc
+/**
+ * The Class LoopGameTest.
+ */
 public class LoopGameTest {
-	Boolean IsRunning = true;
-	IController controller;
-    private LoopGame loopGame = new LoopGame();
-	
-	@Test
-	public void render() {
-		this.loopGame.setIsRunning(IsRunning);
-		if (loopGame.getIsRunning() == false) {
-			fail("la game loop est arrétée");
-		}
-	}
-	
-	@Test
-    public void setIsRunningTest() {
-        this.loopGame.setIsRunning(true);
-        assertTrue(this.loopGame.getIsRunning());
+
+    /** The Is running. */
+    Boolean IsRunning = true;
+
+    /** The controller. */
+    IController controller;
+
+    /** The loop game. */
+    private final LoopGame loopGame = new LoopGame();
+
+    /**
+     * Gets the controller test.
+     *
+     */
+    @Test
+    public void getControllerTest() {
+        assertEquals(this.controller, this.loopGame.getController());
     }
 
+    /**
+     * Gets the checks if is running test.
+     *
+     */
     @Test
     public void getIsRunningTest() {
         assertTrue(this.loopGame.getIsRunning());
     }
-    
+
+    /**
+     * Render.
+     */
     @Test
-    public void setControllerTest() {
-        this.loopGame.setController(controller);
-        assertEquals(controller, this.loopGame.getController());
+    public void render() {
+        this.loopGame.setIsRunning(this.IsRunning);
+        if (this.loopGame.getIsRunning() == false) {
+            fail("la game loop est arrétée");
+        }
     }
 
+    /**
+     * Sets the controller test.
+     */
     @Test
-    public void getControllerTest() {
-        assertEquals(controller, this.loopGame.getController());
+    public void setControllerTest() {
+        this.loopGame.setController(this.controller);
+        assertEquals(this.controller, this.loopGame.getController());
+    }
+
+    /**
+     * Sets the is running test.
+     */
+    @Test
+    public void setIsRunningTest() {
+        this.loopGame.setIsRunning(true);
+        assertTrue(this.loopGame.getIsRunning());
     }
 }

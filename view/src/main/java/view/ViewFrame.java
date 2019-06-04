@@ -13,6 +13,7 @@ import contract.IController;
 import contract.IModel;
 import contract.IView;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class ViewFrame.
  *
@@ -28,6 +29,7 @@ class ViewFrame extends JFrame implements KeyListener {
     /** The model. */
     private IModel model;
 
+    /** The view. */
     private IView view;
 
     /**
@@ -45,6 +47,7 @@ class ViewFrame extends JFrame implements KeyListener {
      * Instantiates a new view frame.
      *
      * @param model the model
+     * @param controller the controller
      * @throws HeadlessException the headless exception
      */
     public ViewFrame(final IModel model, final IController controller) throws HeadlessException {
@@ -111,10 +114,20 @@ class ViewFrame extends JFrame implements KeyListener {
         return this.model;
     }
 
+    /**
+     * Gets the view.
+     *
+     * @return the view
+     */
     public IView getView() {
         return this.view;
     }
 
+    /**
+     * Key pressed.
+     *
+     * @param e the e
+     */
     /*
      * (non-Javadoc)
      *
@@ -125,6 +138,11 @@ class ViewFrame extends JFrame implements KeyListener {
         this.getView().getController().orderPerform(View.keyCodeToControllerOrder(e.getKeyCode()));
     }
 
+    /**
+     * Key released.
+     *
+     * @param e the e
+     */
     /*
      * (non-Javadoc)
      *
@@ -135,6 +153,11 @@ class ViewFrame extends JFrame implements KeyListener {
 
     }
 
+    /**
+     * Key typed.
+     *
+     * @param e the e
+     */
     /*
      * (non-Javadoc)
      *
@@ -172,6 +195,11 @@ class ViewFrame extends JFrame implements KeyListener {
         this.model = model;
     }
 
+    /**
+     * Sets the view.
+     *
+     * @param view the new view
+     */
     public void setView(final IView view) {
         this.view = view;
     }

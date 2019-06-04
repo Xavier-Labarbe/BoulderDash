@@ -7,8 +7,17 @@ import model.element.motionless.ExplosableWall;
 import model.element.motionless.MotionlessFactory;
 import model.element.motionless.Tunnel;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MoveGravity.
+ */
 public class MoveGravity extends StrategyMove {
 
+    /**
+     * Move.
+     *
+     * @param mobile the mobile
+     */
     @Override
     public void move(final IMobile mobile) {
         final int x = mobile.getX();
@@ -56,6 +65,13 @@ public class MoveGravity extends StrategyMove {
 
     }
 
+    /**
+     * Move at XY.
+     *
+     * @param x the x
+     * @param y the y
+     * @param mobile the mobile
+     */
     private void moveAtXY(final int x, final int y, final IMobile mobile) {
         mobile.getMap().setXYElement(mobile.getX(), mobile.getY(), MotionlessFactory.createTunnel());
         mobile.getMap().setXYElement(x, y, MotionlessFactory.createTunnel());

@@ -4,10 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class DBConnection.
  *
- * @author Jean-Aymeric Diet
+ * @author Group 1.
  */
 public final class DBConnection {
     /** The instance. */

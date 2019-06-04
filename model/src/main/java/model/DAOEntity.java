@@ -5,10 +5,11 @@ import java.sql.SQLException;
 
 import entity.Entity;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class DAOEntity.
  *
- * @author Jean-Aymeric Diet
+ * @author Group 1.
  *
  * @param <E> the element type
  */
@@ -46,7 +47,6 @@ abstract class DAOEntity<E extends Entity> {
     /**
      * Find.
      *
-     * @param code the code
      * @return the e
      */
 

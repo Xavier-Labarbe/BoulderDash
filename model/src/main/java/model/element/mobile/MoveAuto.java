@@ -4,8 +4,17 @@ import contract.IMobile;
 import contract.Permeability;
 import model.element.motionless.MotionlessFactory;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MoveAuto.
+ */
 public class MoveAuto extends StrategyMove {
 
+    /**
+     * Move.
+     *
+     * @param mobile the mobile
+     */
     @Override
     public void move(final IMobile mobile) {
         final int x = mobile.getX();
@@ -113,6 +122,13 @@ public class MoveAuto extends StrategyMove {
         }
     }
 
+    /**
+     * Move at XY.
+     *
+     * @param x the x
+     * @param y the y
+     * @param mobile the mobile
+     */
     private void moveAtXY(final int x, final int y, final IMobile mobile) {
         mobile.getMap().setXYElement(mobile.getX(), mobile.getY(), MotionlessFactory.createTunnel());
         mobile.getMap().setXYElement(x, y, MotionlessFactory.createTunnel());
@@ -121,6 +137,14 @@ public class MoveAuto extends StrategyMove {
         mobile.setY(y);
     }
 
+    /**
+     * Verify if possible.
+     *
+     * @param x the x
+     * @param y the y
+     * @param mobile the mobile
+     * @return the boolean
+     */
     private Boolean verifyIfPossible(final int x, final int y, final IMobile mobile) {
         if (mobile.getMap().getXYElement(x, y).getPermeability() == Permeability.PENETRABLE) {
             return true;

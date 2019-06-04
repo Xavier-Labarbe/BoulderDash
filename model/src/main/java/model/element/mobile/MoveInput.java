@@ -8,8 +8,20 @@ import contract.IPlayer;
 import contract.Permeability;
 import model.element.motionless.Dirt;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MoveInput.
+ */
 public class MoveInput extends StrategyMove {
 
+    /**
+     * Checks if is A diamond.
+     *
+     * @param mobile the mobile
+     * @param x the x
+     * @param y the y
+     * @return the boolean
+     */
     private Boolean isADiamond(final IMobile mobile, final int x, final int y) {
         if (mobile.getMap().getXYElement(x, y) instanceof Diamond) {
             return true;
@@ -18,6 +30,14 @@ public class MoveInput extends StrategyMove {
         }
     }
 
+    /**
+     * Checks if is A dirt.
+     *
+     * @param mobile the mobile
+     * @param x the x
+     * @param y the y
+     * @return the boolean
+     */
     private Boolean isADirt(final IMobile mobile, final int x, final int y) {
         if (mobile.getMap().getXYElement(x, y) instanceof Dirt) {
             return true;
@@ -26,6 +46,14 @@ public class MoveInput extends StrategyMove {
         }
     }
 
+    /**
+     * Checks if is A rock.
+     *
+     * @param mobile the mobile
+     * @param x the x
+     * @param y the y
+     * @return the boolean
+     */
     private Boolean isARock(final IMobile mobile, final int x, final int y) {
         if (mobile.getMap().getXYElement(x, y) instanceof Rock) {
             return true;
@@ -34,6 +62,14 @@ public class MoveInput extends StrategyMove {
         }
     }
 
+    /**
+     * Checks if is openable and open.
+     *
+     * @param mobile the mobile
+     * @param x the x
+     * @param y the y
+     * @return the boolean
+     */
     private Boolean isOpenableAndOpen(final IMobile mobile, final int x, final int y) {
         if (mobile.getMap().getXYElement(x, y).getPermeability() == Permeability.OPENABLE) {
             if (((IExit) mobile.getMap().getXYElement(x, y)).getDoorState() == DoorState.OPEN) {
@@ -46,6 +82,14 @@ public class MoveInput extends StrategyMove {
         return false;
     }
 
+    /**
+     * Checks if is penetrable.
+     *
+     * @param mobile the mobile
+     * @param x the x
+     * @param y the y
+     * @return the boolean
+     */
     private Boolean isPenetrable(final IMobile mobile, final int x, final int y) {
         if (mobile.getMap().getXYElement(x, y).getPermeability() == Permeability.PENETRABLE) {
             return true;
@@ -54,6 +98,11 @@ public class MoveInput extends StrategyMove {
         }
     }
 
+    /**
+     * Move.
+     *
+     * @param mobile the mobile
+     */
     @Override
     public void move(final IMobile mobile) {
         final ControllerOrder movingOrder = mobile.getMap().getPlayer().getMovingOrder();
@@ -78,6 +127,13 @@ public class MoveInput extends StrategyMove {
         mobile.getMap().getPlayer().setMovingOrder(ControllerOrder.NOTHING);
     }
 
+    /**
+     * Verify and move.
+     *
+     * @param x the x
+     * @param y the y
+     * @param mobile the mobile
+     */
     private void verifyAndMove(final int x, final int y, final IMobile mobile) {
         if (this.isPenetrable(mobile, x, y)) {
             this.moveAtXY(mobile, x, y);
