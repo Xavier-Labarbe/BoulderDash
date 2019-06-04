@@ -41,7 +41,7 @@ abstract class DAOEntity<E extends Entity> {
      * @param id the id
      * @return the e
      */
-    public abstract E find(int id, String label);
+    public abstract E find(int id);
 
     /**
      * Find.

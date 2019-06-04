@@ -17,7 +17,6 @@ import contract.IPlayer;
  * @author Jean-Aymeric Diet
  */
 class ViewPanel extends JPanel implements Observer {
-
     /** The Constant serialVersionUID. */
     private static final long serialVersionUID = -998294702363713521L;
     /** The view frame. */
@@ -29,6 +28,7 @@ class ViewPanel extends JPanel implements Observer {
     int countX;
     int countY;
     boolean motionCamera = true;
+    boolean start = false;
 
     /**
      * Instantiates a new view panel.

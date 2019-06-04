@@ -23,12 +23,8 @@ public class DAOMap extends DAOEntity<Map> {
     @Override
     public PlayableMap create(final Map map) {
 
-        int i = 0;
         final PlayableMap playableMap = new PlayableMap(map.getDiamondNumberForWin(), map.getWidth(), map.getHeight());
-
-        i = 0;
         for (final FillingMap fillingMap : map.getFillingMaps()) {
-
             switch (fillingMap.getElementChar()) {
             case "|":
                 playableMap.setXYElement(fillingMap.getX(), fillingMap.getY(),
@@ -71,7 +67,6 @@ public class DAOMap extends DAOEntity<Map> {
                 break;
             }
         }
-
         this.display(playableMap);
         return playableMap;
     }
@@ -92,11 +87,11 @@ public class DAOMap extends DAOEntity<Map> {
     }
 
     @Override
-    public Map find(final int id, final String label) {
+    public Map find(final int id) {
         Map map = null;
         try {
             final String FillingMapRequest = "{call  getLabelXY(" + id + ")}";
-            final String mapRequest = "{call  getMap(\"" + label + "\")}";
+            final String mapRequest = "{call  getMap(\"" + id + "\")}";
 
             final CallableStatement requestMap = this.getConnection().prepareCall(mapRequest);
             final CallableStatement requestFillingMap = this.getConnection().prepareCall(FillingMapRequest);
