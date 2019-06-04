@@ -14,4 +14,4 @@
 
 **Diagrams path : BoulderDash\diagram\JavaDiagrams\BoulderDash.vpp**
 
-**BoulderDash\diagram\MCD\BoulderDash**
+**MCD path : BoulderDash\diagram\MCD\BoulderDash**
